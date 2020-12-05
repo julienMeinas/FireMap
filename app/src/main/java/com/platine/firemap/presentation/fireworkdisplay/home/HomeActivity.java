@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupViewPagerAndTabs() {
-        viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.main_view_pager);
         final MainFragment mainFragment = new MainFragment();
         final FavoriteFragment favoriteFragment = new FavoriteFragment();
 

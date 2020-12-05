@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_main">
 
-    <TextView
+
+    <com.platine.firemap.presentation.fireworkdisplay.home.main.VerticalViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="main fragment"/>
+        android:id="@+id/map_and_list_view_pager">
+
+    </com.platine.firemap.presentation.fireworkdisplay.home.main.VerticalViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
