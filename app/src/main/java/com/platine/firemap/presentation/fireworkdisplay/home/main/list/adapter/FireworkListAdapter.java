@@ -36,16 +36,18 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         return fireworkViewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(FireworkViewHolder holder, final int position) {
         holder.bind(fireworkViewModelList.get(position));
-
+        /**
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO show detail of the firework
             }
         });
+         */
     }
 
     @Override
