@@ -1,10 +1,11 @@
 package com.platine.firemap.data.api;
 
+import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.FireworkResponse;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -20,5 +21,5 @@ public interface FireworkDisplayService {
      * @return popular fireworks
      */
     @GET("https://firemap-api.herokuapp.com/firework-types/")
-    Single<FireworkResponse> getAllFireworks();
+    Flowable<List<FireworkModel>> getAllFireworks();
 }

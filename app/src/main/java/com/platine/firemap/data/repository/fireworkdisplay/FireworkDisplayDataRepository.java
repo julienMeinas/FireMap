@@ -1,9 +1,12 @@
 package com.platine.firemap.data.repository.fireworkdisplay;
 
+import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.FireworkResponse;
 import com.platine.firemap.data.repository.fireworkdisplay.remote.FireworkDisplayRemoteDataSource;
 
-import io.reactivex.Single;
+import java.util.List;
+
+import io.reactivex.Flowable;
 
 public class FireworkDisplayDataRepository {
     private FireworkDisplayRemoteDataSource m_fireworkDisplayRemoteDataSource;
@@ -15,7 +18,7 @@ public class FireworkDisplayDataRepository {
     /**
      * @return : get all fireworks
      */
-    public Single<FireworkResponse> getFireworks() {
+    public Flowable<List<FireworkModel>> getFireworks() {
         return this.m_fireworkDisplayRemoteDataSource.getFireworks();
     }
 }
