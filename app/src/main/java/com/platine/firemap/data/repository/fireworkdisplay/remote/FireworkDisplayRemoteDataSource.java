@@ -13,9 +13,9 @@ public class FireworkDisplayRemoteDataSource {
     }
 
     /**
-     * @return : get all bests articles
+     * @return : get all fireworks
      */
-    public Single<FireworkResponse> getBestsArticles() {
+    public Single<FireworkResponse> getFireworks() {
         return this.m_fireworkDisplayService.getAllFireworks();
     }
 }
