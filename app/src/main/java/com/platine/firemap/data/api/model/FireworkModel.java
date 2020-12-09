@@ -1,6 +1,7 @@
 package com.platine.firemap.data.api.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class FireworkModel {
     private int id;
@@ -11,9 +12,9 @@ public class FireworkModel {
     private int duration;
     private String crowded;
     private Fireworker fireworker;
-    private Parking parking;
+    private List<Parking> parkings;
 
-    public FireworkModel(int id, String adress, String date, int price, boolean handicAccess, int duration, String crowded, Fireworker fireworker, Parking parking) {
+    public FireworkModel(int id, String adress, String date, int price, boolean handicAccess, int duration, String crowded, Fireworker fireworker, List<Parking> parkings) {
         this.id = id;
         this.adress = adress;
         this.date = date;
@@ -22,7 +23,7 @@ public class FireworkModel {
         this.duration = duration;
         this.crowded = crowded;
         this.fireworker = fireworker;
-        this.parking = parking;
+        this.parkings = parkings;
     }
 
     public int getId() {
@@ -57,8 +58,8 @@ public class FireworkModel {
         return fireworker;
     }
 
-    public Parking getParking() {
-        return parking;
+    public List<Parking> getParking() {
+        return parkings;
     }
 
     public void setId(int id) {
@@ -93,7 +94,7 @@ public class FireworkModel {
         this.fireworker = fireworker;
     }
 
-    public void setParking(Parking parking) {
-        this.parking = parking;
+    public void setParking(List<Parking> parkings) {
+        this.parkings = parkings;
     }
 }
