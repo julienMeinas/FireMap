@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.platine.firemap.data.api.FireworkDisplayService;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.data.repository.fireworkdisplay.remote.FireworkDisplayRemoteDataSource;
+import com.platine.firemap.presentation.viewmodel.ViewModelFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -15,10 +16,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FakeDependencyInjection {
     private static Retrofit retrofit;
     private static Gson gson;
+    private static ViewModelFactory viewModelFactory;
     private static FireworkDisplayService fireworkDisplayService;
     private static FireworkDisplayDataRepository fireworkDisplayDataRepository;
 
 
+    public static ViewModelFactory getViewModelFactory() {
+        if (viewModelFactory == null) {
+            viewModelFactory = new ViewModelFactory(getArticleDisplayRepository());
+        }
+        return viewModelFactory;
+    }
 
     public static FireworkDisplayDataRepository getArticleDisplayRepository() {
         if (fireworkDisplayDataRepository == null) {

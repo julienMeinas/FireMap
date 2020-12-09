@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="favorite fragment"/>
+            android:text="map fragment"/>
 
         <LinearLayout
             android:layout_width="match_parent"
