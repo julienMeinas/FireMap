@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FireworkModel {
     private int id;
-    private String adress;
+    private String address;
     private String date;
     private int price;
     private boolean handicAccess;
@@ -14,9 +14,9 @@ public class FireworkModel {
     private Fireworker fireworker;
     private List<Parking> parkings;
 
-    public FireworkModel(int id, String adress, String date, int price, boolean handicAccess, int duration, String crowded, Fireworker fireworker, List<Parking> parkings) {
+    public FireworkModel(int id, String address, String date, int price, boolean handicAccess, int duration, String crowded, Fireworker fireworker, List<Parking> parkings) {
         this.id = id;
-        this.adress = adress;
+        this.address = address;
         this.date = date;
         this.price = price;
         this.handicAccess = handicAccess;
@@ -30,8 +30,8 @@ public class FireworkModel {
         return id;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
     public String getDate() {
@@ -66,8 +66,8 @@ public class FireworkModel {
         this.id = id;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setDate(String date) {

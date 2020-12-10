@@ -40,14 +40,14 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
     @Override
     public void onBindViewHolder(FireworkViewHolder holder, final int position) {
         holder.bind(fireworkViewModelList.get(position));
-        /**
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO show detail of the firework
             }
         });
-         */
+
     }
 
     @Override
@@ -69,6 +69,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             this.v = v;
             address = v.findViewById((R.id.address));
             date = v.findViewById(R.id.date);
+            parentLayout = v.findViewById(R.id.parent_layout);
         }
 
         void bind(FireworkViewModel fireworkViewModel) {
@@ -78,7 +79,12 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             address.setText(fireworkViewModel.getAddress());
 
             //Date
-            date.setText(fireworkViewModel.getDate());
+            String stringDate = convertJsonToStringDate(fireworkViewModel.getDate());
+            date.setText(stringDate);
+        }
+
+        private String convertJsonToStringDate(String date) {
+            return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4);
         }
     }
 }

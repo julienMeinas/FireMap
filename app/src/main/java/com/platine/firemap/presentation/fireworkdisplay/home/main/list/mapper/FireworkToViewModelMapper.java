@@ -10,7 +10,7 @@ public class FireworkToViewModelMapper {
 
     private FireworkViewModel map(FireworkModel firework) {
         FireworkViewModel fireworkViewModel = new FireworkViewModel();
-        fireworkViewModel.setAddress(firework.getAdress());
+        fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(firework.getDate());
         return fireworkViewModel;
     }
