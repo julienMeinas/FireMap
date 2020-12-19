@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorItem">
@@ -37,10 +38,10 @@
 
     <ImageView
         android:id="@+id/price"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/date"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_price_free">
     </ImageView>
@@ -52,7 +53,7 @@
         android:layout_toRightOf="@id/price"
         android:layout_below="@id/date"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="40dp"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Gratuit">
@@ -61,8 +62,8 @@
 
     <ImageView
         android:id="@+id/parking"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/price"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
@@ -84,8 +85,8 @@
 
     <ImageView
         android:id="@+id/accessHandicap"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/parking"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
@@ -107,8 +108,8 @@
 
     <ImageView
         android:id="@+id/people"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/accessHandicap"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
@@ -135,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/people"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="15dp"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:text="Organisé par : ">
@@ -147,11 +148,25 @@
         android:layout_toRightOf="@id/textLinkFireworker"
         android:layout_below="@id/people"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:text="Benjamin Martel">
     </TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajout aux favoris"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/textLinkFireworker"
+        android:textSize="10sp"
+        tools:ignore="MissingConstraints">
+    </Button>
+
+
+
+
 
 
 </RelativeLayout>
