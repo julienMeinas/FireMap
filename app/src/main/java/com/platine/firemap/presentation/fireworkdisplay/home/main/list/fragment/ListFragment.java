@@ -86,9 +86,14 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
 
     @Override
-    public void onInfoClicked() {
+    public void onInfoClicked(String address, String date, int price, boolean accessHandicap, String crowed) {
         Log.d(TAB_NAME, "onClick call");
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
+        intent.putExtra(InfoFireworkActivity.ADDRESS_MESSAGE, address);
+        intent.putExtra(InfoFireworkActivity.DATE_MESSAGE, date);
+        intent.putExtra(InfoFireworkActivity.PRICE_MESSAGE, price);
+        intent.putExtra(InfoFireworkActivity.ACCESS_HANDICAP_MESSAGE, accessHandicap);
+        intent.putExtra(InfoFireworkActivity.PEOPLE_MESSAGE, crowed);
         view.getContext().startActivity(intent);
     }
 }
