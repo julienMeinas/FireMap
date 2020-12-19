@@ -1,5 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +13,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapter.FireworkViewHolder> {
     private List<FireworkViewModel> fireworkViewModelList;
+    private static final String TAG = "FireworkListAdapter";
 
     public FireworkListAdapter() {
         fireworkViewModelList = new ArrayList<>();
@@ -45,7 +49,9 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO show detail of the firework
+                Log.d(TAG, "onClick call");
+                Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
 
