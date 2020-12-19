@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorItem">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/drawable_back">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <TextView
+        android:id="@+id/lieu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:text="Foire de Lille">
+    </TextView>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/lieu"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="14/07/2021">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/price"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/date"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_price_free">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/price"
+        android:layout_below="@id/date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="55dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Gratuit">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/parking"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/price"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_no_parking">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textParking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/parking"
+        android:layout_below="@id/textPrice"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="55dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Absence de Parking">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/accessHandicap"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/parking"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_handicap_access">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textAccessHandicap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/accessHandicap"
+        android:layout_below="@id/textParking"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="55dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Accès handicapés">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/people"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/accessHandicap"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_people_high">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/people"
+        android:layout_below="@id/accessHandicap"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="55dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Beaucoup de gens attendu">
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/textLinkFireworker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/people"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Organisé par : ">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textLinkFireworker"
+        android:layout_below="@id/people"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Benjamin Martel">
+    </TextView>
+
+
+</RelativeLayout>
