@@ -12,7 +12,7 @@ public class FireworkModel {
     private int duration;
     private String crowded;
     private Fireworker fireworker;
-    private List<Parking> parkings;
+    private List<Parking> parking;
 
     public FireworkModel(int id, String address, String date, int price, boolean handicAccess, int duration, String crowded, Fireworker fireworker, List<Parking> parkings) {
         this.id = id;
@@ -23,7 +23,7 @@ public class FireworkModel {
         this.duration = duration;
         this.crowded = crowded;
         this.fireworker = fireworker;
-        this.parkings = parkings;
+        this.parking = parkings;
     }
 
     public int getId() {
@@ -59,7 +59,7 @@ public class FireworkModel {
     }
 
     public List<Parking> getParking() {
-        return parkings;
+        return parking;
     }
 
     public void setId(int id) {
@@ -95,6 +95,6 @@ public class FireworkModel {
     }
 
     public void setParking(List<Parking> parkings) {
-        this.parkings = parkings;
+        this.parking = parkings;
     }
 }

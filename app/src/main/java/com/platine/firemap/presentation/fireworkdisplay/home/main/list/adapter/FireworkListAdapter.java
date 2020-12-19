@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 
 import java.util.ArrayList;
@@ -95,7 +96,21 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             price.setImageResource(fireworkViewModel.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
 
             // parking
-            parking.setImageResource(R.drawable.drawable_parking_free);
+            if(fireworkViewModel.getParkings().size() == 0) {
+                parking.setImageResource(R.drawable.drawable_no_parking);
+            }else {
+                boolean freeParking = false;
+                for(Parking p : fireworkViewModel.getParkings()) {
+                    Log.d(TAG, String.valueOf(p.getPrice()));
+                    if(p.getPrice() == 0){
+                        parking.setImageResource(R.drawable.drawable_parking_free);
+                        freeParking = true;
+                    }
+                }
+                if(!freeParking) {
+                    parking.setImageResource(R.drawable.drawable_parking_no_free);
+                }
+            }
 
             // access handicap
             accessHandicap.setImageResource(fireworkViewModel.isHandicapAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
