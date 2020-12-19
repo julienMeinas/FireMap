@@ -13,7 +13,7 @@ public class FireworkToViewModelMapper {
     private FireworkViewModel map(FireworkModel firework) {
         FireworkViewModel fireworkViewModel = new FireworkViewModel();
         fireworkViewModel.setAddress(firework.getAddress());
-        fireworkViewModel.setDate(firework.getDate());
+        fireworkViewModel.setDate(convertJsonToStringDate(firework.getDate()));
         fireworkViewModel.setPrice(firework.getPrice());
         Log.d("Log", String.valueOf(firework.isHandicAccess()));
         fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
@@ -30,6 +30,10 @@ public class FireworkToViewModelMapper {
             fireworkViewModelList.add(map(firework));
         }
         return fireworkViewModelList;
+    }
+
+    private String convertJsonToStringDate(String date) {
+        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4);
     }
 
 }
