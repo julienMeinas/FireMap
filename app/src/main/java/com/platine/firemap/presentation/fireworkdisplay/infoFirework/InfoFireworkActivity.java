@@ -2,6 +2,7 @@ package com.platine.firemap.presentation.fireworkdisplay.infoFirework;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.Fireworker;
+import com.platine.firemap.data.api.model.Parking;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InfoFireworkActivity extends AppCompatActivity {
     private static final String TAG = "InfoFireworkActivity";
@@ -56,8 +62,10 @@ public class InfoFireworkActivity extends AppCompatActivity {
         int price = intent.getIntExtra(PRICE_MESSAGE, 0);
         boolean accessHandicap = intent.getBooleanExtra(ACCESS_HANDICAP_MESSAGE, false);
         String crowed = intent.getStringExtra(PEOPLE_MESSAGE);
+        ArrayList<Parking> parkings = (ArrayList<Parking>)intent.getSerializableExtra(PARKING_MESSAGE);
+        Fireworker fireworker = (Fireworker)intent.getSerializableExtra(FIREWORKER_MESSAGE);
         initComponent();
-        setComponent(address, date, price, accessHandicap, crowed);
+        setComponent(address, date, price, accessHandicap, crowed, parkings, fireworker);
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,17 +86,24 @@ public class InfoFireworkActivity extends AppCompatActivity {
         this.accessHandicap = findViewById(R.id.textAccessHandicap);
         this.imagePeople = findViewById(R.id.people);
         this.people = findViewById(R.id.textPeople);
+        this.fireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String address, String date, int price, boolean accessHandicap, String crowed) {
+    public void setComponent(String address, String date, int price, boolean accessHandicap, String crowed, List<Parking> parkings, Fireworker fireworker) {
+        // address
         this.place.setText(address);
+        // date
         this.date.setText(date);
+        //price
         this.imagePrice.setImageResource(price == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
         this.price.setText(price == 0 ? msg_price_free : msg_price_not_free);
+        //parking
         this.imageParking.setImageResource(R.drawable.drawable_parking_free);
         this.parking.setText(msg_parking_free);
+        // access handicap
         this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
         this.accessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
+        // crowed
         if(crowed.equals("Low")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_low);
             this.people.setText(msg_crowed_low);
@@ -99,5 +114,25 @@ public class InfoFireworkActivity extends AppCompatActivity {
             this.imagePeople.setImageResource(R.drawable.drawable_people_high);
             this.people.setText(msg_crowed_high);
         }
+        // parking
+        if(parkings.size() == 0) {
+            this.imageParking.setImageResource(R.drawable.drawable_no_parking);
+            this.parking.setText(msg_no_parking);
+        }else{
+            boolean freeParking = false;
+            for(Parking p : parkings) {
+                if(p.getPrice() == 0){
+                    this.imageParking.setImageResource(R.drawable.drawable_parking_free);
+                    this.parking.setText(msg_parking_free);
+                    freeParking = true;
+                }
+            }
+            if(!freeParking) {
+                this.imageParking.setImageResource(R.drawable.drawable_parking_no_free);
+                this.parking.setText(msg_parking_no_free);
+            }
+        }
+        // fireworker
+        this.fireworker.setText(fireworker.getName());
     }
 }

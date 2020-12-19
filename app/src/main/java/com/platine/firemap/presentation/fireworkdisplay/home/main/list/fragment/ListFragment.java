@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.Fireworker;
+import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkListAdapter;
@@ -23,6 +25,7 @@ import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.F
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkListViewModel;
 
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
@@ -86,7 +89,9 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
 
     @Override
-    public void onInfoClicked(String address, String date, int price, boolean accessHandicap, String crowed) {
+    public void onInfoClicked(String address, String date, int price,
+                              boolean accessHandicap, String crowed, List<Parking> parkings,
+                              Fireworker fireworker) {
         Log.d(TAB_NAME, "onClick call");
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
         intent.putExtra(InfoFireworkActivity.ADDRESS_MESSAGE, address);
@@ -94,6 +99,8 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         intent.putExtra(InfoFireworkActivity.PRICE_MESSAGE, price);
         intent.putExtra(InfoFireworkActivity.ACCESS_HANDICAP_MESSAGE, accessHandicap);
         intent.putExtra(InfoFireworkActivity.PEOPLE_MESSAGE, crowed);
+        intent.putExtra(InfoFireworkActivity.PARKING_MESSAGE, (Serializable) parkings);
+        intent.putExtra(InfoFireworkActivity.FIREWORKER_MESSAGE, (Serializable) fireworker);
         view.getContext().startActivity(intent);
     }
 }

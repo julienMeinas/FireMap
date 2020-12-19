@@ -1,8 +1,9 @@
 package com.platine.firemap.data.api.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Parking {
+public class Parking implements Serializable {
     private int id;
     private String name;
     private int price;

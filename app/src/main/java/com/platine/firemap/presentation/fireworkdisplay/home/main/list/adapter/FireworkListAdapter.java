@@ -132,7 +132,8 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
                 public void onClick(View v) {
                     fireworkActionInterface.onInfoClicked(fireworkViewModel.getAddress(), fireworkViewModel.getDate(),
                                                           fireworkViewModel.getPrice(), fireworkViewModel.isHandicapAccess(),
-                                                          fireworkViewModel.getCrowded());
+                                                          fireworkViewModel.getCrowded(), fireworkViewModel.getParkings(),
+                                                          fireworkViewModel.getFireworker());
                 }
             });
         }

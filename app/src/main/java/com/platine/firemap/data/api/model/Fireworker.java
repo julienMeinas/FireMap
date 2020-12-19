@@ -1,6 +1,8 @@
 package com.platine.firemap.data.api.model;
 
-public class Fireworker {
+import java.io.Serializable;
+
+public class Fireworker implements Serializable {
     private int id;
     private String name;
     private float note;
