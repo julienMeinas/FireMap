@@ -20,6 +20,6 @@ public interface FireworkDisplayService {
      *
      * @return popular fireworks
      */
-    @GET("https://firemap-api.herokuapp.com/firework-types/")
+    @GET("https://firemap-api-rest.herokuapp.com/fireworks/")
     Flowable<List<FireworkModel>> getAllFireworks();
 }
