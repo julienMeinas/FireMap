@@ -21,9 +21,11 @@ import java.util.List;
 public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapter.FireworkViewHolder> {
     private List<FireworkViewModel> fireworkViewModelList;
     private static final String TAG = "FireworkListAdapter";
+    private FireworkActionInterface fireworkActionInterface;
 
-    public FireworkListAdapter() {
+    public FireworkListAdapter(FireworkActionInterface fireworkActionInterface) {
         fireworkViewModelList = new ArrayList<>();
+        this.fireworkActionInterface = fireworkActionInterface;
     }
 
     public void bindViewModels(List<FireworkViewModel> fireworkViewModel) {
@@ -49,9 +51,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick call");
-                Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
-                view.getContext().startActivity(intent);
+                fireworkActionInterface.onInfoClicked();
             }
         });
 

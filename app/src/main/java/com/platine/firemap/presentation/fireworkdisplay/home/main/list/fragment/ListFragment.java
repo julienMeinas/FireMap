@@ -1,6 +1,8 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.main.list.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkListAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkListViewModel;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements FireworkActionInterface {
     public static final String TAB_NAME = "List";
     private View view;
     private FireworkListAdapter fireworkListAdapter;
@@ -56,7 +61,7 @@ public class ListFragment extends Fragment {
 
     private void setupRecyclerView() {
         recyclerView = view.findViewById(R.id.recycler_view);
-        fireworkListAdapter = new FireworkListAdapter();
+        fireworkListAdapter = new FireworkListAdapter(this);
         recyclerView.setAdapter(fireworkListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
@@ -80,4 +85,10 @@ public class ListFragment extends Fragment {
     }
 
 
+    @Override
+    public void onInfoClicked() {
+        Log.d(TAB_NAME, "onClick call");
+        Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
+        view.getContext().startActivity(intent);
+    }
 }
