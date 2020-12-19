@@ -56,7 +56,7 @@ public class FakeDependencyInjection {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://firemap-api.herokuapp.com/")
+                    .baseUrl("https://firemap-api-rest.herokuapp.com/")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create(getGson()))
