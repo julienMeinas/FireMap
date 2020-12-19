@@ -12,6 +12,12 @@ public class FireworkToViewModelMapper {
         FireworkViewModel fireworkViewModel = new FireworkViewModel();
         fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(firework.getDate());
+        fireworkViewModel.setPrice(firework.getPrice());
+        fireworkViewModel.setHandicAccess(firework.isHandicAccess());
+        fireworkViewModel.setDuration(firework.getDuration());
+        fireworkViewModel.setCrowded(firework.getCrowded());
+        fireworkViewModel.setFireworker(firework.getFireworker());
+        fireworkViewModel.setParkings(firework.getParking());
         return fireworkViewModel;
     }
 
