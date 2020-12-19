@@ -45,7 +45,6 @@
                     android:id="@+id/price"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/drawable_price_free"
                     android:layout_margin="2dp">
                 </ImageView>
 
@@ -53,7 +52,6 @@
                     android:id="@+id/parking"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/drawable_parking_free"
                     android:layout_margin="2dp">
                 </ImageView>
 
@@ -68,7 +66,6 @@
                     android:id="@+id/people"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/drawable_people_high"
                     android:layout_margin="2dp">
                 </ImageView>
 
@@ -76,7 +73,6 @@
                     android:id="@+id/accessHandicap"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/drawable_no_handicap_access"
                     android:layout_margin="2dp">
                 </ImageView>
 
