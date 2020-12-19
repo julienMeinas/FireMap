@@ -3,6 +3,7 @@ package com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,11 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
     public static class FireworkViewHolder extends RecyclerView.ViewHolder {
         private TextView address;
         private TextView date;
+        private ImageView price;
+        private ImageView parking;
+        private ImageView accessHandicap;
+        private ImageView people;
+
         private View v;
         private FireworkViewModel fireworkViewModel;
         CardView parentLayout;
@@ -70,6 +76,10 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             address = v.findViewById((R.id.address));
             date = v.findViewById(R.id.date);
             parentLayout = v.findViewById(R.id.parent_layout);
+            price = v.findViewById(R.id.price);
+            parking = v.findViewById(R.id.parking);
+            accessHandicap = v.findViewById(R.id.accessHandicap);
+            people = v.findViewById(R.id.people);
         }
 
         void bind(FireworkViewModel fireworkViewModel) {
@@ -81,6 +91,27 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             //Date
             String stringDate = convertJsonToStringDate(fireworkViewModel.getDate());
             date.setText(stringDate);
+
+            // price
+            price.setImageResource(fireworkViewModel.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
+
+            // parking
+            // ...
+
+            // access handicap
+            accessHandicap.setImageResource(fireworkViewModel.isHandicAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
+
+
+            // people
+            if(fireworkViewModel.getCrowded() == "Low") {
+                people.setImageResource(R.drawable.drawable_people_low);
+            }
+            else if(fireworkViewModel.getCrowded() == "Medium") {
+                people.setImageResource(R.drawable.drawable_people_medium);
+            }
+            else {
+                people.setImageResource(R.drawable.drawable_people_high);
+            }
         }
 
         private String convertJsonToStringDate(String date) {
