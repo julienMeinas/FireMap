@@ -1,5 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.main.list.mapper;
 
+import android.util.Log;
+
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
 
@@ -13,7 +15,8 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(firework.getDate());
         fireworkViewModel.setPrice(firework.getPrice());
-        fireworkViewModel.setHandicAccess(firework.isHandicAccess());
+        Log.d("Log", String.valueOf(firework.isHandicAccess()));
+        fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
         fireworkViewModel.setDuration(firework.getDuration());
         fireworkViewModel.setCrowded(firework.getCrowded());
         fireworkViewModel.setFireworker(firework.getFireworker());

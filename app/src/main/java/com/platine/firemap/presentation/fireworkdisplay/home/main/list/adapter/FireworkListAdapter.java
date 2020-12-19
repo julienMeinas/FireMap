@@ -102,17 +102,17 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             price.setImageResource(fireworkViewModel.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
 
             // parking
-            // ...
+            parking.setImageResource(R.drawable.drawable_parking_free);
 
             // access handicap
-            accessHandicap.setImageResource(fireworkViewModel.isHandicAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
+            accessHandicap.setImageResource(fireworkViewModel.isHandicapAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
 
 
             // people
-            if(fireworkViewModel.getCrowded() == "Low") {
+            if(fireworkViewModel.getCrowded().equals("Low")) {
                 people.setImageResource(R.drawable.drawable_people_low);
             }
-            else if(fireworkViewModel.getCrowded() == "Medium") {
+            else if(fireworkViewModel.getCrowded().equals("Medium")) {
                 people.setImageResource(R.drawable.drawable_people_medium);
             }
             else {

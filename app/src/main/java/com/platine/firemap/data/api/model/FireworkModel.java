@@ -8,7 +8,7 @@ public class FireworkModel {
     private String address;
     private String date;
     private int price;
-    private boolean handicAccess;
+    private boolean handicapAccess;
     private int duration;
     private String crowded;
     private Fireworker fireworker;
@@ -19,7 +19,7 @@ public class FireworkModel {
         this.address = address;
         this.date = date;
         this.price = price;
-        this.handicAccess = handicAccess;
+        this.handicapAccess = handicAccess;
         this.duration = duration;
         this.crowded = crowded;
         this.fireworker = fireworker;
@@ -43,7 +43,7 @@ public class FireworkModel {
     }
 
     public boolean isHandicAccess() {
-        return handicAccess;
+        return handicapAccess;
     }
 
     public int getDuration() {
@@ -79,7 +79,7 @@ public class FireworkModel {
     }
 
     public void setHandicAccess(boolean handicAccess) {
-        this.handicAccess = handicAccess;
+        this.handicapAccess = handicAccess;
     }
 
     public void setDuration(int duration) {
