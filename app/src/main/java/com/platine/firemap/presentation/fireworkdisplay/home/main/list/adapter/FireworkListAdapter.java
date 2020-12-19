@@ -39,7 +39,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
     public FireworkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.firework_item, parent, false);
-        FireworkViewHolder fireworkViewHolder = new FireworkViewHolder(v);
+        FireworkViewHolder fireworkViewHolder = new FireworkViewHolder(v, this.fireworkActionInterface);
         return fireworkViewHolder;
     }
 
@@ -47,14 +47,6 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
     @Override
     public void onBindViewHolder(FireworkViewHolder holder, final int position) {
         holder.bind(fireworkViewModelList.get(position));
-
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fireworkActionInterface.onInfoClicked();
-            }
-        });
-
     }
 
     @Override
@@ -71,12 +63,12 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         private ImageView parking;
         private ImageView accessHandicap;
         private ImageView people;
-
+        private FireworkActionInterface fireworkActionInterface;
         private View v;
         private FireworkViewModel fireworkViewModel;
         CardView parentLayout;
 
-        public FireworkViewHolder(View v) {
+        public FireworkViewHolder(View v, FireworkActionInterface fireworkActionInterface) {
             super(v);
             this.v = v;
             address = v.findViewById((R.id.address));
@@ -86,6 +78,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             parking = v.findViewById(R.id.parking);
             accessHandicap = v.findViewById(R.id.accessHandicap);
             people = v.findViewById(R.id.people);
+            this.fireworkActionInterface = fireworkActionInterface;
         }
 
         void bind(FireworkViewModel fireworkViewModel) {
@@ -95,7 +88,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             address.setText(fireworkViewModel.getAddress());
 
             //Date
-            String stringDate = convertJsonToStringDate(fireworkViewModel.getDate());
+            String stringDate = fireworkViewModel.getDate();
             date.setText(stringDate);
 
             // price
@@ -118,10 +111,17 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             else {
                 people.setImageResource(R.drawable.drawable_people_high);
             }
+
+            this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fireworkActionInterface.onInfoClicked(fireworkViewModel.getAddress(), fireworkViewModel.getDate(),
+                                                          fireworkViewModel.getPrice(), fireworkViewModel.isHandicapAccess(),
+                                                          fireworkViewModel.getCrowded());
+                }
+            });
         }
 
-        private String convertJsonToStringDate(String date) {
-            return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4);
-        }
+
     }
 }
