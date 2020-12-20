@@ -21,4 +21,13 @@
         android:textColor="@color/white">
     </TextView>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valider"
+        android:layout_marginTop="50dp"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true">
+    </Button>
+
 </RelativeLayout>
