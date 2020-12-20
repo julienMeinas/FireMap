@@ -9,16 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EditFireworkActivity extends AppCompatActivity {
     private static final String TAG = "EditFireworkActivity";
-    private FireworkModel fireworkModel;
+    private FireworkModel firework;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,7 +22,7 @@ public class EditFireworkActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         // id ici pour récupérer l'artificier lié à ce feu d'artifice (id feu d'artifce == id artificier dans l'api)
-        this.fireworkModel = (FireworkModel)intent.getSerializableExtra(InfoFireworkActivity.FIREWORK_MESSAGE);
+        this.firework = (FireworkModel)intent.getSerializableExtra(InfoFireworkActivity.FIREWORK_MESSAGE);
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
