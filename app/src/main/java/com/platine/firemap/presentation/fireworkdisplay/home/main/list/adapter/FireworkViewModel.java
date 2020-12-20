@@ -6,6 +6,7 @@ import com.platine.firemap.data.api.model.Parking;
 import java.util.List;
 
 public class FireworkViewModel {
+    private int id;
     private String address;
     private String date;
     private int price;
@@ -14,6 +15,10 @@ public class FireworkViewModel {
     private String crowded;
     private Fireworker fireworker;
     private List<Parking> parkings;
+
+    public int getId() {
+        return id;
+    }
 
     public String getAddress() {
         return address;
@@ -53,6 +58,10 @@ public class FireworkViewModel {
 
     public List<Parking> getParkings() {
         return parkings;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPrice(int price) {

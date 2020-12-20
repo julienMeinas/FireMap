@@ -20,6 +20,7 @@ import java.util.List;
 
 public class InfoFireworkActivity extends AppCompatActivity {
     private static final String TAG = "InfoFireworkActivity";
+    public static final String ID_MESSAGE = "ID";
     public static final String ADDRESS_MESSAGE = "PLACE";
     public static final String DATE_MESSAGE = "DATE";
     public static final String PRICE_MESSAGE = "PRICE";
@@ -59,6 +60,8 @@ public class InfoFireworkActivity extends AppCompatActivity {
         setContentView(R.layout.artivity_info);
 
         Intent intent = getIntent();
+        // id ici pour récupérer l'artificier lié à ce feu d'artifice (id feu d'artifce == id artificier dans l'api)
+        int id = intent.getIntExtra(ID_MESSAGE, -1);
         String address = intent.getStringExtra(ADDRESS_MESSAGE);
         String date = intent.getStringExtra(DATE_MESSAGE);
         int price = intent.getIntExtra(PRICE_MESSAGE, 0);
