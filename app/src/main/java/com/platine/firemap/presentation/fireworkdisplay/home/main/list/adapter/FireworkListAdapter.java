@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 
@@ -130,10 +131,13 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fireworkActionInterface.onInfoClicked(fireworkViewModel.getAddress(), fireworkViewModel.getDate(),
-                                                          fireworkViewModel.getPrice(), fireworkViewModel.isHandicapAccess(),
-                                                          fireworkViewModel.getCrowded(), fireworkViewModel.getParkings(),
-                                                          fireworkViewModel.getFireworker(), fireworkViewModel.getId());
+                    FireworkModel fireworkModel = new FireworkModel(fireworkViewModel.getId(), fireworkViewModel.getAddress(),
+                                                                    fireworkViewModel.getDate(), fireworkViewModel.getPrice(),
+                                                                    fireworkViewModel.isHandicapAccess(), fireworkViewModel.getDuration(),
+                                                                    fireworkViewModel.getCrowded(), fireworkViewModel.getFireworker(),
+                                                                    fireworkViewModel.getParkings());
+
+                    fireworkActionInterface.onInfoClicked(fireworkModel);
                 }
             });
         }

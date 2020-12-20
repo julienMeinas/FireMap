@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
@@ -89,19 +90,10 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
 
     @Override
-    public void onInfoClicked(String address, String date, int price,
-                              boolean accessHandicap, String crowed, List<Parking> parkings,
-                              Fireworker fireworker, int id) {
+    public void onInfoClicked(FireworkModel fireworkModel) {
         Log.d(TAB_NAME, "onClick call");
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
-        intent.putExtra(InfoFireworkActivity.ID_MESSAGE, id);
-        intent.putExtra(InfoFireworkActivity.ADDRESS_MESSAGE, address);
-        intent.putExtra(InfoFireworkActivity.DATE_MESSAGE, date);
-        intent.putExtra(InfoFireworkActivity.PRICE_MESSAGE, price);
-        intent.putExtra(InfoFireworkActivity.ACCESS_HANDICAP_MESSAGE, accessHandicap);
-        intent.putExtra(InfoFireworkActivity.PEOPLE_MESSAGE, crowed);
-        intent.putExtra(InfoFireworkActivity.PARKING_MESSAGE, (Serializable) parkings);
-        intent.putExtra(InfoFireworkActivity.FIREWORKER_MESSAGE, (Serializable) fireworker);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
         view.getContext().startActivity(intent);
     }
 }

@@ -11,35 +11,32 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfoFireworkActivity extends AppCompatActivity {
+public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface{
     private static final String TAG = "InfoFireworkActivity";
-    public static final String ID_MESSAGE = "ID";
-    public static final String ADDRESS_MESSAGE = "PLACE";
-    public static final String DATE_MESSAGE = "DATE";
-    public static final String PRICE_MESSAGE = "PRICE";
-    public static final String PARKING_MESSAGE = "PARKING";
-    public static final String ACCESS_HANDICAP_MESSAGE = "ACCESS_HANDICAP";
-    public static final String PEOPLE_MESSAGE = "PEOPLE";
-    public static final String FIREWORKER_MESSAGE = "FIREWOERKER";
+    public static final String FIREWORK_MESSAGE = "FIREWORK";
 
-    private TextView place;
-    private TextView date;
+    private FireworkModel firework;
+
+    private TextView textViewPlace;
+    private TextView textViewDate;
     private ImageView imagePrice;
-    private TextView price;
+    private TextView textViewPrice;
     private ImageView imageParking;
-    private TextView parking;
+    private TextView textViewParking;
     private ImageView imageAccessHandicap;
-    private TextView accessHandicap;
+    private TextView textViewAccessHandicap;
     private ImageView imagePeople;
-    private TextView people;
-    private TextView fireworker;
+    private TextView textViewPeople;
+    private TextView textViewFireworker;
 
     private final String msg_price_free = "Gratuit";
     private final String msg_price_not_free = "Payant";
@@ -60,17 +57,11 @@ public class InfoFireworkActivity extends AppCompatActivity {
         setContentView(R.layout.artivity_info);
 
         Intent intent = getIntent();
-        // id ici pour récupérer l'artificier lié à ce feu d'artifice (id feu d'artifce == id artificier dans l'api)
-        int id = intent.getIntExtra(ID_MESSAGE, -1);
-        String address = intent.getStringExtra(ADDRESS_MESSAGE);
-        String date = intent.getStringExtra(DATE_MESSAGE);
-        int price = intent.getIntExtra(PRICE_MESSAGE, 0);
-        boolean accessHandicap = intent.getBooleanExtra(ACCESS_HANDICAP_MESSAGE, false);
-        String crowed = intent.getStringExtra(PEOPLE_MESSAGE);
-        ArrayList<Parking> parkings = (ArrayList<Parking>)intent.getSerializableExtra(PARKING_MESSAGE);
-        Fireworker fireworker = (Fireworker)intent.getSerializableExtra(FIREWORKER_MESSAGE);
+
+        this.firework = (FireworkModel) intent.getSerializableExtra(FIREWORK_MESSAGE);
+
         initComponent();
-        setComponent(address, date, price, accessHandicap, crowed, parkings, fireworker);
+        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker());
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,70 +73,76 @@ public class InfoFireworkActivity extends AppCompatActivity {
         findViewById(R.id.button_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), EditFireworkActivity.class);
-                v.getContext().startActivity(intent);
+                onClickEdit(firework);
             }
         });
     }
 
     public void initComponent() {
-        this.place = findViewById(R.id.lieu);
-        this.date = findViewById(R.id.date);
+        this.textViewPlace = findViewById(R.id.lieu);
+        this.textViewDate = findViewById(R.id.date);
         this.imagePrice = findViewById(R.id.price);
-        this.price = findViewById(R.id.textPrice);
+        this.textViewPrice = findViewById(R.id.textPrice);
         this.imageParking = findViewById(R.id.parking);
-        this.parking = findViewById(R.id.textParking);
+        this.textViewParking = findViewById(R.id.textParking);
         this.imageAccessHandicap = findViewById(R.id.accessHandicap);
-        this.accessHandicap = findViewById(R.id.textAccessHandicap);
+        this.textViewAccessHandicap = findViewById(R.id.textAccessHandicap);
         this.imagePeople = findViewById(R.id.people);
-        this.people = findViewById(R.id.textPeople);
-        this.fireworker = findViewById(R.id.fireworker);
+        this.textViewPeople = findViewById(R.id.textPeople);
+        this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
     public void setComponent(String address, String date, int price, boolean accessHandicap, String crowed, List<Parking> parkings, Fireworker fireworker) {
         // address
-        this.place.setText(address);
+        this.textViewPlace.setText(address);
         // date
-        this.date.setText(date);
+        this.textViewDate.setText(date);
         //price
         this.imagePrice.setImageResource(price == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
-        this.price.setText(price == 0 ? msg_price_free : msg_price_not_free);
+        this.textViewPrice.setText(price == 0 ? msg_price_free : msg_price_not_free);
         //parking
         this.imageParking.setImageResource(R.drawable.drawable_parking_free);
-        this.parking.setText(msg_parking_free);
+        this.textViewParking.setText(msg_parking_free);
         // access handicap
         this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
-        this.accessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
+        this.textViewAccessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
         // crowed
         if(crowed.equals("Low")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_low);
-            this.people.setText(msg_crowed_low);
+            this.textViewPeople.setText(msg_crowed_low);
         }else if(crowed.equals("Medium")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_medium);
-            this.people.setText(msg_crowed_medium);
+            this.textViewPeople.setText(msg_crowed_medium);
         }else {
             this.imagePeople.setImageResource(R.drawable.drawable_people_high);
-            this.people.setText(msg_crowed_high);
+            this.textViewPeople.setText(msg_crowed_high);
         }
         // parking
         if(parkings.size() == 0) {
             this.imageParking.setImageResource(R.drawable.drawable_no_parking);
-            this.parking.setText(msg_no_parking);
+            this.textViewParking.setText(msg_no_parking);
         }else{
             boolean freeParking = false;
             for(Parking p : parkings) {
                 if(p.getPrice() == 0){
                     this.imageParking.setImageResource(R.drawable.drawable_parking_free);
-                    this.parking.setText(msg_parking_free);
+                    this.textViewParking.setText(msg_parking_free);
                     freeParking = true;
                 }
             }
             if(!freeParking) {
                 this.imageParking.setImageResource(R.drawable.drawable_parking_no_free);
-                this.parking.setText(msg_parking_no_free);
+                this.textViewParking.setText(msg_parking_no_free);
             }
         }
         // fireworker
-        this.fireworker.setText(fireworker.getName());
+        this.textViewFireworker.setText(fireworker.getName());
+    }
+
+    @Override
+    public void onClickEdit(FireworkModel fireworkModel) {
+        Intent intent = new Intent(this, EditFireworkActivity.class);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
+        this.startActivity(intent);
     }
 }

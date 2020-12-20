@@ -16,8 +16,8 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(convertJsonToStringDate(firework.getDate()));
         fireworkViewModel.setPrice(firework.getPrice());
-        Log.d("Log", String.valueOf(firework.isHandicAccess()));
         fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
+        fireworkViewModel.setDuration(firework.getDuration());
         fireworkViewModel.setDuration(firework.getDuration());
         fireworkViewModel.setCrowded(firework.getCrowded());
         fireworkViewModel.setFireworker(firework.getFireworker());
