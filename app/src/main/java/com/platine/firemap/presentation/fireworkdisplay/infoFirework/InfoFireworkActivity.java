@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class InfoFireworkActivity extends AppCompatActivity {
     private final String msg_crowed_high = "Beaucoup de gens attendu";
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,14 @@ public class InfoFireworkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        findViewById(R.id.button_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EditFireworkActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
     }
