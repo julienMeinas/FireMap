@@ -1,5 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.infoFirework;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -150,6 +151,21 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     public void onClickEdit(FireworkModel fireworkModel) {
         Intent intent = new Intent(this, EditFireworkActivity.class);
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
-        this.startActivity(intent);
+        this.startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                FireworkModel firework = (FireworkModel)data.getSerializableExtra("result");
+                setComponent(firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(),
+                        firework.getCrowded(), firework.getParking(), firework.getFireworker());
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 }
