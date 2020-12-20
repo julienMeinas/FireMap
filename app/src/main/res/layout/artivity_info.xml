@@ -49,7 +49,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/date"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_price_free">
     </ImageView>
@@ -61,7 +61,7 @@
         android:layout_toRightOf="@id/price"
         android:layout_below="@id/date"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Gratuit">
@@ -73,7 +73,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/price"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_no_parking">
     </ImageView>
@@ -85,7 +85,7 @@
         android:layout_toRightOf="@id/parking"
         android:layout_below="@id/textPrice"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="45dp"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Absence de Parking">
@@ -96,7 +96,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/parking"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_handicap_access">
     </ImageView>
@@ -108,18 +108,42 @@
         android:layout_toRightOf="@id/accessHandicap"
         android:layout_below="@id/textParking"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="45dp"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Accès handicapés">
     </TextView>
 
     <ImageView
-        android:id="@+id/people"
+        android:id="@+id/duration"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/accessHandicap"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_duration">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/duration"
+        android:layout_below="@id/accessHandicap"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="45dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="30 min">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/people"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/duration"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_people_high">
     </ImageView>
@@ -129,9 +153,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/people"
-        android:layout_below="@id/accessHandicap"
+        android:layout_below="@id/duration"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="45dp"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Beaucoup de gens attendu">
@@ -143,7 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/people"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
         android:textColor="@color/white"
         android:textSize="15sp"
@@ -156,7 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/textLinkFireworker"
         android:layout_below="@id/people"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
         android:textColor="@color/white"
         android:textSize="15sp"

@@ -13,12 +13,210 @@
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <TextView
+        android:id="@+id/lieu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:text="Foire de Lille">
+    </TextView>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/lieu"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="14/07/2021">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/price"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/date"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_price_free">
+    </ImageView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonPriceFree"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@id/price"
+        android:layout_below="@id/date"
+        android:layout_marginTop="20dp"
+        android:textSize="10sp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/green">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonPriceNotFree"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@id/buttonPriceFree"
+        android:layout_below="@id/date"
+        android:layout_marginTop="20dp"
+        android:textSize="10sp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/red">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <ImageView
+        android:id="@+id/parking"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/price"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_no_parking">
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/accessHandicap"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textSize="10sp"
+        android:layout_below="@id/parking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_handicap_access">
+    </ImageView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonAccessHandicap"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/accessHandicap"
+        android:layout_below="@id/parking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/green">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonNotAccessHandicap"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/buttonAccessHandicap"
+        android:layout_below="@id/parking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/red">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <ImageView
+        android:id="@+id/duration"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/accessHandicap"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_duration">
+    </ImageView>
+
+    <EditText
+        android:id="@+id/editTextDuration"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/duration"
+        android:layout_below="@id/buttonAccessHandicap"
+        android:textColor="@color/white"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp">
+    </EditText>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EDIT"
-        android:layout_centerInParent="true"
-        android:textSize="30sp"
-        android:textColor="@color/white">
+        android:layout_toRightOf="@id/editTextDuration"
+        android:layout_below="@id/buttonAccessHandicap"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/white"
+        android:text="Minutes">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/people"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/duration"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_people_high">
+    </ImageView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonCrowedLow"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/people"
+        android:layout_below="@id/duration"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:background="@color/green">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonCrowedMedium"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/buttonCrowedLow"
+        android:layout_below="@id/duration"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:background="@color/orange">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonCrowedHigh"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/buttonCrowedMedium"
+        android:layout_below="@id/duration"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:background="@color/red">
+    </androidx.appcompat.widget.AppCompatButton>
+
+
+    <TextView
+        android:id="@+id/textLinkFireworker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/people"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Organisé par : ">
+    </TextView>
+
+    <TextView
+        android:id="@+id/fireworker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textLinkFireworker"
+        android:layout_below="@id/people"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Benjamin Martel">
     </TextView>
 
     <Button

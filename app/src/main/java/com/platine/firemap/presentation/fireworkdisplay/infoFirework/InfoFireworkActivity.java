@@ -34,6 +34,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private TextView textViewParking;
     private ImageView imageAccessHandicap;
     private TextView textViewAccessHandicap;
+    private TextView textViewDuration;
+    private ImageView imageDuration;
     private ImageView imagePeople;
     private TextView textViewPeople;
     private TextView textViewFireworker;
@@ -45,6 +47,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private final String msg_parking_no_free = "Parking payant";
     private final String msg_access_handicap = "Accès handicapé";
     private final String msg_no_access_handicap = "Pas d'accès handicapé";
+    private final String msg_duration = "Minutes";
     private final String msg_crowed_low = "Peu de gens attendu";
     private final String msg_crowed_medium = "Moyennement de gens attendu";
     private final String msg_crowed_high = "Beaucoup de gens attendu";
@@ -61,7 +64,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.firework = (FireworkModel) intent.getSerializableExtra(FIREWORK_MESSAGE);
 
         initComponent();
-        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker());
+        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker());
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +90,14 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.textViewParking = findViewById(R.id.textParking);
         this.imageAccessHandicap = findViewById(R.id.accessHandicap);
         this.textViewAccessHandicap = findViewById(R.id.textAccessHandicap);
+        this.textViewDuration = findViewById(R.id.textDuration);
+        this.imageDuration = findViewById(R.id.duration);
         this.imagePeople = findViewById(R.id.people);
         this.textViewPeople = findViewById(R.id.textPeople);
         this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String address, String date, int price, boolean accessHandicap, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String address, String date, int price, boolean accessHandicap, int duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
         // address
         this.textViewPlace.setText(address);
         // date
@@ -106,6 +111,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         // access handicap
         this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
         this.textViewAccessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
+        // duration
+        this.textViewDuration.setText(duration + " " + msg_duration);
         // crowed
         if(crowed.equals("Low")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_low);
