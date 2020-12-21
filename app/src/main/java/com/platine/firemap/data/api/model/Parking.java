@@ -13,6 +13,10 @@ public class Parking implements Serializable {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -21,6 +25,9 @@ public class Parking implements Serializable {
         return price;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -28,6 +35,13 @@ public class Parking implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "{'id':" + getId() +
+                ", 'name':'" + getName() + "'"+
+                ", 'note':" + getPrice() + "}";
     }
 
 }

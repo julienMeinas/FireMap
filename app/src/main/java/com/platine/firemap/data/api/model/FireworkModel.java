@@ -6,6 +6,8 @@ import java.util.List;
 
 public class FireworkModel implements Serializable {
     private int id;
+    private double longitude;
+    private double latitude;
     private String address;
     private String date;
     private int price;
@@ -29,6 +31,14 @@ public class FireworkModel implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public String getAddress() {
@@ -67,6 +77,14 @@ public class FireworkModel implements Serializable {
         this.id = id;
     }
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -97,5 +115,29 @@ public class FireworkModel implements Serializable {
 
     public void setParking(List<Parking> parkings) {
         this.parking = parkings;
+    }
+
+    @Override
+    public String toString() {
+        String parking = "[";
+        for(Parking p : getParking()) {
+            parking += p.toString();
+            parking += ", ";
+        }
+        parking += "]";
+
+        return "Posts{" +
+                "'id'=" + getId() +
+                ", 'longitude'=" + getLongitude() +
+                ", 'latitude'=" + getLatitude() +
+                ", 'address'=" + getAddress() +
+                ", 'date'='" + getAddress() + '\'' +
+                ", 'price'=" + getPrice() +
+                ", 'handicapAccess'=" + isHandicAccess() +
+                ", 'duration'=" + getDuration() +
+                ", 'crowded'='" + getCrowded() + '\'' +
+                ", 'fireworker'='" + getFireworker().toString() + '\'' +
+                ", 'parking'='" + parking + '\'' +
+                '}';
     }
 }

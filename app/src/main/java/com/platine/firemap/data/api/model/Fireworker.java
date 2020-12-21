@@ -36,4 +36,11 @@ public class Fireworker implements Serializable {
     public void setNote(float note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return "{'id':" + getId() +
+                ", 'name':'" + getName() + "'"+
+                ", 'note':" + getNote() + "}";
+    }
 }

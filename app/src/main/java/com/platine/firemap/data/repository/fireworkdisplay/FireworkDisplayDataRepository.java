@@ -7,6 +7,9 @@ import com.platine.firemap.data.repository.fireworkdisplay.remote.FireworkDispla
 import java.util.List;
 
 import io.reactivex.Flowable;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
 public class FireworkDisplayDataRepository {
     private FireworkDisplayRemoteDataSource m_fireworkDisplayRemoteDataSource;
@@ -20,5 +23,12 @@ public class FireworkDisplayDataRepository {
      */
     public Flowable<List<FireworkModel>> getFireworks() {
         return this.m_fireworkDisplayRemoteDataSource.getFireworks();
+    }
+
+    /**
+     * add new firework
+     */
+    public Call<FireworkModel> addFirework(@Body FireworkModel firework) {
+        return this.m_fireworkDisplayRemoteDataSource.addFirework(firework);
     }
 }

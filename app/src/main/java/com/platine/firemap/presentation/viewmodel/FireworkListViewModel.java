@@ -1,10 +1,13 @@
 package com.platine.firemap.presentation.viewmodel;
 
+import android.widget.Toast;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.FireworkResponse;
+import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.mapper.FireworkToViewModelMapper;
@@ -16,6 +19,10 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.POST;
 
 public class FireworkListViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;
@@ -23,6 +30,7 @@ public class FireworkListViewModel extends ViewModel {
     private FireworkToViewModelMapper fireworkToViewModelMapper;
     private MutableLiveData<List<FireworkViewModel>> fireworks = new MutableLiveData<List<FireworkViewModel>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
+    private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
 
     public FireworkListViewModel(FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
@@ -36,6 +44,9 @@ public class FireworkListViewModel extends ViewModel {
     }
     public MutableLiveData<Boolean> getIsDataLoading() {
         return isDataLoading;
+    }
+    public MutableLiveData<Boolean> getPostSuccess() {
+        return postSuccess;
     }
 
     public void loadFireWorks() {
@@ -64,5 +75,21 @@ public class FireworkListViewModel extends ViewModel {
                     }
                 }));
                     
+    }
+
+    public void addFirework(FireworkModel firework) {
+        Call<FireworkModel> call = this.fireworkRepository.addFirework(firework);
+        call.enqueue(new Callback<FireworkModel>() {
+            @Override
+            public void onResponse(Call<FireworkModel> call, Response<FireworkModel> response) {
+                postSuccess.setValue(true);
+            }
+
+            @Override
+            public void onFailure(Call<FireworkModel> call, Throwable t) {
+                // DO NOTHING
+            }
+
+        });
     }
 }
