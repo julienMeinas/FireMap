@@ -21,4 +21,8 @@
     <color name="orangeStart">#946022</color>
     <color name="orangeMiddle">#C17E2D</color>
     <color name="orangeEnd">#946022</color>
+
+    <color name="itemStart">#222837</color>
+    <color name="itemMiddle">#293042</color>
+    <color name="itemEnd">#222837</color>
 </resources>
