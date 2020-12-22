@@ -9,7 +9,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#e9294f</color>
     <color name="colorItem">#222837</color>
-    <color name="green">#80E672</color>
-    <color name="red">#CB3333</color>
-    <color name="orange">#D17D34</color>
+
+    <color name="redStart">#992222</color>
+    <color name="redMiddle">#C62D2D</color>
+    <color name="redEnd">#992222</color>
+
+    <color name="greenStart">#32800E</color>
+    <color name="greenMiddle">#4CC117</color>
+    <color name="greenEnd">#32800E</color>
+
+    <color name="orangeStart">#946022</color>
+    <color name="orangeMiddle">#C17E2D</color>
+    <color name="orangeEnd">#946022</color>
 </resources>
