@@ -1,52 +1,74 @@
 package com.platine.firemap.presentation.fireworkdisplay.home;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.platine.firemap.R;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.fragment.FavoriteFragment;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.fragment.MainFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.fragment.ListFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.map.fragment.MapFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    private ViewPager viewPager;
+    private static final String TAG = "HomeActivity";
+    private BottomNavigationView m_BottomNav;
+    public static final List<Fragment> m_listFragment = new ArrayList<Fragment>() {{
+        add(MapFragment.newInstance());
+        add(ListFragment.newInstance());
+        add(FavoriteFragment.newInstance());
+    }};
+    private static final int positionMapFragment = 0;
+    private static final int positionListFragment = 1;
+    private static final int positionFavoriteFragment = 2;
+    public int m_currentFragment = positionMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupViewPagerAndTabs();
+        m_BottomNav = findViewById(R.id.bottom_navigation);
+        m_BottomNav.setOnNavigationItemSelectedListener(navListerner);
+
+        if(savedInstanceState != null) {
+            m_currentFragment = savedInstanceState.getInt("currentPositionFragment");
+        }
+        else {
+            m_currentFragment = positionMapFragment;
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter,
+                m_listFragment.get(m_currentFragment)).commit();
     }
 
-    private void setupViewPagerAndTabs() {
-        viewPager = findViewById(R.id.main_view_pager);
-        final MainFragment mainFragment = new MainFragment();
-        final FavoriteFragment favoriteFragment = new FavoriteFragment();
+    private BottomNavigationView.OnNavigationItemSelectedListener navListerner =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                if (position == 0) {
-                    return mainFragment;
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    switch (item.getItemId()) {
+                        case R.id.nav_map:
+                            m_currentFragment = positionMapFragment;
+                            break;
+                        case R.id.nav_list:
+                            m_currentFragment = positionListFragment;
+                            break;
+                        case R.id.nav_favorite:
+                            m_currentFragment = positionFavoriteFragment;
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter, m_listFragment.get(m_currentFragment)).commit();
+                    return true;
                 }
-                return favoriteFragment;
-            }
+            };
 
-            @Override
-            public CharSequence getPageTitle(int position) {
-                if (position == 0) {
-                    return MainFragment.TAB_NAME;
-                }
-                return FavoriteFragment.TAB_NAME;
-            }
 
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        });
-    }
+
+
 }

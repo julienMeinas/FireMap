@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.home.main.map.fragment;
+package com.platine.firemap.presentation.fireworkdisplay.home.map.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,18 @@ import com.platine.firemap.R;
 
 public class MapFragment extends Fragment {
     public static final String TAB_NAME = "Map";
+    private static MapFragment instance;
     private View view;
 
     public MapFragment() {
         // Required empty public constructor
+    }
+
+    public static MapFragment newInstance() {
+        if(instance == null) {
+            instance = new MapFragment();
+        }
+        return instance;
     }
 
     @Override

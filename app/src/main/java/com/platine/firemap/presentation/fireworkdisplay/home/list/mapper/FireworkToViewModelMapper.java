@@ -1,9 +1,7 @@
-package com.platine.firemap.presentation.fireworkdisplay.home.main.list.mapper;
-
-import android.util.Log;
+package com.platine.firemap.presentation.fireworkdisplay.home.list.mapper;
 
 import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

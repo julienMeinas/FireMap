@@ -1,29 +1,22 @@
 package com.platine.firemap.presentation.viewmodel;
 
-import android.widget.Toast;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.FireworkResponse;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.list.mapper.FireworkToViewModelMapper;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
 
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.POST;
 
 public class FireworkListViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;

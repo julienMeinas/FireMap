@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.home.main.list.fragment;
+package com.platine.firemap.presentation.fireworkdisplay.home.list.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,21 +17,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkActionInterface;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkListAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkActionInterface;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewModel;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkListViewModel;
 
 import java.io.Serializable;
-import java.lang.annotation.Annotation;
 import java.util.List;
 
 public class ListFragment extends Fragment implements FireworkActionInterface {
     public static final String TAB_NAME = "List";
+    private static ListFragment instance;
     private View view;
     private FireworkListAdapter fireworkListAdapter;
     private RecyclerView recyclerView;
@@ -40,6 +38,13 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
     public ListFragment() {
         // Required empty public constructor
+    }
+
+    public static ListFragment newInstance() {
+        if(instance == null) {
+            instance = new ListFragment();
+        }
+        return instance;
     }
 
     @Override

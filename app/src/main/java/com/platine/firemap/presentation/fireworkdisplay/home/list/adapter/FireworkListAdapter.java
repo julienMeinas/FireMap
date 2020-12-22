@@ -1,11 +1,9 @@
-package com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.home.list.adapter;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Parking;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 
 import java.util.ArrayList;
 import java.util.List;

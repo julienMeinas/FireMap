@@ -12,10 +12,18 @@ import com.platine.firemap.R;
 
 public class FavoriteFragment extends Fragment{
     public static final String TAB_NAME = "Favorites";
+    private static FavoriteFragment instance;
     private View view;
 
     public FavoriteFragment() {
         // Required empty public constructor
+    }
+
+    public static FavoriteFragment newInstance() {
+        if(instance == null) {
+            instance = new FavoriteFragment();
+        }
+        return instance;
     }
 
     @Override

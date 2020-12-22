@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.home.list.adapter;
 
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
