@@ -58,6 +58,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_list, container, false);
         progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
         return view;
     }
 
