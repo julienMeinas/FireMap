@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.FireworkResponse;
 import com.platine.firemap.data.api.model.Fireworker;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.adapter.FireworkViewModel;
 import com.platine.firemap.presentation.fireworkdisplay.home.main.list.mapper.FireworkToViewModelMapper;
@@ -31,6 +32,7 @@ public class FireworkListViewModel extends ViewModel {
     private MutableLiveData<List<FireworkViewModel>> fireworks = new MutableLiveData<List<FireworkViewModel>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
+    private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
 
     public FireworkListViewModel(FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
@@ -47,6 +49,9 @@ public class FireworkListViewModel extends ViewModel {
     }
     public MutableLiveData<Boolean> getPostSuccess() {
         return postSuccess;
+    }
+    public MutableLiveData<Boolean> getPutSuccess() {
+        return putSuccess;
     }
 
     public void loadFireWorks() {
@@ -92,4 +97,21 @@ public class FireworkListViewModel extends ViewModel {
 
         });
     }
+
+    public void updateFirework(FireworkModel firework, int id) {
+        Call<FireworkModel> call = this.fireworkRepository.updateFirework(firework, id);
+        call.enqueue(new Callback<FireworkModel>() {
+            @Override
+            public void onResponse(Call<FireworkModel> call, Response<FireworkModel> response) {
+                postSuccess.setValue(true);
+            }
+
+            @Override
+            public void onFailure(Call<FireworkModel> call, Throwable t) {
+                // DO NOTHING
+            }
+
+        });
+    }
+
 }

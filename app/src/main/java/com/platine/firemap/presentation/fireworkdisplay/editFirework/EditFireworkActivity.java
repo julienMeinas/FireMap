@@ -12,12 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
+import com.platine.firemap.presentation.viewmodel.FireworkListViewModel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +28,7 @@ import java.util.List;
 public class EditFireworkActivity extends AppCompatActivity {
     private static final String TAG = "EditFireworkActivity";
     private FireworkModel firework;
+    private FireworkListViewModel fireworkListViewModel;
 
     // icons
     private TextView textViewPlace;
@@ -79,6 +83,12 @@ public class EditFireworkActivity extends AppCompatActivity {
                 finish();
             }
         });
+        registerViewModel();
+    }
+
+
+    public void registerViewModel() {
+        fireworkListViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(FireworkListViewModel.class);
     }
 
 
@@ -226,6 +236,7 @@ public class EditFireworkActivity extends AppCompatActivity {
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fireworkListViewModel.updateFirework(firework, firework.getId());
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result",(Serializable)firework);
                 setResult(Activity.RESULT_OK,returnIntent);

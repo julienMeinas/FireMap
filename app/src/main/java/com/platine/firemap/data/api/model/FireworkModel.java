@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class FireworkModel implements Serializable {
-    private int id;
+    private transient int id;
     private double longitude;
     private double latitude;
     private String address;
@@ -126,7 +126,7 @@ public class FireworkModel implements Serializable {
         }
         parking += "]";
 
-        return "Posts{" +
+        return "FireworkModel{" +
                 "'id'=" + getId() +
                 ", 'longitude'=" + getLongitude() +
                 ", 'latitude'=" + getLatitude() +

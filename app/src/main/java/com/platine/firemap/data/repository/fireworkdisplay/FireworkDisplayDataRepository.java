@@ -28,7 +28,14 @@ public class FireworkDisplayDataRepository {
     /**
      * add new firework
      */
-    public Call<FireworkModel> addFirework(@Body FireworkModel firework) {
+    public Call<FireworkModel> addFirework(FireworkModel firework) {
         return this.m_fireworkDisplayRemoteDataSource.addFirework(firework);
+    }
+
+    /**
+     * update firework
+     */
+    public Call<FireworkModel> updateFirework(FireworkModel firework, int id) {
+        return this.m_fireworkDisplayRemoteDataSource.updateFirework(firework, id);
     }
 }
