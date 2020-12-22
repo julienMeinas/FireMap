@@ -35,11 +35,11 @@ public interface FireworkDisplayService {
     Call<FireworkModel> addFirework(@Body FireworkModel posts);
 
     /**
-     * @param firework : one firework
      * @param id : id of the firework
      * @return update of the firework
      */
     @Headers({"Content-Type: application/json"})
     @PUT("https://firemap-api-rest.herokuapp.com/fireworks/{id}")
-    Call<FireworkModel> updateFirework(@Body FireworkModel firework, @Path("id") int id);
+    Call<FireworkModel> updateFirework(@Path("id") int id, @Query("price") int price, @Query("accessHandicap") boolean accessHandicap,
+                                       @Query("duration") int duration, @Query("crowed") String crowed);
 }

@@ -236,7 +236,8 @@ public class EditFireworkActivity extends AppCompatActivity {
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fireworkListViewModel.updateFirework(firework, firework.getId());
+                fireworkListViewModel.updateFirework(firework.getId(), firework.getPrice(), firework.isHandicAccess(),
+                                                     firework.getDuration(), firework.getCrowded());
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result",(Serializable)firework);
                 setResult(Activity.RESULT_OK,returnIntent);
