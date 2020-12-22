@@ -26,6 +26,7 @@ public class FireworkListViewModel extends ViewModel {
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
+    private MutableLiveData<Boolean> errorConnexion = new MutableLiveData<Boolean>();
 
     public FireworkListViewModel(FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
@@ -47,6 +48,10 @@ public class FireworkListViewModel extends ViewModel {
         return putSuccess;
     }
 
+    public MutableLiveData<Boolean> getErrorConnexion() {
+        return errorConnexion;
+    }
+
     public void loadFireWorks() {
         isDataLoading.setValue(true);
         compositeDisposable.clear();
@@ -57,6 +62,7 @@ public class FireworkListViewModel extends ViewModel {
                     @Override
                     public void onNext(List<FireworkModel> fireworkModels) {
                         isDataLoading.setValue(false);
+                        errorConnexion.setValue(false);
                         fireworks.setValue(fireworkToViewModelMapper.map(fireworkModels));
                     }
 
@@ -64,11 +70,13 @@ public class FireworkListViewModel extends ViewModel {
                     public void onError(Throwable e) {
                         e.printStackTrace();
                         isDataLoading.setValue(false);
+                        errorConnexion.setValue(true);
                     }
 
                     @Override
                     public void onComplete() {
                         //Do Nothing
+                        errorConnexion.setValue(false);
                         isDataLoading.setValue(false);
                     }
                 }));

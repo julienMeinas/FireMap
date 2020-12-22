@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private FireworkListAdapter fireworkListAdapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private TextView textViewErrorConnexion;
     private FireworkListViewModel fireworkListViewModel;
 
     public ListFragment() {
@@ -59,6 +61,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         view = inflater.inflate(R.layout.fragment_list, container, false);
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
+        textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
         return view;
     }
 
@@ -90,6 +93,13 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
             @Override
             public void onChanged(Boolean isDataLoading) {
                 progressBar.setVisibility(isDataLoading ? View.VISIBLE : View.GONE);
+            }
+        });
+
+        fireworkListViewModel.getErrorConnexion().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isErrorConnexion) {
+                textViewErrorConnexion.setVisibility(isErrorConnexion ? View.VISIBLE : View.GONE);
             }
         });
     }
