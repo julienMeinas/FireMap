@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:textSize="10sp"
         android:layout_marginLeft="30dp"
-        android:background="@color/green">
+        android:background="@drawable/custom_button_green">
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -65,8 +65,8 @@
         android:layout_below="@id/date"
         android:layout_marginTop="20dp"
         android:textSize="10sp"
-        android:layout_marginLeft="30dp"
-        android:background="@color/red">
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custom_button_red">
     </androidx.appcompat.widget.AppCompatButton>
 
     <ImageView
@@ -99,7 +99,7 @@
         android:layout_below="@id/parking"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:background="@color/green">
+        android:background="@drawable/custom_button_green">
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -110,8 +110,8 @@
         android:layout_toRightOf="@id/buttonAccessHandicap"
         android:layout_below="@id/parking"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:background="@color/red">
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custom_button_red">
     </androidx.appcompat.widget.AppCompatButton>
 
     <ImageView
@@ -166,7 +166,7 @@
         android:layout_below="@id/duration"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="25dp"
-        android:background="@color/green">
+        android:background="@drawable/custom_button_green">
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -177,8 +177,8 @@
         android:layout_toRightOf="@id/buttonCrowedLow"
         android:layout_below="@id/duration"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp"
-        android:background="@color/orange">
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custom_button_orange">
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -189,8 +189,8 @@
         android:layout_toRightOf="@id/buttonCrowedMedium"
         android:layout_below="@id/duration"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp"
-        android:background="@color/red">
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/custom_button_red">
     </androidx.appcompat.widget.AppCompatButton>
 
 
