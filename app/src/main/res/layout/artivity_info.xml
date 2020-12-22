@@ -187,15 +187,19 @@
         android:text="Benjamin Martel">
     </TextView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ajout aux favoris"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="160dp"
+        android:layout_height="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
         android:textSize="10sp"
-        tools:ignore="MissingConstraints"
-        android:layout_alignParentBottom="true">
-    </Button>
+        android:drawableLeft="@drawable/drawable_star"
+        android:text="Ajouter aux favoris"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/custom_button_fav">
+    </androidx.appcompat.widget.AppCompatButton>
 
 
 

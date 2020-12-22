@@ -10,7 +10,7 @@
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
             <gradient
-                android:angle="90"
+                android:angle="45"
                 android:endColor="@color/orangeEnd"
                 android:centerColor="@color/orangeMiddle"
                 android:startColor="@color/orangeStart"
