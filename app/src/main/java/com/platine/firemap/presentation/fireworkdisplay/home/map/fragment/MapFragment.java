@@ -51,6 +51,12 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_map, container, false);
+        setupMap();
+        return view;
+    }
+
+
+    public void setupMap() {
         mSupportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapwhere);
         if (mSupportMapFragment == null) {
             FragmentManager fragmentManager = getFragmentManager();
@@ -68,13 +74,14 @@ public class MapFragment extends Fragment {
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(50.609091, 3.142121)).zoom(15.0f).build();
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                         googleMap.moveCamera(cameraUpdate);
+                        googleMap.addMarker(new MarkerOptions().position(new LatLng(50.609091, 3.142121))
+                                .title("Université de Lille"));
 
                     }
 
                 }
             });
         }
-        return view;
     }
 
 
