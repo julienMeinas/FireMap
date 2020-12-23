@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FireMap</string>
     <string name="valider">Valider</string>
+    <style name="google_Map_API_Key">AIzaSyCDypbcB3LcoBi4-BBOyODWkkvZc5U2S8Q</style>
 </resources>
