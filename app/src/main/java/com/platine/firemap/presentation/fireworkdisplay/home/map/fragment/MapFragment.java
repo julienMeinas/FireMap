@@ -74,14 +74,18 @@ public class MapFragment extends Fragment {
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(50.609091, 3.142121)).zoom(15.0f).build();
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                         googleMap.moveCamera(cameraUpdate);
-                        googleMap.addMarker(new MarkerOptions().position(new LatLng(50.609091, 3.142121))
-                                .title("Université de Lille"));
+                        addMarker(googleMap, 50.609091, 3.142121, "Université de Lille");
 
                     }
 
                 }
             });
         }
+
+    }
+
+    public void addMarker(GoogleMap map, double latitude, double longitude, String title) {
+        map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(title));
     }
 
 
