@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
+import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import java.util.List;
 public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface{
     private static final String TAG = "InfoFireworkActivity";
     public static final String FIREWORK_MESSAGE = "FIREWORK";
+    private FireworkFavoriteViewModel fireworkFavoriteViewModel;
 
     private FireworkModel firework;
 
@@ -59,6 +63,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.artivity_info);
+        fireworkFavoriteViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFavoriteFactory()).get(FireworkFavoriteViewModel.class);
 
         Intent intent = getIntent();
 
@@ -154,6 +159,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.startActivityForResult(intent, 1);
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -168,4 +174,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             }
         }
     }
+
+
+
 }
