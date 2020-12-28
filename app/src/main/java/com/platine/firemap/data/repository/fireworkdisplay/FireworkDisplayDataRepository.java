@@ -10,6 +10,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -29,6 +30,10 @@ public class FireworkDisplayDataRepository {
      */
     public Flowable<List<FireworkModel>> getFireworks() {
         return this.m_fireworkDisplayRemoteDataSource.getFireworks();
+    }
+
+    public Single<FireworkModel> getFireworkById(int id) {
+        return this.m_fireworkDisplayRemoteDataSource.getFireworkById(id);
     }
 
     /**

@@ -6,6 +6,7 @@ import com.platine.firemap.data.api.model.FireworkResponse;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -26,6 +27,13 @@ public interface FireworkDisplayService {
      */
     @GET("https://firemap-api-rest.herokuapp.com/fireworks/")
     Flowable<List<FireworkModel>> getAllFireworks();
+
+    /**
+     * @param id of firework
+     * @return firework
+     */
+    @GET("https://firemap-api-rest.herokuapp.com/fireworks/{id}")
+    Single<FireworkModel> getFireworkById(@Path("id") int id);
 
 
     /**
