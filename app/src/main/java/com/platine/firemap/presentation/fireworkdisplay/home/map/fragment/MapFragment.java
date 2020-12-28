@@ -77,7 +77,6 @@ public class MapFragment extends Fragment {
                         addMarker(googleMap, 50.609091, 3.142121, "Université de Lille");
 
                     }
-
                 }
             });
         }

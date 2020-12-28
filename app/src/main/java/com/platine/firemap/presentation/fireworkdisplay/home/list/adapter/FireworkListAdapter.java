@@ -81,7 +81,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             this.fireworkActionInterface = fireworkActionInterface;
         }
 
-        void bind(FireworkViewModel fireworkViewModel) {
+        public void bind(FireworkViewModel fireworkViewModel) {
             this.fireworkViewModel = fireworkViewModel;
 
             //Address
