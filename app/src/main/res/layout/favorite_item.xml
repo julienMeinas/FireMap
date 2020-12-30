@@ -80,8 +80,16 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/button_remove"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/drawable_remove"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="2dp">
+        </ImageView>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
