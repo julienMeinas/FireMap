@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapter.FireworkViewHolder> {
-    private List<FireworkViewModel> fireworkViewModelList;
+    private List<FireworkViewItem> fireworkViewModelList;
     private static final String TAG = "FireworkListAdapter";
     private FireworkActionInterface fireworkActionInterface;
 
@@ -28,7 +28,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         this.fireworkActionInterface = fireworkActionInterface;
     }
 
-    public void bindViewModels(List<FireworkViewModel> fireworkViewModel) {
+    public void bindViewModels(List<FireworkViewItem> fireworkViewModel) {
         this.fireworkViewModelList.clear();
         this.fireworkViewModelList.addAll(fireworkViewModel);
         notifyDataSetChanged();
@@ -65,7 +65,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         private ImageView people;
         private FireworkActionInterface fireworkActionInterface;
         private View v;
-        private FireworkViewModel fireworkViewModel;
+        private FireworkViewItem fireworkViewModel;
         CardView parentLayout;
 
         public FireworkViewHolder(View v, FireworkActionInterface fireworkActionInterface) {
@@ -81,7 +81,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             this.fireworkActionInterface = fireworkActionInterface;
         }
 
-        public void bind(FireworkViewModel fireworkViewModel) {
+        public void bind(FireworkViewItem fireworkViewModel) {
             this.fireworkViewModel = fireworkViewModel;
 
             //Address

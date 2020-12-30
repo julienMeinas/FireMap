@@ -17,6 +17,7 @@ import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
 
@@ -83,6 +84,13 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onClick(View v) {
                 onClickEdit(firework);
+            }
+        });
+
+        findViewById(R.id.button_fav).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFav(firework.getId());
             }
         });
     }
@@ -157,6 +165,13 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         Intent intent = new Intent(this, EditFireworkActivity.class);
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
         this.startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onFav(int id) {
+        FireworkEntity fireworkEntity = new FireworkEntity();
+        fireworkEntity.setId(id);
+        fireworkFavoriteViewModel.addFireworkToFavorite(fireworkEntity);
     }
 
 

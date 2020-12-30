@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class FireworkListViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;
     private CompositeDisposable compositeDisposable;
     private FireworkToViewModelMapper fireworkToViewModelMapper;
-    private MutableLiveData<List<FireworkViewModel>> fireworks = new MutableLiveData<List<FireworkViewModel>>();
+    private MutableLiveData<List<FireworkViewItem>> fireworks = new MutableLiveData<List<FireworkViewItem>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
@@ -35,7 +35,7 @@ public class FireworkListViewModel extends ViewModel {
         loadFireWorks();
     }
 
-    public MutableLiveData<List<FireworkViewModel>> getFireworks() {
+    public MutableLiveData<List<FireworkViewItem>> getFireworks() {
         return fireworks;
     }
     public MutableLiveData<Boolean> getIsDataLoading() {
@@ -83,6 +83,8 @@ public class FireworkListViewModel extends ViewModel {
                     
     }
 
+
+
     public void addFirework(FireworkModel firework) {
         Call<FireworkModel> call = this.fireworkRepository.addFirework(firework);
         call.enqueue(new Callback<FireworkModel>() {
@@ -111,7 +113,6 @@ public class FireworkListViewModel extends ViewModel {
             public void onFailure(Call<FireworkModel> call, Throwable t) {
                 // DO NOTHING
             }
-
         });
     }
 

@@ -1,14 +1,14 @@
-package com.platine.firemap.presentation.fireworkdisplay.home.list.mapper;
+package com.platine.firemap.presentation.fireworkdisplay.home.favorite.mapper;
 
 import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
+import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkViewItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FireworkToViewModelMapper {
 
-    private FireworkViewItem map(FireworkModel firework) {
+    public FireworkViewItem map(FireworkModel firework) {
         FireworkViewItem fireworkViewModel = new FireworkViewItem();
         fireworkViewModel.setId(firework.getId());
         fireworkViewModel.setAddress(firework.getAddress());

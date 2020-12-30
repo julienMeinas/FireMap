@@ -18,13 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.FireworkListViewModel;
@@ -88,9 +86,9 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         fireworkListViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(FireworkListViewModel.class);
         favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FireworkFavoriteViewModel.class);
 
-        fireworkListViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewModel>>() {
+        fireworkListViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
-            public void onChanged(List<FireworkViewModel> fireworkViewModelList) {
+            public void onChanged(List<FireworkViewItem> fireworkViewModelList) {
                 fireworkListAdapter.bindViewModels(fireworkViewModelList);
             }
         });
@@ -117,12 +115,5 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
         view.getContext().startActivity(intent);
-    }
-
-    @Override
-    public void onFav(int id) {
-        FireworkEntity fireworkEntity = new FireworkEntity();
-        fireworkEntity.setId(id);
-        favoriteViewModel.addFireworkToFavorite(fireworkEntity);
     }
 }

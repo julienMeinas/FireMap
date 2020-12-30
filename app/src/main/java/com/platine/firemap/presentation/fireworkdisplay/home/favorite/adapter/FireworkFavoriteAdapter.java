@@ -122,11 +122,20 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fireworkActionInterface.onInfoClicked(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
+                    FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
                             fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                             fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
                             fireworkViewItem.getCrowded(), fireworkViewItem.getFireworker(),
                             fireworkViewItem.getParkings());
+
+                    fireworkActionInterface.onInfoClicked(fireworkModel);
+                }
+            });
+
+            this.v.findViewById(R.id.button_remove).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fireworkActionInterface.removeFavorite(fireworkViewItem.getId());
                 }
             });
         }

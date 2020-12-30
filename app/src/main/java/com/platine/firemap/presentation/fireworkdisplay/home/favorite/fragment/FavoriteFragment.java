@@ -1,6 +1,8 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.favorite.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.api.model.Fireworker;
 import com.platine.firemap.data.api.model.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkFavoriteAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkViewItem;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.lifecycle.Observer;
@@ -73,7 +78,6 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     private void setupRecyclerView() {
         m_favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FireworkFavoriteViewModel.class);
         m_favoriteViewModel.getFavorites().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
-
             @Override
             public void onChanged(List<FireworkViewItem> articleItemViewModelList) {
                 m_recyclerViewAdapter.bindViewModels(articleItemViewModelList);
@@ -83,11 +87,14 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
 
     @Override
     public void removeFavorite(int id) {
-        //todo
+        m_favoriteViewModel.removeFireworkFromFavorites(id);
     }
 
     @Override
-    public void onInfoClicked(int id, String address, String date, int price, boolean accessHandicap, int duration, String crowed, Fireworker fireworker, List<Parking> parkings) {
-        //todo
+    public void onInfoClicked(FireworkModel fireworkModel) {
+        Log.d(TAB_NAME, "onClick call");
+        Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
+        view.getContext().startActivity(intent);
     }
 }

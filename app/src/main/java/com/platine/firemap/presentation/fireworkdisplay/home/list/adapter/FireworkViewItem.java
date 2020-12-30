@@ -5,7 +5,7 @@ import com.platine.firemap.data.api.model.Parking;
 
 import java.util.List;
 
-public class FireworkViewModel {
+public class FireworkViewItem {
     private int id;
     private String address;
     private String date;
