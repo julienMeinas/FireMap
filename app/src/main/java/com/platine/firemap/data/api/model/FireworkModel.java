@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class FireworkModel implements Serializable {
-    private transient int id;
+    private int id;
     private double longitude;
     private double latitude;
     private String address;

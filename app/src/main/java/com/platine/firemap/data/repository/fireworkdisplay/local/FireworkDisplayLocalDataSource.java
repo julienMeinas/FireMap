@@ -24,11 +24,11 @@ public class FireworkDisplayLocalDataSource {
     }
 
     /**
-     * @param bookEntity : object articles
+     * @param fireworkEntity : object articles
      * @return : add firework in data base
      */
-    public Completable addFireworkToFavorites(FireworkEntity bookEntity) {
-        return fireworkDatabase.fireworkDao().addFireworkToFavorites(bookEntity);
+    public Completable addFireworkToFavorites(FireworkEntity fireworkEntity) {
+        return fireworkDatabase.fireworkDao().addFireworkToFavorites(fireworkEntity);
     }
 
     /**
