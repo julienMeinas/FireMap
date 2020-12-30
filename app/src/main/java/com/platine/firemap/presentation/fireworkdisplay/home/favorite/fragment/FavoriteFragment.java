@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     private ArrayList<FireworkViewItem> m_articles = new ArrayList<>();
     private FireworkFavoriteViewModel m_favoriteViewModel;
     private FireworkFavoriteAdapter m_recyclerViewAdapter;
+    private ProgressBar progressBar;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -64,6 +66,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        progressBar = view.findViewById(R.id.progress_bar);
         initRecyclerView();
     }
 
@@ -81,6 +84,13 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
             @Override
             public void onChanged(List<FireworkViewItem> articleItemViewModelList) {
                 m_recyclerViewAdapter.bindViewModels(articleItemViewModelList);
+            }
+        });
+
+        m_favoriteViewModel.getIsDataLoading().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isDataLoading) {
+                progressBar.setVisibility(isDataLoading ? View.VISIBLE : View.GONE);
             }
         });
     }
