@@ -46,7 +46,7 @@ public class FireworkDisplayDataRepository {
     /**
      * update firework
      */
-    public Call<FireworkModel> updateFirework(int id, int price, boolean accessHandicap, int duration, String crowed) {
+    public Call<FireworkModel> updateFirework(int id, int price, boolean accessHandicap, String duration, String crowed) {
         return this.m_fireworkDisplayRemoteDataSource.updateFirework(id, price, accessHandicap, duration, crowed);
     }
 

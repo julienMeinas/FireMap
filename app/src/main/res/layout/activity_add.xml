@@ -45,7 +45,7 @@
         android:layout_below="@id/date"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_price_free">
+        android:src="@drawable/drawable_empty_price">
     </ImageView>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -79,7 +79,7 @@
         android:layout_below="@id/price"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_no_parking">
+        android:src="@drawable/drawable_empty_parking">
     </ImageView>
 
     <ImageView
@@ -90,7 +90,7 @@
         android:layout_below="@id/parking"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_handicap_access">
+        android:src="@drawable/drawable_empty_accesshandicap">
     </ImageView>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -124,7 +124,7 @@
         android:layout_below="@id/accessHandicap"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_duration_short">
+        android:src="@drawable/drawable_empty_duration">
     </ImageView>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -171,7 +171,7 @@
         android:layout_below="@id/duration"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_people_high">
+        android:src="@drawable/drawable_empty_people">
     </ImageView>
 
     <androidx.appcompat.widget.AppCompatButton

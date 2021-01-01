@@ -101,7 +101,7 @@ public class FireworkListViewModel extends ViewModel {
         });
     }
 
-    public void updateFirework(int id, int price, boolean accessHandicap, int duration, String crowed) {
+    public void updateFirework(int id, int price, boolean accessHandicap, String duration, String crowed) {
         Call<FireworkModel> call = this.fireworkRepository.updateFirework(id, price, accessHandicap, duration, crowed);
         call.enqueue(new Callback<FireworkModel>() {
             @Override

@@ -125,7 +125,7 @@
         android:layout_below="@id/accessHandicap"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_duration">
+        android:src="@drawable/drawable_duration_short">
     </ImageView>
 
     <TextView

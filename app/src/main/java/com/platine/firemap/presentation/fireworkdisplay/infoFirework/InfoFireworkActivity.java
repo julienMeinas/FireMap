@@ -53,7 +53,9 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private final String msg_parking_no_free = "Parking payant";
     private final String msg_access_handicap = "Accès handicapé";
     private final String msg_no_access_handicap = "Pas d'accès handicapé";
-    private final String msg_duration = "Minutes";
+    private final String msg_duration_short = "Court";
+    private final String msg_duration_middle = "Moyen";
+    private final String msg_duration_long = "Long";
     private final String msg_crowed_low = "Peu de gens attendu";
     private final String msg_crowed_medium = "Moyennement de gens attendu";
     private final String msg_crowed_high = "Beaucoup de gens attendu";
@@ -111,7 +113,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String address, String date, int price, boolean accessHandicap, int duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
         // address
         this.textViewPlace.setText(address);
         // date
@@ -126,7 +128,16 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
         this.textViewAccessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
         // duration
-        this.textViewDuration.setText(duration + " " + msg_duration);
+        if(duration.equals("Short")){
+            this.imageDuration.setImageResource(R.drawable.drawable_duration_short);
+            this.textViewDuration.setText(msg_duration_short);
+        }else if(duration.equals("Middle")){
+            this.imageDuration.setImageResource(R.drawable.drawable_duration_middle);
+            this.textViewDuration.setText(msg_duration_middle);
+        }else{
+            this.imageDuration.setImageResource(R.drawable.drawable_duration_long);
+            this.textViewDuration.setText(msg_duration_long);
+        }
         // crowed
         if(crowed.equals("Low")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_low);

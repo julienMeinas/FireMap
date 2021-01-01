@@ -49,5 +49,5 @@ public interface FireworkDisplayService {
     @Headers({"Content-Type: application/json"})
     @PUT("https://firemap-api-rest.herokuapp.com/fireworks/{id}")
     Call<FireworkModel> updateFirework(@Path("id") int id, @Query("price") int price, @Query("accessHandicap") boolean accessHandicap,
-                                       @Query("duration") int duration, @Query("crowed") String crowed);
+                                       @Query("duration") String duration, @Query("crowed") String crowed);
 }

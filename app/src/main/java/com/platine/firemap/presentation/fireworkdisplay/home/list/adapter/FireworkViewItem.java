@@ -11,7 +11,7 @@ public class FireworkViewItem {
     private String date;
     private int price;
     private boolean handicapAccess;
-    private int duration;
+    private String duration;
     private String crowded;
     private Fireworker fireworker;
     private List<Parking> parkings;
@@ -44,7 +44,7 @@ public class FireworkViewItem {
         return handicapAccess;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
@@ -72,7 +72,7 @@ public class FireworkViewItem {
         this.handicapAccess = handicAccess;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

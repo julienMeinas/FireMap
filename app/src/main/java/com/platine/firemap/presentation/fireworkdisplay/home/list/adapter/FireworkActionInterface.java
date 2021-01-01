@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FireworkActionInterface {
     public void onInfoClicked(FireworkModel fireworkModel);
+    public void addFirework();
 }

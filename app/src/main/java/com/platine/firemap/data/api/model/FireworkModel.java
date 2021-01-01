@@ -12,12 +12,12 @@ public class FireworkModel implements Serializable {
     private String date;
     private int price;
     private boolean handicapAccess;
-    private int duration;
+    private String duration;
     private String crowded;
     private Fireworker fireworker;
     private List<Parking> parking;
 
-    public FireworkModel(int id, String address, String date, int price, boolean handicAccess, int duration, String crowded, Fireworker fireworker, List<Parking> parkings) {
+    public FireworkModel(int id, String address, String date, int price, boolean handicAccess, String duration, String crowded, Fireworker fireworker, List<Parking> parkings) {
         this.id = id;
         this.address = address;
         this.date = date;
@@ -27,6 +27,9 @@ public class FireworkModel implements Serializable {
         this.crowded = crowded;
         this.fireworker = fireworker;
         this.parking = parkings;
+    }
+
+    public FireworkModel() {
     }
 
     public int getId() {
@@ -57,7 +60,7 @@ public class FireworkModel implements Serializable {
         return handicapAccess;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
@@ -101,7 +104,7 @@ public class FireworkModel implements Serializable {
         this.handicapAccess = handicAccess;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

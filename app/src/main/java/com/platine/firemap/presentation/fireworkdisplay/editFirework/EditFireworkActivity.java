@@ -44,10 +44,13 @@ public class EditFireworkActivity extends AppCompatActivity {
     private AppCompatButton buttonPriceNotFree;
     private AppCompatButton buttonAccessHandicap;
     private AppCompatButton buttonNotAccessHandicap;
+    private AppCompatButton buttonDurationShort;
+    private AppCompatButton buttonDurationMiddle;
+    private AppCompatButton buttonDurationLong;
     private AppCompatButton buttonCrowedLow;
     private AppCompatButton buttonCrowedMedium;
     private AppCompatButton buttonCrowedHigh;
-    private EditText editTextDuration;
+
 
 
     private final String msg_price_free = "Gratuit";
@@ -57,7 +60,9 @@ public class EditFireworkActivity extends AppCompatActivity {
     private final String msg_parking_no_free = "Parking payant";
     private final String msg_access_handicap = "Accès handicapé";
     private final String msg_no_access_handicap = "Pas d'accès handicapé";
-    private final String msg_duration = "Minutes";
+    private final String msg_duration_short = "Court";
+    private final String msg_duration_middle = "Moyen";
+    private final String msg_duration_long = "Long";
     private final String msg_crowed_low = "Peu";
     private final String msg_crowed_medium = "Moyen";
     private final String msg_crowed_high = "Beaucoup";
@@ -76,6 +81,7 @@ public class EditFireworkActivity extends AppCompatActivity {
         ButtonAccessHandicap();
         ButtonCrowed();
         ButtonValidation();
+        ButtonDuration();
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +119,13 @@ public class EditFireworkActivity extends AppCompatActivity {
         this.buttonAccessHandicap.setText(msg_access_handicap);
         this.buttonNotAccessHandicap = findViewById(R.id.buttonNotAccessHandicap);
         this.buttonNotAccessHandicap.setText(msg_no_access_handicap);
+        // duration
+        this.buttonDurationShort = findViewById(R.id.button_duration_short);
+        this.buttonDurationShort.setText(msg_duration_short);
+        this.buttonDurationMiddle = findViewById(R.id.button_duration_middle);
+        this.buttonDurationMiddle.setText(msg_duration_middle);
+        this.buttonDurationLong = findViewById(R.id.button_duration_long);
+        this.buttonDurationLong.setText(msg_duration_long);
         // people
         this.buttonCrowedLow = findViewById(R.id.buttonCrowedLow);
         this.buttonCrowedLow.setText(msg_crowed_low);
@@ -120,13 +133,12 @@ public class EditFireworkActivity extends AppCompatActivity {
         this.buttonCrowedMedium.setText(msg_crowed_medium);
         this.buttonCrowedHigh = findViewById(R.id.buttonCrowedHigh);
         this.buttonCrowedHigh.setText(msg_crowed_high);
-        //
-        this.editTextDuration = findViewById(R.id.editTextDuration);
-        this.editTextDuration.setHint(String.valueOf(firework.getDuration()));
+        // duration
+
     }
 
 
-    public void setComponent(String address, String date, int price, boolean accessHandicap, int duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
         // address
         this.textViewPlace.setText(address);
         // date
@@ -199,6 +211,32 @@ public class EditFireworkActivity extends AppCompatActivity {
             public void onClick(View v) {
                 imageAccessHandicap.setImageResource(R.drawable.drawable_no_handicap_access);
                 firework.setHandicAccess(false);
+            }
+        });
+    }
+
+    public void ButtonDuration() {
+        this.buttonDurationShort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageDuration.setImageResource(R.drawable.drawable_duration_short);
+                firework.setDuration("Short");
+            }
+        });
+
+        this.buttonDurationMiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageDuration.setImageResource(R.drawable.drawable_duration_middle);
+                firework.setDuration("Middle");
+            }
+        });
+
+        this.buttonDurationLong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageDuration.setImageResource(R.drawable.drawable_duration_long);
+                firework.setDuration("Long");
             }
         });
     }

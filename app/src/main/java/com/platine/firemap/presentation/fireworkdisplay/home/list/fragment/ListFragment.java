@@ -19,11 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.FireworkModel;
 import com.platine.firemap.data.di.FakeDependencyInjection;
-import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.AddFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.FireworkListViewModel;
 
@@ -73,6 +73,12 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         super.onActivityCreated(savedInstanceState);
         setupRecyclerView();
         registerViewModels();
+        this.view.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFirework();
+            }
+        });
     }
 
     private void setupRecyclerView() {
@@ -114,6 +120,13 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         Log.d(TAB_NAME, "onClick call");
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
+        view.getContext().startActivity(intent);
+    }
+
+    @Override
+    public void addFirework() {
+        Log.d(TAB_NAME, "addFirework call");
+        Intent intent = new Intent(view.getContext(), AddFireworkActivity.class);
         view.getContext().startActivity(intent);
     }
 }
