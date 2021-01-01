@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_list"
     android:background="@color/background">
 
-    <androidx.recyclerview.widget.RecyclerView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-        android:layout_marginBottom="0dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="530dp"
+            android:id="@+id/recycler_view">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recycler_view">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_add"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:text="Ajouter"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/drawable_add"
+                android:background="@drawable/custom_button_add">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -36,4 +62,4 @@
 
     </RelativeLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -70,7 +70,6 @@ public class FireworkFavoriteViewModel extends ViewModel {
 
                         @Override
                         public void onComplete() {
-                            //Do Nothing
                             isDataLoading.setValue(false);
                         }
                     }));
