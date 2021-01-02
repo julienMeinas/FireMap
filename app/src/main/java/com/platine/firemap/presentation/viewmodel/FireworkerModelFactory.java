@@ -3,6 +3,7 @@ package com.platine.firemap.presentation.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
 
@@ -21,9 +23,8 @@ public class FireworkerModelFactory extends ViewModel {
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<List<FireworkerDetail>> fireworkers = new MutableLiveData<List<FireworkerDetail>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
-    private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
-    private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> errorConnexion = new MutableLiveData<Boolean>();
+    private MutableLiveData<FireworkerDetail> currentFireworker = new MutableLiveData<FireworkerDetail>();
 
     public FireworkerModelFactory (FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
@@ -34,6 +35,7 @@ public class FireworkerModelFactory extends ViewModel {
         isDataLoading.setValue(true);
         if (fireworkers == null) {
             fireworkers = new MutableLiveData<List<FireworkerDetail>>();
+            compositeDisposable.clear();
             compositeDisposable.add(fireworkRepository.getFireworkers()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -60,6 +62,29 @@ public class FireworkerModelFactory extends ViewModel {
 
         }
         return fireworkers;
+    }
+
+
+    public MutableLiveData<FireworkerDetail> getFireworkerById(int id) {
+        isDataLoading.setValue(true);
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getFireworkerById(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<FireworkerDetail>() {
+
+                    @Override
+                    public void onSuccess(FireworkerDetail fireworkerDetail) {
+                        currentFireworker.setValue(fireworkerDetail);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        // handle the error case
+                        //Yet, do not do nothing in this app
+                    }
+                }));
+        return currentFireworker;
     }
 }
 
