@@ -56,7 +56,6 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
         private ImageView price;
         private ImageView parking;
         private ImageView accessHandicap;
-        private ImageView duration;
         private ImageView people;
         private FireworkActionInterface fireworkActionInterface;
         private View v;
@@ -72,7 +71,6 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             price = v.findViewById(R.id.price);
             parking = v.findViewById(R.id.parking);
             accessHandicap = v.findViewById(R.id.accessHandicap);
-            duration = v.findViewById(R.id.duration);
             people = v.findViewById(R.id.people);
             this.fireworkActionInterface = fireworkActionInterface;
         }
@@ -108,16 +106,6 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
 
             // access handicap
             accessHandicap.setImageResource(fireworkViewItem.isHandicapAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
-
-
-            // duration
-            if(fireworkViewItem.getDuration().equals("Short")) {
-                duration.setImageResource(R.drawable.drawable_duration_short);
-            }else if(fireworkViewItem.getDuration().equals("Middle")){
-                duration.setImageResource(R.drawable.drawable_duration_middle);
-            }else{
-                duration.setImageResource(R.drawable.drawable_duration_long);
-            }
 
             // people
             if(fireworkViewItem.getCrowded().equals("Low")) {
