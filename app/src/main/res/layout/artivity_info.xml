@@ -191,6 +191,19 @@
         android:text="Benjamin Martel">
     </TextView>
 
+    <Button
+        android:id="@+id/button_fireworker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/people"
+        android:layout_toRightOf="@id/fireworker"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:text="Voir profil">
+    </Button>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fav"
         android:layout_width="160dp"
