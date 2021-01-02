@@ -3,7 +3,7 @@ package com.platine.firemap.presentation.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.platine.firemap.data.api.model.FireworkModel;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.mapper.FireworkEntityToViewModelMapper;
@@ -20,7 +20,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
 
-public class FireworkFavoriteViewModel extends ViewModel {
+public class FavoriteViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkDisplayDataRepository;
     private FireworkEntityToViewModelMapper fireworkEntityToViewModelMapper;
     private FireworkToViewModelMapper fireworkToViewModelMapper;
@@ -31,20 +31,13 @@ public class FireworkFavoriteViewModel extends ViewModel {
     final MutableLiveData<Event<Integer>> fireworkDeletedEvent = new MutableLiveData<Event<Integer>>();
 
 
-    public FireworkFavoriteViewModel(FireworkDisplayDataRepository fireworkDisplayDataRepository) {
+    public FavoriteViewModel(FireworkDisplayDataRepository fireworkDisplayDataRepository) {
         this.fireworkDisplayDataRepository = fireworkDisplayDataRepository;
         this.compositeDisposable = new CompositeDisposable();
         this.fireworkEntityToViewModelMapper = new FireworkEntityToViewModelMapper();
         this.fireworkToViewModelMapper = new FireworkToViewModelMapper();
     }
 
-    public MutableLiveData<Event<FireworkEntity>> getBookAddedEvent() {
-        return fireworkAddedEvent;
-    }
-
-    public MutableLiveData<Event<Integer>> getBookDeletedEvent() {
-        return fireworkDeletedEvent;
-    }
 
     public MutableLiveData<List<FireworkViewItem>> getFavorites() {
         isDataLoading.setValue(true);

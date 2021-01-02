@@ -1,4 +1,4 @@
-package com.platine.firemap.data.api.model;
+package com.platine.firemap.data.api.model.firework;
 
 import java.util.List;
 

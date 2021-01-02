@@ -12,8 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Parking;
 
 import java.util.ArrayList;
 import java.util.List;

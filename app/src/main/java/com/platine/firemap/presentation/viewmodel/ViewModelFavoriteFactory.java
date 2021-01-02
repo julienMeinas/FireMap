@@ -15,8 +15,8 @@ public class ViewModelFavoriteFactory implements ViewModelProvider.Factory {
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(FireworkFavoriteViewModel.class)) {
-            return (T) new FireworkFavoriteViewModel(fireworkRepository);
+        if (modelClass.isAssignableFrom(FavoriteViewModel.class)) {
+            return (T) new FavoriteViewModel(fireworkRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

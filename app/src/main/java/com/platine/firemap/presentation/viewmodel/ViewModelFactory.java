@@ -15,8 +15,8 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(FireworkListViewModel.class)) {
-            return (T) new FireworkListViewModel(fireworkRepository);
+        if (modelClass.isAssignableFrom(ListViewModel.class)) {
+            return (T) new ListViewModel(fireworkRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

@@ -1,7 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter;
 
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.data.api.model.firework.Fireworker;
+import com.platine.firemap.data.api.model.firework.Parking;
 
 import java.util.List;
 

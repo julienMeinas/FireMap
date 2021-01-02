@@ -1,7 +1,8 @@
 package com.platine.firemap.data.api;
 
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.FireworkResponse;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Fireworker;
+import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 
 import java.util.List;
 
@@ -34,6 +35,20 @@ public interface FireworkDisplayService {
      */
     @GET("https://firemap-api-rest.herokuapp.com/fireworks/{id}")
     Single<FireworkModel> getFireworkById(@Path("id") int id);
+
+
+    /**
+     * @return all fireworker
+     */
+    @GET("https://firemap-api-rest.herokuapp.com/fireworkers/")
+    Flowable<List<FireworkerDetail>> getAllFireworkers();
+
+    /**
+     * @param id
+     * @return fireworker with id
+     */
+    @GET("https://firemap-api-rest.herokuapp.com/fireworkers/{id}")
+    Single<FireworkerDetail> getFireworkerById(@Path("id") int id);
 
 
     /**

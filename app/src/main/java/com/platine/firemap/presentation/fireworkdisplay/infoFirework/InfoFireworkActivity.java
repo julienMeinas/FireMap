@@ -3,7 +3,6 @@ package com.platine.firemap.presentation.fireworkdisplay.infoFirework;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,23 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Fireworker;
+import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
-import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
+import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface{
     private static final String TAG = "InfoFireworkActivity";
     public static final String FIREWORK_MESSAGE = "FIREWORK";
-    private FireworkFavoriteViewModel fireworkFavoriteViewModel;
+    private FavoriteViewModel fireworkFavoriteViewModel;
 
     private FireworkModel firework;
 
@@ -67,7 +65,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.artivity_info);
-        fireworkFavoriteViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFavoriteFactory()).get(FireworkFavoriteViewModel.class);
+        fireworkFavoriteViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
 
         Intent intent = getIntent();
 

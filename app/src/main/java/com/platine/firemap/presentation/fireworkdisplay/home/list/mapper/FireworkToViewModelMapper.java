@@ -1,6 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.list.mapper;
 
-import com.platine.firemap.data.api.model.FireworkModel;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
 import java.util.ArrayList;

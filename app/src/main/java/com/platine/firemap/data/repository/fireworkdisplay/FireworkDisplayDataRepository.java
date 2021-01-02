@@ -1,7 +1,7 @@
 package com.platine.firemap.data.repository.fireworkdisplay;
 
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.FireworkResponse;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.local.FireworkDisplayLocalDataSource;
 import com.platine.firemap.data.repository.fireworkdisplay.remote.FireworkDisplayRemoteDataSource;
@@ -12,8 +12,6 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
 
 public class FireworkDisplayDataRepository {
     private FireworkDisplayRemoteDataSource m_fireworkDisplayRemoteDataSource;
@@ -36,6 +34,14 @@ public class FireworkDisplayDataRepository {
         return this.m_fireworkDisplayRemoteDataSource.getFireworkById(id);
     }
 
+    public Flowable<List<FireworkerDetail>> getFireworkers() {
+        return this.m_fireworkDisplayRemoteDataSource.getFireworkers();
+    }
+
+    public Single<FireworkerDetail> getFireworkerById(int id) {
+        return this.m_fireworkDisplayRemoteDataSource.getFireworkerById(id);
+    }
+
     /**
      * add new firework
      */
@@ -56,6 +62,7 @@ public class FireworkDisplayDataRepository {
     public Flowable<List<FireworkEntity>> getFavorites() {
         return fireworkDisplayLocalDataSource.getFavorites();
     }
+
 
     /**
      * @param fireworkEntity : firework

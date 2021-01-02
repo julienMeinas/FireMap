@@ -15,15 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkFavoriteAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
-import com.platine.firemap.presentation.viewmodel.FireworkFavoriteViewModel;
+import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     private static FavoriteFragment instance;
     private View view;
     private ArrayList<FireworkViewItem> m_articles = new ArrayList<>();
-    private FireworkFavoriteViewModel m_favoriteViewModel;
+    private FavoriteViewModel m_favoriteViewModel;
     private FireworkFavoriteAdapter m_recyclerViewAdapter;
     private ProgressBar progressBar;
 
@@ -79,7 +77,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     }
 
     private void setupRecyclerView() {
-        m_favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FireworkFavoriteViewModel.class);
+        m_favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
         m_favoriteViewModel.getFavorites().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> articleItemViewModelList) {

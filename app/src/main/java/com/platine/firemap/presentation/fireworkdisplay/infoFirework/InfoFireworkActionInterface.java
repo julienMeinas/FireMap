@@ -1,10 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.infoFirework;
 
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.Fireworker;
-import com.platine.firemap.data.api.model.Parking;
-
-import java.util.List;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 
 public interface InfoFireworkActionInterface {
     public void onClickEdit(FireworkModel fireworkModel);

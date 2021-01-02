@@ -1,6 +1,6 @@
 package com.platine.firemap.data.repository.fireworkdisplay.mapper;
 
-import com.platine.firemap.data.api.model.FireworkModel;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.entity.FireworkEntity;
 
 public class FireworkToFireworkEntityMapper {

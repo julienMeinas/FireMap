@@ -1,16 +1,16 @@
-package com.platine.firemap.data.api.model;
+package com.platine.firemap.data.api.model.firework;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class Parking implements Serializable {
+public class Fireworker implements Serializable {
     private int id;
     private String name;
-    private int price;
+    private float note;
 
-    public Parking(String name, int price, List<String> avis) {
+    public Fireworker(int id, String name, float note) {
+        this.id = id;
         this.name = name;
-        this.price = price;
+        this.note = note;
     }
 
     public int getId() {
@@ -21,8 +21,8 @@ public class Parking implements Serializable {
         return name;
     }
 
-    public int getPrice() {
-        return price;
+    public float getNote() {
+        return note;
     }
 
     public void setId(int id) {
@@ -33,15 +33,14 @@ public class Parking implements Serializable {
         this.name = name;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setNote(float note) {
+        this.note = note;
     }
 
     @Override
     public String toString() {
         return "{'id':" + getId() +
                 ", 'name':'" + getName() + "'"+
-                ", 'note':" + getPrice() + "}";
+                ", 'note':" + getNote() + "}";
     }
-
 }

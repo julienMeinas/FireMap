@@ -1,16 +1,14 @@
 package com.platine.firemap.data.repository.fireworkdisplay.remote;
 
 import com.platine.firemap.data.api.FireworkDisplayService;
-import com.platine.firemap.data.api.model.FireworkModel;
-import com.platine.firemap.data.api.model.FireworkResponse;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 
 import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
 
 public class FireworkDisplayRemoteDataSource {
     private FireworkDisplayService m_fireworkDisplayService;
@@ -29,6 +27,14 @@ public class FireworkDisplayRemoteDataSource {
 
     public Single<FireworkModel> getFireworkById(int id) {
         return this.m_fireworkDisplayService.getFireworkById(id);
+    }
+
+    public Flowable<List<FireworkerDetail>> getFireworkers() {
+        return this.m_fireworkDisplayService.getAllFireworkers();
+    }
+
+    public Single<FireworkerDetail> getFireworkerById(int id) {
+        return this.m_fireworkDisplayService.getFireworkerById(id);
     }
 
     /**

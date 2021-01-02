@@ -3,7 +3,7 @@ package com.platine.firemap.presentation.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.platine.firemap.data.api.model.FireworkModel;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
@@ -18,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FireworkListViewModel extends ViewModel {
+public class ListViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;
     private CompositeDisposable compositeDisposable;
     private FireworkToViewModelMapper fireworkToViewModelMapper;
@@ -28,7 +28,7 @@ public class FireworkListViewModel extends ViewModel {
     private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> errorConnexion = new MutableLiveData<Boolean>();
 
-    public FireworkListViewModel(FireworkDisplayDataRepository fireworkRepository) {
+    public ListViewModel(FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
         this.compositeDisposable = new CompositeDisposable();
         this.fireworkToViewModelMapper = new FireworkToViewModelMapper();

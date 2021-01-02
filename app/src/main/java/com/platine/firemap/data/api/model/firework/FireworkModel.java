@@ -1,7 +1,6 @@
-package com.platine.firemap.data.api.model;
+package com.platine.firemap.data.api.model.firework;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 public class FireworkModel implements Serializable {
