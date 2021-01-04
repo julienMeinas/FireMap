@@ -13,6 +13,7 @@ import com.platine.firemap.data.repository.fireworkdisplay.local.FireworkDisplay
 import com.platine.firemap.data.repository.fireworkdisplay.remote.FireworkDisplayRemoteDataSource;
 import com.platine.firemap.presentation.viewmodel.ViewModelFactory;
 import com.platine.firemap.presentation.viewmodel.ViewModelFavoriteFactory;
+import com.platine.firemap.presentation.viewmodel.ViewModelFireworkerFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -25,6 +26,7 @@ public class FakeDependencyInjection {
     private static Gson gson;
     private static ViewModelFactory viewModelFactory;
     private static ViewModelFavoriteFactory viewModelFavoriteFactory;
+    private static ViewModelFireworkerFactory viewModelFireworkerFactory;
     private static FireworkDisplayService fireworkDisplayService;
     private static FireworkDisplayDataRepository fireworkDisplayDataRepository;
     private static Context applicationContext;
@@ -43,6 +45,13 @@ public class FakeDependencyInjection {
             viewModelFavoriteFactory = new ViewModelFavoriteFactory(getArticleDisplayRepository());
         }
         return viewModelFavoriteFactory;
+    }
+
+    public static ViewModelFireworkerFactory getViewModelFireworkerFactory() {
+        if (viewModelFireworkerFactory == null) {
+            viewModelFireworkerFactory = new ViewModelFireworkerFactory(getArticleDisplayRepository());
+        }
+        return viewModelFireworkerFactory;
     }
 
     public static FireworkDisplayDataRepository getArticleDisplayRepository() {

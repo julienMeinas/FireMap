@@ -18,7 +18,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
 
-public class FireworkerModelFactory extends ViewModel {
+public class FireworkerViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<List<FireworkerDetail>> fireworkers = new MutableLiveData<List<FireworkerDetail>>();
@@ -26,7 +26,7 @@ public class FireworkerModelFactory extends ViewModel {
     private MutableLiveData<Boolean> errorConnexion = new MutableLiveData<Boolean>();
     private MutableLiveData<FireworkerDetail> currentFireworker = new MutableLiveData<FireworkerDetail>();
 
-    public FireworkerModelFactory (FireworkDisplayDataRepository fireworkRepository) {
+    public FireworkerViewModel(FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
         this.compositeDisposable = new CompositeDisposable();
     }
