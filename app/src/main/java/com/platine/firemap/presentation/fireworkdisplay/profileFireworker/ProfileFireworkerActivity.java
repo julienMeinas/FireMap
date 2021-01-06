@@ -31,6 +31,7 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
     private int id;
 
     private TextView name;
+    private TextView url;
     private ImageView[] rateStars = new ImageView[5];
 
     @Override
@@ -64,6 +65,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
     public void createProfileFireworker() {
         name = findViewById(R.id.name);
         name.setText(fireworkerDetail.getName());
+
+        url = findViewById(R.id.url);
+        url.setText(fireworkerDetail.getUrlPage());
 
         //favorite binding
         rateStars[0] = findViewById(R.id.rate_star_one);
