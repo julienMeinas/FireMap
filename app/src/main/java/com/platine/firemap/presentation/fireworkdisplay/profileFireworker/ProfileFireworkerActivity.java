@@ -3,6 +3,7 @@ package com.platine.firemap.presentation.fireworkdisplay.profileFireworker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFirewor
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileFireworkerActivity extends AppCompatActivity {
@@ -29,6 +31,7 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
     private int id;
 
     private TextView name;
+    private ImageView[] rateStars = new ImageView[5];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +64,23 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
     public void createProfileFireworker() {
         name = findViewById(R.id.name);
         name.setText(fireworkerDetail.getName());
+
+        //favorite binding
+        rateStars[0] = findViewById(R.id.rate_star_one);
+        rateStars[1] = findViewById(R.id.rate_star_two);
+        rateStars[2] = findViewById(R.id.rate_star_three);
+        rateStars[3] = findViewById(R.id.rate_star_four);
+        rateStars[4] = findViewById(R.id.rate_star_five);
+
+        for(int i =0; i<5 ;i++){
+            if(fireworkerDetail.getNote()<i+1.25){
+                rateStars[i].setImageResource(R.drawable.rate_star_big_off_holo_dark);
+            }else if(fireworkerDetail.getNote()>i+1.75){
+                rateStars[i].setImageResource(R.drawable.rate_star_big_on_holo_dark);
+            }else {
+                rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
+            }
+        }
     }
 
 }
