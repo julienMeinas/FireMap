@@ -18,6 +18,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Marker;
 import com.platine.firemap.R;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +42,7 @@ public class MapFragment extends Fragment {
     private SupportMapFragment mSupportMapFragment;
     private ListViewModel listViewModel;
     private GoogleMap map;
+    private List<FireworkViewItem> fireworks;
 
     public MapFragment() {
         // Required empty public constructor
@@ -89,6 +91,7 @@ public class MapFragment extends Fragment {
                         map.moveCamera(cameraUpdate);
                         addMarker(50.609091, 3.142121, "Lille 1");
                         addMarkers();
+                        onClickMap();
                     }
                 }
             });
@@ -97,7 +100,8 @@ public class MapFragment extends Fragment {
     }
 
     public void addMarker(double latitude, double longitude, String title) {
-        map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(title));
+        map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
+                .title(title));
     }
 
 
@@ -106,9 +110,21 @@ public class MapFragment extends Fragment {
         listViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewItems) {
-                for(FireworkViewItem fireworkViewItem : fireworkViewItems) {
+                fireworks = fireworkViewItems;
+                for(FireworkViewItem fireworkViewItem : fireworks) {
                     addMarker(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude(), fireworkViewItem.getAddress());
                 }
+            }
+        });
+    }
+
+
+    public void onClickMap() {
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Log.d(TAB_NAME, "Click on marker " + marker.getTitle());
+                return false;
             }
         });
     }
