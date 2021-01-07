@@ -1,6 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.map.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.MapView;
@@ -23,12 +26,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.platine.firemap.data.api.model.firework.Fireworker;
+import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
+import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
+import com.platine.firemap.presentation.viewmodel.ListViewModel;
+
+import java.util.List;
 
 public class MapFragment extends Fragment {
     public static final String TAB_NAME = "Map";
     private static MapFragment instance;
     private View view;
     private SupportMapFragment mSupportMapFragment;
+    private ListViewModel listViewModel;
 
     public MapFragment() {
         // Required empty public constructor
@@ -75,7 +86,7 @@ public class MapFragment extends Fragment {
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                         googleMap.moveCamera(cameraUpdate);
                         addMarker(googleMap, 50.609091, 3.142121, "Université de Lille");
-
+                        addMarker(googleMap);
                     }
                 }
             });
@@ -85,6 +96,19 @@ public class MapFragment extends Fragment {
 
     public void addMarker(GoogleMap map, double latitude, double longitude, String title) {
         map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(title));
+    }
+
+
+    public void addMarker(GoogleMap map) {
+        listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
+        listViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
+            @Override
+            public void onChanged(List<FireworkViewItem> fireworkViewItems) {
+                for(FireworkViewItem fireworkViewItem : fireworkViewItems) {
+                    addMarker(map, fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude(), fireworkViewItem.getAddress());
+                }
+            }
+        });
     }
 
 
