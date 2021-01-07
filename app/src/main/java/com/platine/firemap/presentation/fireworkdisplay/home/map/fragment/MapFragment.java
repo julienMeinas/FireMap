@@ -40,6 +40,7 @@ public class MapFragment extends Fragment {
     private View view;
     private SupportMapFragment mSupportMapFragment;
     private ListViewModel listViewModel;
+    private GoogleMap map;
 
     public MapFragment() {
         // Required empty public constructor
@@ -80,13 +81,14 @@ public class MapFragment extends Fragment {
             mSupportMapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
-                    if (googleMap != null) {
-                        googleMap.getUiSettings().setAllGesturesEnabled(true);
+                    map = googleMap;
+                    if (map != null) {
+                        map.getUiSettings().setAllGesturesEnabled(true);
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(50.609091, 3.142121)).zoom(15.0f).build();
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                        googleMap.moveCamera(cameraUpdate);
-                        addMarker(googleMap, 50.609091, 3.142121, "Université de Lille");
-                        addMarker(googleMap);
+                        map.moveCamera(cameraUpdate);
+                        addMarker(50.609091, 3.142121, "Lille 1");
+                        addMarkers();
                     }
                 }
             });
@@ -94,18 +96,18 @@ public class MapFragment extends Fragment {
 
     }
 
-    public void addMarker(GoogleMap map, double latitude, double longitude, String title) {
+    public void addMarker(double latitude, double longitude, String title) {
         map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(title));
     }
 
 
-    public void addMarker(GoogleMap map) {
+    public void addMarkers() {
         listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         listViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewItems) {
                 for(FireworkViewItem fireworkViewItem : fireworkViewItems) {
-                    addMarker(map, fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude(), fireworkViewItem.getAddress());
+                    addMarker(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude(), fireworkViewItem.getAddress());
                 }
             }
         });
