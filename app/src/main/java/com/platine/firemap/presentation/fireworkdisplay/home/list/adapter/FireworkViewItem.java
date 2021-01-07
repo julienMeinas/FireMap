@@ -7,6 +7,8 @@ import java.util.List;
 
 public class FireworkViewItem {
     private int id;
+    private double longitude;
+    private double latitude;
     private String address;
     private String date;
     private int price;
@@ -18,6 +20,14 @@ public class FireworkViewItem {
 
     public int getId() {
         return id;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public String getAddress() {
@@ -62,6 +72,14 @@ public class FireworkViewItem {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public void setPrice(int price) {
