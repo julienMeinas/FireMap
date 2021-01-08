@@ -1,5 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.map.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,15 +28,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
-import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.map.adapter.MapActionInterface;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements MapActionInterface {
     public static final String TAB_NAME = "Map";
     private static MapFragment instance;
     private View view;
@@ -43,6 +49,7 @@ public class MapFragment extends Fragment {
     private ListViewModel listViewModel;
     private GoogleMap map;
     private List<FireworkViewItem> fireworks;
+    private HashMap<String, FireworkViewItem> markerMap;
 
     public MapFragment() {
         // Required empty public constructor
@@ -58,6 +65,7 @@ public class MapFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        markerMap = new HashMap<>();
     }
 
     @Override
@@ -100,6 +108,7 @@ public class MapFragment extends Fragment {
     }
 
     public void addMarker(double latitude, double longitude, String title) {
+        MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title(title);
         map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
                 .title(title));
     }
@@ -112,26 +121,38 @@ public class MapFragment extends Fragment {
             public void onChanged(List<FireworkViewItem> fireworkViewItems) {
                 fireworks = fireworkViewItems;
                 for(FireworkViewItem fireworkViewItem : fireworks) {
-                    addMarker(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude(), fireworkViewItem.getAddress());
+                    MarkerOptions marker = new MarkerOptions().position(new LatLng(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude())).title(fireworkViewItem.getAddress());
+                    markerMap.put(fireworkViewItem.getAddress(), fireworkViewItem);
+                    map.addMarker(marker);
                 }
             }
         });
     }
 
 
+
     public void onClickMap() {
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Log.d(TAB_NAME, "Click on marker " + marker.getTitle());
+                FireworkViewItem fireworkViewItem = markerMap.get(marker.getTitle());
+                FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
+                        fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
+                        fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
+                        fireworkViewItem.getCrowded(), fireworkViewItem.getFireworker(),
+                        fireworkViewItem.getParkings());
+                onInfoClicked(fireworkModel);
                 return false;
             }
         });
     }
 
 
-
-
-
-
+    @Override
+    public void onInfoClicked(FireworkModel fireworkModel) {
+        Log.d(TAB_NAME, "onClick call");
+        Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
+        view.getContext().startActivity(intent);
+    }
 }
