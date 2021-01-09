@@ -83,13 +83,11 @@
 
         </LinearLayout>
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="50dp"
-            android:text="TODO avis"/>
+            android:layout_marginTop="15dp"
+            android:id="@+id/recycler_view"/>
 
     </LinearLayout>
 
