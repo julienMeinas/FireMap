@@ -10,15 +10,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapter.FireworkerAvisAdapter;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
+import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +39,10 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
     private TextView url;
     private ImageView[] rateStars = new ImageView[5];
 
+    private RecyclerView recyclerView;
+    private FireworkerAvisAdapter fireworkerAvisAdapter;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,8 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.id = intent.getIntExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, 1);
 
+        setupRecyclerView();
+
         initFireworker();
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +60,13 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setupRecyclerView() {
+        recyclerView = findViewById(R.id.recycler_view);
+        fireworkerAvisAdapter = new FireworkerAvisAdapter();
+        recyclerView.setAdapter(fireworkerAvisAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void initFireworker() {
