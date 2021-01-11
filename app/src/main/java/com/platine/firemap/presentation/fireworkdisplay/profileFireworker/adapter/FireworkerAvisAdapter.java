@@ -3,6 +3,7 @@ package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapt
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class FireworkerAvisAdapter extends RecyclerView.Adapter<FireworkerAvisAd
     @Override
     public FireworkerAvisAdapter.FireworkerAvisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.firework_item, parent, false);
+                .inflate(R.layout.fireworker_item, parent, false);
         FireworkerAvisAdapter.FireworkerAvisViewHolder fireworkerAvisViewHolder = new FireworkerAvisAdapter.FireworkerAvisViewHolder(v);
         return fireworkerAvisViewHolder;
     }
@@ -48,14 +49,22 @@ public class FireworkerAvisAdapter extends RecyclerView.Adapter<FireworkerAvisAd
 
     public static class FireworkerAvisViewHolder extends RecyclerView.ViewHolder {
         private View v;
+        private TextView title;
+        private TextView note;
+        private TextView comment;
 
         public FireworkerAvisViewHolder(View v) {
             super(v);
+            title = v.findViewById((R.id.title));
+            note = v.findViewById((R.id.note));
+            comment = v.findViewById((R.id.comment));
             this.v = v;
         }
 
         public void bind(FireworkerAvisViewItem fireworkerAvisViewModel) {
-            //TODO
+            title.setText(fireworkerAvisViewModel.getTitle());
+            note.setText(String.valueOf(fireworkerAvisViewModel.getNote()));
+            comment.setText(fireworkerAvisViewModel.getComment());
         }
     }
 }

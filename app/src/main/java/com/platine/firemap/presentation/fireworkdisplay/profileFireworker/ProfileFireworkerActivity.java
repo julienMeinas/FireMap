@@ -21,6 +21,7 @@ import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.Firewo
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapter.FireworkerAvisAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.mapper.AvisToViewItemMapper;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
@@ -51,9 +52,8 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.id = intent.getIntExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, 1);
 
-        setupRecyclerView();
-
         initFireworker();
+
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +67,11 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
         fireworkerAvisAdapter = new FireworkerAvisAdapter();
         recyclerView.setAdapter(fireworkerAvisAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void registerViewModels(){
+        AvisToViewItemMapper avisToViewItemMapper = new AvisToViewItemMapper();
+        fireworkerAvisAdapter.bindViewModels(avisToViewItemMapper.map(fireworkerDetail.getAvis()));
     }
 
     public void initFireworker() {
@@ -103,6 +108,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
                 rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
             }
         }
+
+        setupRecyclerView();
+        registerViewModels();
     }
 
 }
