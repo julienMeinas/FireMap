@@ -25,7 +25,7 @@ public class FavoriteViewModel extends ViewModel {
     private FireworkEntityToViewModelMapper fireworkEntityToViewModelMapper;
     private FireworkToViewModelMapper fireworkToViewModelMapper;
     private CompositeDisposable compositeDisposable;
-    private MutableLiveData<List<FireworkViewItem>> favorites;
+    private MutableLiveData<List<FireworkViewItem>> favorites = new MutableLiveData<List<FireworkViewItem>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     final MutableLiveData<Event<FireworkEntity>> fireworkAddedEvent = new MutableLiveData<Event<FireworkEntity>>();
     final MutableLiveData<Event<Integer>> fireworkDeletedEvent = new MutableLiveData<Event<Integer>>();
@@ -41,7 +41,6 @@ public class FavoriteViewModel extends ViewModel {
 
     public MutableLiveData<List<FireworkViewItem>> getFavorites() {
         isDataLoading.setValue(true);
-        if (favorites == null) {
             favorites = new MutableLiveData<List<FireworkViewItem>>();
             compositeDisposable.add(fireworkDisplayDataRepository.getFavorites()
                     .subscribeOn(Schedulers.io())
@@ -67,7 +66,7 @@ public class FavoriteViewModel extends ViewModel {
                         }
                     }));
 
-        }
+
         return favorites;
     }
 
@@ -82,6 +81,7 @@ public class FavoriteViewModel extends ViewModel {
                         @Override
                         public void onSuccess(FireworkModel fireworkModel) {
                             fireworkViewItems.add(fireworkToViewModelMapper.map(fireworkModel));
+                            favorites.setValue(fireworkViewItems);
                         }
 
                         @Override
@@ -91,7 +91,12 @@ public class FavoriteViewModel extends ViewModel {
                         }
                     }));
         }
-        favorites.setValue(fireworkViewItems);
+
+    }
+
+
+    public MutableLiveData<List<FireworkViewItem>> favorites() {
+        return this.favorites;
     }
 
     public MutableLiveData<Boolean> getIsDataLoading() {
