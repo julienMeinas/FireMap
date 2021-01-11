@@ -63,7 +63,7 @@ public class FireworkerAvisAdapter extends RecyclerView.Adapter<FireworkerAvisAd
 
         public void bind(FireworkerAvisViewItem fireworkerAvisViewModel) {
             title.setText(fireworkerAvisViewModel.getTitle());
-            note.setText(String.valueOf(fireworkerAvisViewModel.getNote()));
+            note.setText(String.valueOf(fireworkerAvisViewModel.getNote()) + "/5");
             comment.setText(fireworkerAvisViewModel.getComment());
         }
     }
