@@ -58,6 +58,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private final String msg_crowed_low = "Peu de gens attendu";
     private final String msg_crowed_medium = "Moyennement de gens attendu";
     private final String msg_crowed_high = "Beaucoup de gens attendu";
+    private final String msg_empty = "Non renseigné";
 
 
 
@@ -125,11 +126,17 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         // date
         this.textViewDate.setText(date);
         //price
-        this.imagePrice.setImageResource(price == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
-        this.textViewPrice.setText(price == 0 ? msg_price_free : msg_price_not_free);
-        //parking
-        this.imageParking.setImageResource(R.drawable.drawable_parking_free);
-        this.textViewParking.setText(msg_parking_free);
+        if(price == 0) {
+            this.imagePrice.setImageResource(R.drawable.drawable_price_free);
+            this.textViewPrice.setText(msg_price_free);
+        } else if(price < 50000) {
+            this.imagePrice.setImageResource(R.drawable.drawable_price_no_free);
+            this.textViewPrice.setText(msg_price_not_free);
+        }
+        else{
+            this.imagePrice.setImageResource(R.drawable.drawable_empty_price);
+            this.textViewPrice.setText(msg_empty);
+        }
         // access handicap
         this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
         this.textViewAccessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
@@ -140,9 +147,12 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         }else if(duration.equals("Middle")){
             this.imageDuration.setImageResource(R.drawable.drawable_duration_middle);
             this.textViewDuration.setText(msg_duration_middle);
-        }else{
+        }else if (duration.equals("Long")){
             this.imageDuration.setImageResource(R.drawable.drawable_duration_long);
             this.textViewDuration.setText(msg_duration_long);
+        } else {
+            this.imageDuration.setImageResource(R.drawable.drawable_empty_duration);
+            this.textViewDuration.setText(msg_empty);
         }
         // crowed
         if(crowed.equals("Low")) {
@@ -151,9 +161,12 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         }else if(crowed.equals("Medium")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_medium);
             this.textViewPeople.setText(msg_crowed_medium);
-        }else {
+        }else if(crowed.equals("High")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_high);
             this.textViewPeople.setText(msg_crowed_high);
+        } else{
+            this.imagePeople.setImageResource(R.drawable.drawable_empty_people);
+            this.textViewPeople.setText(msg_empty);
         }
         // parking
         if(parkings.size() == 0) {
