@@ -160,7 +160,7 @@ public class AddFireworkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imagePrice.setImageResource(R.drawable.drawable_empty_price);
-                firework.setPrice(-1);
+                firework.setPrice(50000);
             }
         });
     }
@@ -221,7 +221,7 @@ public class AddFireworkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imagePeople.setImageResource(R.drawable.drawable_empty_people);
-                firework.setCrowded("Unknown");
+                firework.setCrowded("");
             }
         });
     }
@@ -255,7 +255,7 @@ public class AddFireworkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imageDuration.setImageResource(R.drawable.drawable_empty_duration);
-                firework.setDuration("Unknown");
+                firework.setDuration("");
             }
         });
     }
