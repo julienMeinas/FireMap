@@ -92,8 +92,14 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             date.setText(stringDate);
 
             // price
-            price.setImageResource(fireworkViewModel.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
-
+            if(fireworkViewModel.getPrice() == 0) {
+                price.setImageResource(R.drawable.drawable_price_free);
+            } else if(fireworkViewModel.getPrice() < 50000) {
+                price.setImageResource(R.drawable.drawable_price_no_free);
+            }
+            else{
+                price.setImageResource(R.drawable.drawable_empty_price);
+            }
             // parking
             if(fireworkViewModel.getParkings().size() == 0) {
                 parking.setImageResource(R.drawable.drawable_no_parking);
@@ -122,8 +128,10 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             else if(fireworkViewModel.getCrowded().equals("Medium")) {
                 people.setImageResource(R.drawable.drawable_people_medium);
             }
-            else {
+            else if(fireworkViewModel.getCrowded().equals("High")){
                 people.setImageResource(R.drawable.drawable_people_high);
+            } else {
+                people.setImageResource(R.drawable.drawable_empty_people);
             }
 
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
