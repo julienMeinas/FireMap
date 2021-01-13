@@ -143,18 +143,37 @@ public class EditFireworkActivity extends AppCompatActivity {
         // date
         this.textViewDate.setText(date);
         //price
-        this.imagePrice.setImageResource(price == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
+        if(price == 0) {
+            this.imagePrice.setImageResource(R.drawable.drawable_price_free);
+        } else if(price < 50000) {
+            this.imagePrice.setImageResource(R.drawable.drawable_price_no_free);
+        }
+        else{
+            this.imagePrice.setImageResource(R.drawable.drawable_empty_price);
+        }
         //parking
         this.imageParking.setImageResource(R.drawable.drawable_parking_free);
         // access handicap
         this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
+        // duration
+        if(duration.equals("Short")){
+            this.imageDuration.setImageResource(R.drawable.drawable_duration_short);
+        }else if(duration.equals("Middle")){
+            this.imageDuration.setImageResource(R.drawable.drawable_duration_middle);
+        }else if (duration.equals("Long")){
+            this.imageDuration.setImageResource(R.drawable.drawable_duration_long);
+        } else {
+            this.imageDuration.setImageResource(R.drawable.drawable_empty_duration);
+        }
         // crowed
         if(crowed.equals("Low")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_low);
         }else if(crowed.equals("Medium")) {
             this.imagePeople.setImageResource(R.drawable.drawable_people_medium);
-        }else {
+        }else if(crowed.equals("High")){
             this.imagePeople.setImageResource(R.drawable.drawable_people_high);
+        } else {
+            this.imagePeople.setImageResource(R.drawable.drawable_empty_people);
         }
         // parking
         if(parkings.size() == 0) {
