@@ -68,6 +68,12 @@ public class HomeActivity extends AppCompatActivity {
                 }
             };
 
+    @Override
+    protected void onSaveInstanceState(Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+        icicle.putInt("currentPositionFragment", m_currentFragment);
+    }
+
 
 
 
