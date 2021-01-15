@@ -7,6 +7,8 @@ import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.Fireworker_item;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.mapper.FireworkerDetailleToFireworkerItemMapper;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
 
@@ -21,46 +23,46 @@ import io.reactivex.subscribers.ResourceSubscriber;
 public class FireworkerViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;
     private CompositeDisposable compositeDisposable;
-    private MutableLiveData<List<FireworkerDetail>> fireworkers = new MutableLiveData<List<FireworkerDetail>>();
+    private MutableLiveData<List<Fireworker_item>> fireworkers = new MutableLiveData<List<Fireworker_item>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> errorConnexion = new MutableLiveData<Boolean>();
     private MutableLiveData<FireworkerDetail> currentFireworker = new MutableLiveData<FireworkerDetail>();
+    private FireworkerDetailleToFireworkerItemMapper fireworkerDetailleToFireworkerItemMapper;
 
     public FireworkerViewModel(FireworkDisplayDataRepository fireworkRepository) {
         this.fireworkRepository = fireworkRepository;
         this.compositeDisposable = new CompositeDisposable();
+        this.fireworkerDetailleToFireworkerItemMapper = new FireworkerDetailleToFireworkerItemMapper();
     }
 
-    public MutableLiveData<List<FireworkerDetail>> getFireworkers() {
+    public MutableLiveData<List<Fireworker_item>> getFireworkers() {
         isDataLoading.setValue(true);
-        if (fireworkers == null) {
-            fireworkers = new MutableLiveData<List<FireworkerDetail>>();
-            compositeDisposable.clear();
-            compositeDisposable.add(fireworkRepository.getFireworkers()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(new ResourceSubscriber<List<FireworkerDetail>>() {
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getFireworkers()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new ResourceSubscriber<List<FireworkerDetail>>() {
 
-                        @Override
-                        public void onNext(List<FireworkerDetail> fireworerksList) {
-                            fireworkers.setValue(fireworerksList);
-                            isDataLoading.setValue(false);
-                            System.out.println("BIND FAVORITES");
-                        }
+                    @Override
+                    public void onNext(List<FireworkerDetail> fireworerksList) {
+                        fireworkers.setValue(fireworkerDetailleToFireworkerItemMapper.map(fireworerksList));
+                        isDataLoading.setValue(false);
+                        System.out.println("BIND FAVORITES");
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            e.printStackTrace();
-                            isDataLoading.setValue(false);
-                        }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        isDataLoading.setValue(false);
+                    }
 
-                        @Override
-                        public void onComplete() {
-                            isDataLoading.setValue(false);
-                        }
-                    }));
+                    @Override
+                    public void onComplete() {
+                        isDataLoading.setValue(false);
+                    }
+                }));
 
-        }
+
         return fireworkers;
     }
 

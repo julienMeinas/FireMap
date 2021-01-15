@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.addFirework;
+package com.platine.firemap.presentation.fireworkdisplay.addFirework.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,19 +9,32 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.AddActionInterface;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.Fireworker_item;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.RecyclerViewAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
+import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AddFireworkActivity extends AppCompatActivity {
+public class AddFireworkActivity extends AppCompatActivity  implements AddActionInterface {
     private static final String TAG = "AddFireworkActivity";
     private FireworkModel firework;
     private ListViewModel fireworkListViewModel;
+    private FireworkerViewModel fireworkerViewModel;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
 
     // icons
     private TextView textViewPlace;
@@ -72,6 +85,8 @@ public class AddFireworkActivity extends AppCompatActivity {
         ButtonCrowed();
         ButtonDuration();
         ButtonValidation();
+        setupRecyclerView();
+        registerViewModel();
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,22 +94,38 @@ public class AddFireworkActivity extends AppCompatActivity {
                 finish();
             }
         });
-        registerViewModel();
+
     }
 
 
     public void registerViewModel() {
         fireworkListViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
+        fireworkerViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFireworkerFactory()).get(FireworkerViewModel.class);
+
+        fireworkerViewModel.getFireworkers().observe(this, new Observer<List<Fireworker_item>>() {
+            @Override
+            public void onChanged(List<Fireworker_item> fireworker_items) {
+                recyclerViewAdapter.bindViewModels(fireworker_items);
+            }
+        });
+    }
+
+
+    private void setupRecyclerView() {
+        recyclerView = findViewById(R.id.recyclerViewFireworker);
+        recyclerViewAdapter = new RecyclerViewAdapter(this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
     public void initEmptyFirework(FireworkModel firework) {
-        firework.setAddress("Unknown");
-        firework.setDate("Unknown");
-        firework.setPrice(-1);
+        firework.setAddress("");
+        firework.setDate("");
+        firework.setPrice(50000);
         firework.setParking(new ArrayList<>());
-        firework.setDuration("Unknown");
-        firework.setCrowded("Unknown");
+        firework.setDuration("");
+        firework.setCrowded("");
     }
 
 
@@ -270,5 +301,10 @@ public class AddFireworkActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void selectFireworker(int id) {
+
     }
 }

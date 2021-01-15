@@ -23,7 +23,7 @@ import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.Firewo
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.AddFireworkActivity;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.activity.AddFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 

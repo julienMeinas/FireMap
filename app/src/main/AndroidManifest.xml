@@ -44,7 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.addFirework.AddFireworkActivity">
+        <activity android:name=".presentation.fireworkdisplay.addFirework.activity.AddFireworkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

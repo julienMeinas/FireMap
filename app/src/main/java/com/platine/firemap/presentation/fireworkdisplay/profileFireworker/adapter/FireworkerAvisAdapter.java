@@ -31,7 +31,7 @@ public class FireworkerAvisAdapter extends RecyclerView.Adapter<FireworkerAvisAd
     @Override
     public FireworkerAvisAdapter.FireworkerAvisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fireworker_item, parent, false);
+                .inflate(R.layout.fireworkeravis_item, parent, false);
         FireworkerAvisAdapter.FireworkerAvisViewHolder fireworkerAvisViewHolder = new FireworkerAvisAdapter.FireworkerAvisViewHolder(v);
         return fireworkerAvisViewHolder;
     }

@@ -222,19 +222,16 @@
         android:textSize="15sp"
         android:text="Organisé par : ">
     </TextView>
-
-    <TextView
-        android:id="@+id/fireworker"
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFireworker"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_toRightOf="@id/textLinkFireworker"
         android:layout_below="@id/people"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:text="Benjamin Martel">
-    </TextView>
+        android:layout_marginLeft="5dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/validation"
