@@ -13,6 +13,7 @@ public class FireworkerDetailleToFireworkerItemMapper {
         fireworker_item.setName(fireworkerDetail.getName());
         fireworker_item.setId(fireworkerDetail.getId());
         fireworker_item.setAvis(fireworkerDetail.getAvis());
+        fireworker_item.setNote((float)fireworkerDetail.getNote());
         return fireworker_item;
     }
 

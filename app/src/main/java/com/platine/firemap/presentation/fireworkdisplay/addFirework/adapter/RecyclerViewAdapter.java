@@ -3,6 +3,8 @@ package com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
 import java.util.ArrayList;
@@ -54,13 +57,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private AddActionInterface addActionInterface;
         private View v;
         private Fireworker_item fireworker_item;
-        CardView parentLayout;
 
         public FireworkerViewHolder(View v, AddActionInterface addActionInterface) {
             super(v);
             this.v = v;
             name = v.findViewById((R.id.name));
-            parentLayout = v.findViewById(R.id.parent_layout);
             this.addActionInterface = addActionInterface;
         }
 
@@ -69,6 +70,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             //name
             name.setText(fireworker_item.getName());
+
+            this.v.findViewById(R.id.name).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fireworker fireworker = new Fireworker(fireworker_item.getId(), fireworker_item.getName(), fireworker_item.getNote());
+                    addActionInterface.selectFireworker(fireworker);
+                }
+            });
 
         }
 

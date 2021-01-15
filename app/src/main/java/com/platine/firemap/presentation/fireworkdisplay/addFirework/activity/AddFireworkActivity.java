@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.AddActionInterface;
@@ -45,6 +46,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private ImageView imageDuration;
     private ImageView imagePeople;
     private TextView textViewFireworker;
+    private TextView fireworkerName;
 
     private AppCompatButton buttonPriceFree;
     private AppCompatButton buttonPriceNotFree;
@@ -95,6 +97,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             }
         });
 
+
     }
 
 
@@ -139,6 +142,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.imageDuration = findViewById(R.id.duration);
         this.imagePeople = findViewById(R.id.people);
         this.textViewFireworker = findViewById(R.id.fireworker);
+        this.fireworkerName = findViewById(R.id.fireworkerName);
 
         // price
         this.buttonPriceFree = findViewById(R.id.buttonPriceFree);
@@ -165,6 +169,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.buttonCrowedHigh = findViewById(R.id.buttonCrowedHigh);
         this.buttonCrowedHigh.setText(msg_crowed_high);
         //
+
     }
 
 
@@ -304,7 +309,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
     @Override
-    public void selectFireworker(int id) {
-
+    public void selectFireworker(Fireworker fireworker) {
+        this.fireworkerName.setText(fireworker.getName());
+        firework.setFireworker(fireworker);
     }
 }

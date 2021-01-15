@@ -233,6 +233,18 @@
         android:layout_marginLeft="5dp">
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/fireworkerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/recyclerViewFireworker"
+        android:layout_below="@id/people"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"
+        android:text="Artificier">
+    </TextView>
+
     <Button
         android:id="@+id/validation"
         android:layout_width="wrap_content"
