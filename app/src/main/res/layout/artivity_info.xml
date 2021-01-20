@@ -84,6 +84,7 @@
 
     <TextView
         android:id="@+id/textParking"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/parking"
@@ -94,6 +95,16 @@
         android:textSize="20sp"
         android:text="Absence de Parking">
     </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewParking"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_toRightOf="@id/parking"
+        android:layout_below="@id/textPrice"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <ImageView
         android:id="@+id/accessHandicap"
@@ -110,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/accessHandicap"
-        android:layout_below="@id/textParking"
+        android:layout_below="@id/parking"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="45dp"
         android:textColor="@color/white"
