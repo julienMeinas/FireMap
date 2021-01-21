@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_item">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="-8dp"
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/drawable_back"
+        android:background="@drawable/custom_item">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:text="Nouveau parking">
+    </TextView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/title"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:text="Nom du parking : ">
+    </TextView>
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/name">
+    </EditText>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/name"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:text="Prix : ">
+    </TextView>
+
+    <EditText
+        android:id="@+id/editPrice"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/price">
+    </EditText>
+
+
+
+    <Button
+        android:id="@+id/validation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valider"
+        android:layout_marginTop="50dp"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true">
+    </Button>
+
+</RelativeLayout>

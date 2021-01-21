@@ -18,13 +18,14 @@ import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.presentation.fireworkdisplay.addParking.AddParkingActivity;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class EditFireworkActivity extends AppCompatActivity {
+public class EditFireworkActivity extends AppCompatActivity implements EditFireworkActionInterface {
     private static final String TAG = "EditFireworkActivity";
     private FireworkModel firework;
     private ListViewModel fireworkListViewModel;
@@ -81,6 +82,7 @@ public class EditFireworkActivity extends AppCompatActivity {
         ButtonCrowed();
         ButtonValidation();
         ButtonDuration();
+        ButtonAddParking();
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,19 +294,35 @@ public class EditFireworkActivity extends AppCompatActivity {
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fireworkListViewModel.updateFirework(firework.getId(), firework.getPrice(), firework.isHandicAccess(),
-                                                     firework.getDuration(), firework.getCrowded());
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("result",(Serializable)firework);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
+                onClickValidation();
             }
         });
     }
 
 
+    public void ButtonAddParking() {
+        findViewById(R.id.buttonAddParking).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClikAddParking();
+            }
+        });
+    }
 
 
+    @Override
+    public void onClikAddParking() {
+        Intent intent = new Intent(this, AddParkingActivity.class);
+        startActivityForResult(intent, 1);
+    }
 
-
+    @Override
+    public void onClickValidation() {
+        fireworkListViewModel.updateFirework(firework.getId(), firework.getPrice(), firework.isHandicAccess(),
+                firework.getDuration(), firework.getCrowded());
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result",(Serializable)firework);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+    }
 }
