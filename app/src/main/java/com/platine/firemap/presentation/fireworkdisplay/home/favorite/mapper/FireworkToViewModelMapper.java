@@ -18,7 +18,7 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setDuration(firework.getDuration());
         fireworkViewModel.setDuration(firework.getDuration());
         fireworkViewModel.setCrowded(firework.getCrowded());
-        fireworkViewModel.setFireworker(firework.getFireworker());
+        fireworkViewModel.setFireworker(firework.getFireworker().get(0));
         fireworkViewModel.setParkings(firework.getParking());
         return fireworkViewModel;
     }

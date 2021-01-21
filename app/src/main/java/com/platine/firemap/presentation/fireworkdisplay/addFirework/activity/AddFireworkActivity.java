@@ -311,6 +311,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     @Override
     public void selectFireworker(Fireworker fireworker) {
         this.fireworkerName.setText(fireworker.getName());
-        firework.setFireworker(fireworker);
+        List<Fireworker> fireworkers = new ArrayList<>();
+        fireworkers.add(fireworker);
+        firework.setFireworker(fireworkers);
     }
 }

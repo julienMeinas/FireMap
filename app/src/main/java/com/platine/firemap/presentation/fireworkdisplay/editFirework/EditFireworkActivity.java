@@ -75,7 +75,7 @@ public class EditFireworkActivity extends AppCompatActivity {
         this.firework = (FireworkModel)intent.getSerializableExtra(InfoFireworkActivity.FIREWORK_MESSAGE);
 
         initComponent();
-        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker());
+        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
         ButtonPrice();
         ButtonAccessHandicap();
         ButtonCrowed();

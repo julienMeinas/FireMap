@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 
 import java.util.ArrayList;
@@ -121,10 +122,12 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    List<Fireworker> fireworkers = new ArrayList<>();
+                    fireworkers.add(fireworkViewItem.getFireworker());
                     FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
                             fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                             fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
-                            fireworkViewItem.getCrowded(), fireworkViewItem.getFireworker(),
+                            fireworkViewItem.getCrowded(), fireworkers,
                             fireworkViewItem.getParkings());
 
                     fireworkActionInterface.onInfoClicked(fireworkModel);

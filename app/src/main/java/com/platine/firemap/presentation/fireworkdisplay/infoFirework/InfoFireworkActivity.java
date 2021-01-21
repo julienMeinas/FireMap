@@ -88,7 +88,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         initComponent();
         setupRecyclerView();
         registerViewModel();
-        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker());
+        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,7 +246,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             if(resultCode == Activity.RESULT_OK){
                 FireworkModel firework = (FireworkModel)data.getSerializableExtra("result");
                 setComponent(firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(),
-                        firework.getCrowded(), firework.getParking(), firework.getFireworker());
+                        firework.getCrowded(), firework.getParking(), firework.getFireworker().get(0));
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result

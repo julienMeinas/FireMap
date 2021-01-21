@@ -38,6 +38,7 @@ import com.platine.firemap.presentation.viewmodel.ListViewModel;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -136,10 +137,12 @@ public class MapFragment extends Fragment implements MapActionInterface {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 FireworkViewItem fireworkViewItem = markerMap.get(marker.getTitle());
+                List<Fireworker> fireworkers = new ArrayList<>();
+                fireworkers.add(fireworkViewItem.getFireworker());
                 FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
                         fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                         fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
-                        fireworkViewItem.getCrowded(), fireworkViewItem.getFireworker(),
+                        fireworkViewItem.getCrowded(), fireworkers,
                         fireworkViewItem.getParkings());
                 onInfoClicked(fireworkModel);
                 return false;
