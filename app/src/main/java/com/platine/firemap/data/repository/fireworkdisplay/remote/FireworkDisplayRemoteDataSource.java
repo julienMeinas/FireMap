@@ -2,6 +2,7 @@ package com.platine.firemap.data.repository.fireworkdisplay.remote;
 
 import com.platine.firemap.data.api.FireworkDisplayService;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 
 import java.util.List;
@@ -49,5 +50,9 @@ public class FireworkDisplayRemoteDataSource {
      */
     public Call<FireworkModel> updateFirework(int id, int price, boolean accessHandicap, String duration, String crowed) {
         return this.m_fireworkDisplayService.updateFirework(id, price, accessHandicap, duration, crowed);
+    }
+
+    public Call<Parking> addParking(int id, String name, int price) {
+        return this.m_fireworkDisplayService.addParking(id, name, price);
     }
 }

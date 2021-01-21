@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
@@ -115,5 +116,24 @@ public class ListViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void addParking(int id, String name, int price) {
+        Call<Parking> call = this.fireworkRepository.addParking(id, name, price);
+        call.enqueue(new Callback<Parking>() {
+            @Override
+            public void onResponse(Call<Parking> call, Response<Parking> response) {
+                postSuccess.setValue(true);
+            }
+
+            @Override
+            public void onFailure(Call<Parking> call, Throwable t) {
+                // DO NOTHING
+            }
+        });
+    }
+
+
+
 
 }

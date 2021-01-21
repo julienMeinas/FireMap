@@ -2,6 +2,7 @@ package com.platine.firemap.data.api;
 
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
+import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 
 import java.util.List;
@@ -65,4 +66,8 @@ public interface FireworkDisplayService {
     @PUT("https://firemap-api-rest.herokuapp.com/fireworks/{id}")
     Call<FireworkModel> updateFirework(@Path("id") int id, @Query("price") int price, @Query("accessHandicap") boolean accessHandicap,
                                        @Query("duration") String duration, @Query("crowed") String crowed);
+
+
+    @POST("http://firemap-api-rest.herokuapp.com/fireworks/addParking/{id}")
+    Call<Parking> addParking(@Path("id") int id, @Query("name") String name ,@Query("price") int price);
 }

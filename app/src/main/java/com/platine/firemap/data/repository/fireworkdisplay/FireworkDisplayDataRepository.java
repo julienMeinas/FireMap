@@ -1,6 +1,7 @@
 package com.platine.firemap.data.repository.fireworkdisplay;
 
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.local.FireworkDisplayLocalDataSource;
@@ -54,6 +55,10 @@ public class FireworkDisplayDataRepository {
      */
     public Call<FireworkModel> updateFirework(int id, int price, boolean accessHandicap, String duration, String crowed) {
         return this.m_fireworkDisplayRemoteDataSource.updateFirework(id, price, accessHandicap, duration, crowed);
+    }
+
+    public Call<Parking> addParking(int id, String name, int price) {
+        return this.m_fireworkDisplayRemoteDataSource.addParking(id, name, price);
     }
 
     /**
