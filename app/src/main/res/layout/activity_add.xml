@@ -25,21 +25,20 @@
         android:layout_marginLeft="60dp">
     </TextView>
 
-    <TextView
-        android:id="@+id/lieu"
+    <EditText
+        android:id="@+id/place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="Foire de Lille">
-    </TextView>
+        android:layout_marginLeft="130dp"
+        android:textSize="20sp">
+    </EditText>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lieu"
+        android:layout_below="@id/place"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="60dp"
         android:textColor="@color/white"
@@ -47,17 +46,16 @@
         android:text="Date : ">
     </TextView>
 
-    <TextView
+    <EditText
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_below="@id/lieu"
-        android:gravity="center"
+        android:layout_marginLeft="130dp"
+        android:layout_below="@id/place"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="14/07/2021">
-    </TextView>
+        android:textSize="20sp">
+    </EditText>
 
     <ImageView
         android:id="@+id/price"

@@ -3,6 +3,7 @@ package com.platine.firemap.presentation.fireworkdisplay.addFirework.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,8 +39,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private RecyclerViewAdapter recyclerViewAdapter;
 
     // icons
-    private TextView textViewPlace;
-    private TextView textViewDate;
+    private EditText place;
+    private EditText date;
     private ImageView imagePrice;
     private ImageView imageParking;
     private ImageView imageAccessHandicap;
@@ -134,8 +135,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
 
     public void initComponent() {
-        this.textViewPlace = findViewById(R.id.lieu);
-        this.textViewDate = findViewById(R.id.date);
+        this.place = findViewById(R.id.place);
+        this.date = findViewById(R.id.date);
         this.imagePrice = findViewById(R.id.price);
         this.imageParking = findViewById(R.id.parking);
         this.imageAccessHandicap = findViewById(R.id.accessHandicap);
