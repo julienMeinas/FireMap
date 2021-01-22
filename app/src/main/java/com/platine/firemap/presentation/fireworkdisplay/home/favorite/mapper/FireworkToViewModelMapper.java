@@ -12,7 +12,7 @@ public class FireworkToViewModelMapper {
         FireworkViewItem fireworkViewModel = new FireworkViewItem();
         fireworkViewModel.setId(firework.getId());
         fireworkViewModel.setAddress(firework.getAddress());
-        fireworkViewModel.setDate(convertJsonToStringDate(firework.getDate()));
+        fireworkViewModel.setDate(firework.getDate());
         fireworkViewModel.setPrice(firework.getPrice());
         fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
         fireworkViewModel.setDuration(firework.getDuration());

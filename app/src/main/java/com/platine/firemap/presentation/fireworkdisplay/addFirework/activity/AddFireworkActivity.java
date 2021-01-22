@@ -28,6 +28,7 @@ import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AddFireworkActivity extends AppCompatActivity  implements AddActionInterface {
@@ -46,7 +47,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private ImageView imageAccessHandicap;
     private ImageView imageDuration;
     private ImageView imagePeople;
-    private TextView textViewFireworker;
     private TextView fireworkerName;
 
     private AppCompatButton buttonPriceFree;
@@ -142,7 +142,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.imageAccessHandicap = findViewById(R.id.accessHandicap);
         this.imageDuration = findViewById(R.id.duration);
         this.imagePeople = findViewById(R.id.people);
-        this.textViewFireworker = findViewById(R.id.fireworker);
         this.fireworkerName = findViewById(R.id.fireworkerName);
 
         // price
@@ -303,6 +302,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firework.setAddress(place.getText().toString());
+                firework.setDate(date.getText().toString());
                 fireworkListViewModel.addFirework(firework);
                 finish();
             }
@@ -315,5 +316,10 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         List<Fireworker> fireworkers = new ArrayList<>();
         fireworkers.add(fireworker);
         firework.setFireworker(fireworkers);
+    }
+
+    public String createFormatDate(String date) {
+        Date date1 = new Date();
+        return date1.toString();
     }
 }
