@@ -142,6 +142,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         firework.setParking(new ArrayList<>());
         firework.setDuration("");
         firework.setCrowded("");
+        firework.setFireworker(new ArrayList<>());
     }
 
 
@@ -314,13 +315,15 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firework.setAddress(place.getText().toString());
-                LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
-                firework.setLatitude(marker.latitude);
-                firework.setLongitude(marker.longitude);
-                firework.setDate(date.getText().toString());
-                fireworkListViewModel.addFirework(firework);
-                finish();
+                if(validFirework()){
+                    firework.setAddress(place.getText().toString());
+                    LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
+                    firework.setLatitude(marker.latitude);
+                    firework.setLongitude(marker.longitude);
+                    firework.setDate(date.getText().toString());
+                    fireworkListViewModel.addFirework(firework);
+                    finish();
+                }
             }
         });
     }
@@ -355,5 +358,26 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         }
 
         return p1;
+    }
+
+    public boolean validDate(String date) {
+        if(date == null)
+            return false;
+        if(date.length() != 10)
+            return false;
+        if(! (date.substring(2,3).equals("/") && date.substring(5,6).equals("/")) )
+            return false;
+        if(Integer.parseInt(date.substring(0, 2)) < 0 && Integer.parseInt(date.substring(0, 2)) > 31)
+            return false;
+        if(Integer.parseInt(date.substring(3, 5)) < 0 && Integer.parseInt(date.substring(3, 5)) > 12)
+            return false;
+        return true;
+    }
+
+
+    public boolean validFirework() {
+        return validDate(date.getText().toString()) &&
+                place.getText().toString() != null &&
+                firework.getFireworker().size() > 0;
     }
 }
