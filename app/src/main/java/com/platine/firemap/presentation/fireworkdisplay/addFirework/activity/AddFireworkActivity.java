@@ -1,5 +1,8 @@
 package com.platine.firemap.presentation.fireworkdisplay.addFirework.activity;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
@@ -27,6 +31,14 @@ import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.Firewo
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Marker;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -303,6 +315,9 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             @Override
             public void onClick(View v) {
                 firework.setAddress(place.getText().toString());
+                LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
+                firework.setLatitude(marker.latitude);
+                firework.setLongitude(marker.longitude);
                 firework.setDate(date.getText().toString());
                 fireworkListViewModel.addFirework(firework);
                 finish();
@@ -318,8 +333,27 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         firework.setFireworker(fireworkers);
     }
 
-    public String createFormatDate(String date) {
-        Date date1 = new Date();
-        return date1.toString();
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 }
