@@ -9,6 +9,7 @@ public class FireworkViewItem {
     private int id;
     private double longitude;
     private double latitude;
+    private String city;
     private String address;
     private String date;
     private int price;
@@ -28,6 +29,10 @@ public class FireworkViewItem {
 
     public double getLatitude() {
         return latitude;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public String getAddress() {
@@ -80,6 +85,10 @@ public class FireworkViewItem {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setPrice(int price) {

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class FireworkViewItem {
     private int id;
+    private String city;
     private String address;
     private String date;
     private int price;
@@ -18,6 +19,14 @@ public class FireworkViewItem {
 
     public int getId() {
         return id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getAddress() {

@@ -7,6 +7,7 @@ public class FireworkModel implements Serializable {
     private int id;
     private double longitude;
     private double latitude;
+    private String city;
     private String address;
     private String date;
     private int price;
@@ -16,8 +17,9 @@ public class FireworkModel implements Serializable {
     private List<Fireworker> fireworker;
     private List<Parking> parking;
 
-    public FireworkModel(int id, String address, String date, int price, boolean handicAccess, String duration, String crowded, List<Fireworker> fireworker, List<Parking> parkings) {
+    public FireworkModel(int id, String city, String address, String date, int price, boolean handicAccess, String duration, String crowded, List<Fireworker> fireworker, List<Parking> parkings) {
         this.id = id;
+        this.city = city;
         this.address = address;
         this.date = date;
         this.price = price;
@@ -41,6 +43,10 @@ public class FireworkModel implements Serializable {
 
     public double getLatitude() {
         return latitude;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public String getAddress() {
@@ -85,6 +91,10 @@ public class FireworkModel implements Serializable {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setAddress(String address) {

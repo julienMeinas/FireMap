@@ -11,6 +11,7 @@ public class FireworkToViewModelMapper {
     public FireworkViewItem map(FireworkModel firework) {
         FireworkViewItem fireworkViewModel = new FireworkViewItem();
         fireworkViewModel.setId(firework.getId());
+        fireworkViewModel.setCity(firework.getCity());
         fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(firework.getDate());
         fireworkViewModel.setPrice(firework.getPrice());

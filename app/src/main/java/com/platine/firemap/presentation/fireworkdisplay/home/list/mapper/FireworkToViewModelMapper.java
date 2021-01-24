@@ -13,6 +13,7 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setId(firework.getId());
         fireworkViewModel.setLatitude(firework.getLatitude());
         fireworkViewModel.setLongitude(firework.getLongitude());
+        fireworkViewModel.setCity(firework.getCity());
         fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(firework.getDate());
         fireworkViewModel.setPrice(firework.getPrice());
