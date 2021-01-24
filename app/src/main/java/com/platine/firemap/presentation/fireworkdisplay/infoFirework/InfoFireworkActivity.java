@@ -115,7 +115,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         findViewById(R.id.button_fireworker).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onProfile(firework.getId());
+                onProfile(firework.getFireworker().get(0).getId());
             }
         });
     }
