@@ -98,7 +98,6 @@ public class MapFragment extends Fragment implements MapActionInterface {
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(50.609091, 3.142121)).zoom(15.0f).build();
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                         map.moveCamera(cameraUpdate);
-                        addMarker(50.609091, 3.142121, "Lille 1");
                         addMarkers();
                         onClickMap();
                     }
