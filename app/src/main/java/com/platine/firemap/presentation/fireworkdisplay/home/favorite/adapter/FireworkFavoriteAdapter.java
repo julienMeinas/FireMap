@@ -124,7 +124,8 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
                 public void onClick(View v) {
                     List<Fireworker> fireworkers = new ArrayList<>();
                     fireworkers.add(fireworkViewItem.getFireworker());
-                    FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
+                    FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getCity(),
+                            fireworkViewItem.getAddress(),
                             fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                             fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
                             fireworkViewItem.getCrowded(), fireworkers,

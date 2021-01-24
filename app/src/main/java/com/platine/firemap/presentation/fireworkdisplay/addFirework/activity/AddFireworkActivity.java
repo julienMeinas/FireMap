@@ -52,6 +52,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private RecyclerViewAdapter recyclerViewAdapter;
 
     // icons
+    private EditText city;
     private EditText place;
     private EditText date;
     private ImageView imagePrice;
@@ -136,6 +137,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
 
     public void initEmptyFirework(FireworkModel firework) {
+        firework.setCity("");
         firework.setAddress("");
         firework.setDate("");
         firework.setPrice(50000);
@@ -148,6 +150,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
 
     public void initComponent() {
+        this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
         this.date = findViewById(R.id.date);
         this.imagePrice = findViewById(R.id.price);
@@ -316,6 +319,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             @Override
             public void onClick(View v) {
                 if(validFirework()){
+                    firework.setCity(city.getText().toString());
                     firework.setAddress(place.getText().toString());
                     LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
                     firework.setLatitude(marker.latitude);

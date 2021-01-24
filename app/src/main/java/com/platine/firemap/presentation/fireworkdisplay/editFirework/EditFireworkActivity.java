@@ -31,6 +31,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
     private ListViewModel fireworkListViewModel;
 
     // icons
+    private TextView textViewCity;
     private TextView textViewPlace;
     private TextView textViewDate;
     private ImageView imagePrice;
@@ -76,7 +77,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         this.firework = (FireworkModel)intent.getSerializableExtra(InfoFireworkActivity.FIREWORK_MESSAGE);
 
         initComponent();
-        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
+        setComponent(this.firework.getCity(), this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
         ButtonPrice();
         ButtonAccessHandicap();
         ButtonCrowed();
@@ -101,6 +102,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
 
 
     public void initComponent() {
+        this.textViewCity = findViewById(R.id.city);
         this.textViewPlace = findViewById(R.id.lieu);
         this.textViewDate = findViewById(R.id.date);
         this.imagePrice = findViewById(R.id.price);
@@ -139,7 +141,8 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
     }
 
 
-    public void setComponent(String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String city, String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+        this.textViewCity.setText(city);
         // address
         this.textViewPlace.setText(address);
         // date

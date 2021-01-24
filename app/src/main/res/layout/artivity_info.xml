@@ -25,14 +25,26 @@
         android:layout_alignParentRight="true">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:text="City">
+    </TextView>
+
     <TextView
         android:id="@+id/lieu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:text="Foire de Lille">
     </TextView>
 

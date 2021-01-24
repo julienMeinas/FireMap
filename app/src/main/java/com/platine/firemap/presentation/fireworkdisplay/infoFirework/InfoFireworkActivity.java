@@ -44,6 +44,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
 
     private FireworkModel firework;
 
+    private TextView textViewCity;
     private TextView textViewPlace;
     private TextView textViewDate;
     private ImageView imagePrice;
@@ -88,7 +89,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         initComponent();
         setupRecyclerView();
         registerViewModel();
-        setComponent(this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
+        setComponent(this.firework.getCity(), this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
 
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +133,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     }
 
     public void initComponent() {
+        this.textViewCity = findViewById(R.id.city);
         this.textViewPlace = findViewById(R.id.lieu);
         this.textViewDate = findViewById(R.id.date);
         this.imagePrice = findViewById(R.id.price);
@@ -147,7 +149,9 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String city, String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+        // city
+        this.textViewCity.setText(city);
         // address
         this.textViewPlace.setText(address);
         // date
@@ -245,7 +249,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 FireworkModel firework = (FireworkModel)data.getSerializableExtra("result");
-                setComponent(firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(),
+                setComponent(firework.getCity(), firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(),
                         firework.getCrowded(), firework.getParking(), firework.getFireworker().get(0));
             }
             if (resultCode == Activity.RESULT_CANCELED) {

@@ -21,6 +21,26 @@
         android:layout_marginTop="30dp"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:text="Ville : "
+        android:layout_marginLeft="60dp">
+    </TextView>
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="130dp"
+        android:textSize="20sp">
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:text="Lieu : "
         android:layout_marginLeft="60dp">
     </TextView>
@@ -29,7 +49,7 @@
         android:id="@+id/place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:textColor="@color/white"
         android:layout_marginLeft="130dp"
         android:textSize="20sp">
@@ -91,22 +111,13 @@
         android:background="@drawable/custom_button_red">
     </androidx.appcompat.widget.AppCompatButton>
 
-    <ImageView
-        android:id="@+id/parking"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/price"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_empty_parking">
-    </ImageView>
 
     <ImageView
         android:id="@+id/accessHandicap"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:textSize="10sp"
-        android:layout_below="@id/parking"
+        android:layout_below="@id/price"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_empty_accesshandicap">
@@ -118,7 +129,7 @@
         android:layout_height="30dp"
         android:textSize="10sp"
         android:layout_toRightOf="@id/accessHandicap"
-        android:layout_below="@id/parking"
+        android:layout_below="@id/price"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:background="@drawable/custom_button_green">
@@ -130,7 +141,7 @@
         android:layout_height="30dp"
         android:textSize="10sp"
         android:layout_toRightOf="@id/buttonAccessHandicap"
-        android:layout_below="@id/parking"
+        android:layout_below="@id/price"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
         android:background="@drawable/custom_button_red">

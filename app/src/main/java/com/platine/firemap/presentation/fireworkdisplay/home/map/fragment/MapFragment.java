@@ -139,7 +139,8 @@ public class MapFragment extends Fragment implements MapActionInterface {
                 FireworkViewItem fireworkViewItem = markerMap.get(marker.getTitle());
                 List<Fireworker> fireworkers = new ArrayList<>();
                 fireworkers.add(fireworkViewItem.getFireworker());
-                FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getAddress(),
+                FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getCity(),
+                        fireworkViewItem.getAddress(),
                         fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                         fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
                         fireworkViewItem.getCrowded(), fireworkers,
