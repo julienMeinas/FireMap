@@ -44,7 +44,8 @@
         android:layout_below="@id/title"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@id/name">
+        android:layout_toRightOf="@id/name"
+        android:textColor="@color/white">
     </EditText>
 
     <TextView
@@ -61,12 +62,26 @@
     <EditText
         android:id="@+id/editPrice"
         android:layout_width="100dp"
+        android:inputType="number"
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@id/price">
+        android:layout_toRightOf="@id/price"
+        android:textColor="@color/white">
     </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/editPrice"
+        android:textColor="@color/white"
+        android:text="€"
+        android:textSize="25sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp">
+    </TextView>
 
 
 
