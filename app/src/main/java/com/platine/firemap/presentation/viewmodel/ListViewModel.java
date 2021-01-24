@@ -24,6 +24,7 @@ public class ListViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable;
     private FireworkToViewModelMapper fireworkToViewModelMapper;
     private MutableLiveData<List<FireworkViewItem>> fireworks = new MutableLiveData<List<FireworkViewItem>>();
+    private MutableLiveData<List<FireworkViewItem>> fireworksByCity = new MutableLiveData<List<FireworkViewItem>>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
@@ -82,6 +83,39 @@ public class ListViewModel extends ViewModel {
                     }
                 }));
                     
+    }
+
+    
+
+    public void getAllFireworksByCity(String city) {
+        isDataLoading.setValue(true);
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getAllFireworksByCity(city)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new ResourceSubscriber<List<FireworkModel>>() {
+                    @Override
+                    public void onNext(List<FireworkModel> fireworkModels) {
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(false);
+                        fireworksByCity.setValue(fireworkToViewModelMapper.map(fireworkModels));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(true);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Do Nothing
+                        errorConnexion.setValue(false);
+                        isDataLoading.setValue(false);
+                    }
+                }));
+
     }
 
 

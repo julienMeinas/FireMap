@@ -55,4 +55,9 @@ public class FireworkDisplayRemoteDataSource {
     public Call<FireworkModel> addParking(int id, String name, int price) {
         return this.m_fireworkDisplayService.addParking(id, name, price);
     }
+
+
+    public Flowable<List<FireworkModel>> getAllFireworksByCity(String city) {
+        return this.m_fireworkDisplayService.getAllFireworksByCity(city);
+    }
 }

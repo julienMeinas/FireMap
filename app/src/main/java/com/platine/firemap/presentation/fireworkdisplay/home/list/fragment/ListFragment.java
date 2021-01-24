@@ -92,6 +92,8 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         fireworkListViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
 
+        fireworkListViewModel.getAllFireworksByCity("Antwerp");
+
         fireworkListViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewModelList) {

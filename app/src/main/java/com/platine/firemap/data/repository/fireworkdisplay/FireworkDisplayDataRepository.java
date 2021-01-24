@@ -67,7 +67,7 @@ public class FireworkDisplayDataRepository {
     public Flowable<List<FireworkEntity>> getFavorites() {
         return fireworkDisplayLocalDataSource.getFavorites();
     }
-
+    
 
     /**
      * @param fireworkEntity : firework
@@ -83,5 +83,10 @@ public class FireworkDisplayDataRepository {
      */
     public Completable removeFireworkFromFavorites(int fireworkId) {
         return fireworkDisplayLocalDataSource.deleteFireworkFromFavorites(fireworkId);
+    }
+
+
+    public Flowable<List<FireworkModel>> getAllFireworksByCity(String city) {
+        return m_fireworkDisplayRemoteDataSource.getAllFireworksByCity(city);
     }
 }

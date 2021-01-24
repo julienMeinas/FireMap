@@ -34,7 +34,7 @@ import com.platine.firemap.presentation.viewmodel.ListViewModel;
 import java.io.Serializable;
 import java.util.List;
 
-public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface{
+public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface {
     private static final String TAG = "InfoFireworkActivity";
     public static final String FIREWORK_MESSAGE = "FIREWORK";
     private FavoriteViewModel fireworkFavoriteViewModel;
@@ -123,7 +123,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     public void registerViewModel() {
         recyclerViewAdapter.bindViewModels(parkingToParkingViewItemMapper.map(firework.getParking()));
     }
-
 
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerViewParking);
@@ -241,6 +240,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, id);
         this.startActivity(intent);
     }
+
 
 
     @Override

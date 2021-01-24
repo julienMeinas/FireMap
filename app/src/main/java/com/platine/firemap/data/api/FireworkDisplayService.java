@@ -70,4 +70,8 @@ public interface FireworkDisplayService {
 
     @PUT("http://firemap-api-rest.herokuapp.com/fireworks/addParking/{id}")
     Call<FireworkModel> addParking(@Path("id") int id, @Query("name") String name ,@Query("price") int price);
+
+
+    @GET("http://firemap-api-rest.herokuapp.com/fireworks/filterByCity")
+    Flowable<List<FireworkModel>> getAllFireworksByCity(@Query("city") String city);
 }
