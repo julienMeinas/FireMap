@@ -57,7 +57,7 @@ public class FireworkDisplayDataRepository {
         return this.m_fireworkDisplayRemoteDataSource.updateFirework(id, price, accessHandicap, duration, crowed);
     }
 
-    public Call<Parking> addParking(int id, String name, int price) {
+    public Call<FireworkModel> addParking(int id, String name, int price) {
         return this.m_fireworkDisplayRemoteDataSource.addParking(id, name, price);
     }
 

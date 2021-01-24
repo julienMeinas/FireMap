@@ -52,7 +52,7 @@ public class FireworkDisplayRemoteDataSource {
         return this.m_fireworkDisplayService.updateFirework(id, price, accessHandicap, duration, crowed);
     }
 
-    public Call<Parking> addParking(int id, String name, int price) {
+    public Call<FireworkModel> addParking(int id, String name, int price) {
         return this.m_fireworkDisplayService.addParking(id, name, price);
     }
 }

@@ -119,15 +119,15 @@ public class ListViewModel extends ViewModel {
 
 
     public void addParking(int id, String name, int price) {
-        Call<Parking> call = this.fireworkRepository.addParking(id, name, price);
-        call.enqueue(new Callback<Parking>() {
+        Call<FireworkModel> call = this.fireworkRepository.addParking(id, name, price);
+        call.enqueue(new Callback<FireworkModel>() {
             @Override
-            public void onResponse(Call<Parking> call, Response<Parking> response) {
+            public void onResponse(Call<FireworkModel> call, Response<FireworkModel> response) {
                 postSuccess.setValue(true);
             }
 
             @Override
-            public void onFailure(Call<Parking> call, Throwable t) {
+            public void onFailure(Call<FireworkModel> call, Throwable t) {
                 // DO NOTHING
             }
         });

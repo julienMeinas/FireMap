@@ -68,6 +68,6 @@ public interface FireworkDisplayService {
                                        @Query("duration") String duration, @Query("crowed") String crowed);
 
 
-    @POST("http://firemap-api-rest.herokuapp.com/fireworks/addParking/{id}")
-    Call<Parking> addParking(@Path("id") int id, @Query("name") String name ,@Query("price") int price);
+    @PUT("http://firemap-api-rest.herokuapp.com/fireworks/addParking/{id}")
+    Call<FireworkModel> addParking(@Path("id") int id, @Query("name") String name ,@Query("price") int price);
 }
