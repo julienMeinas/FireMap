@@ -94,7 +94,10 @@ public class FireworkDisplayDataRepository {
         return m_fireworkDisplayRemoteDataSource.getAllFireworksByCity(city);
     }
 
+    public void sendEmail(String message,String subject) {
+        m_fireworkDisplayRemoteDataSource.sendEmail(message, subject);
 
+    }
     public Call<FireworkerDetail> addAvis(int id, double note, String title, String comment) {
         return m_fireworkDisplayRemoteDataSource.addAvis(id, note, title, comment);
     }

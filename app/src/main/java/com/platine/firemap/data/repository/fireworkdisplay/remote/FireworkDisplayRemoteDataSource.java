@@ -65,6 +65,11 @@ public class FireworkDisplayRemoteDataSource {
         return this.m_fireworkDisplayService.getAllFireworksByCity(city);
     }
 
+
+    public void sendEmail(String message,String subject) {
+        this.m_fireworkDisplayService.sendEmail(message, subject);
+    }
+
     public Call<FireworkerDetail> addAvis(int id, double note, String title, String comment) {
         return this.m_fireworkDisplayService.addAvis(id, note, title, comment);
     }
