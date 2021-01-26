@@ -19,6 +19,7 @@ import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addParking.AddParkingActivity;
+import com.platine.firemap.presentation.fireworkdisplay.contact.ContactActivity;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
@@ -29,6 +30,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
     private static final String TAG = "EditFireworkActivity";
     private FireworkModel firework;
     private ListViewModel fireworkListViewModel;
+    public static final String FIREWORK_REPORT_ID = "REPORTED ID";
 
     // icons
     private TextView textViewCity;
@@ -82,6 +84,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         ButtonAccessHandicap();
         ButtonCrowed();
         ButtonValidation();
+        ButtonReport();
         ButtonDuration();
         ButtonAddParking();
 
@@ -301,6 +304,14 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
             }
         });
     }
+    public void ButtonReport() {
+        findViewById(R.id.report).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickReport();
+            }
+        });
+    }
 
 
     public void ButtonAddParking() {
@@ -328,4 +339,10 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
     }
+    public void onClickReport() {
+        Intent intent = new Intent(this, ContactActivity.class);
+        intent.putExtra(EditFireworkActivity.FIREWORK_REPORT_ID, firework.getId());
+        this.startActivity(intent);
+    }
+
 }
