@@ -260,14 +260,35 @@
         android:text="Benjamin Martel">
     </TextView>
 
-    <Button
-        android:id="@+id/validation"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/valider"
-        android:layout_marginTop="50dp"
-        android:textSize="10sp"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true">
-    </Button>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/validation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valider"
+                android:layout_marginTop="50dp"
+                android:textSize="10sp">
+            </Button>
+
+            <Button
+                android:id="@+id/report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report"
+                android:layout_marginTop="50dp"
+                android:textSize="10sp"
+                android:layout_alignParentRight="true">
+            </Button>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
