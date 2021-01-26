@@ -66,8 +66,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
-        onClickNextFireworksOn();
-        onClickNextFireworksOff();
+        onClickSwitch();
         return view;
     }
 
@@ -146,25 +145,17 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     }
 
 
-    public void onClickNextFireworksOn() {
-        this.view.findViewById(R.id.nextFireworks).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!stateDisplayNextFireworks) {
-                    nextFireworksOn();
-                    stateDisplayNextFireworks = true;
-                }
-            }
-        });
-    }
-
-    public void onClickNextFireworksOff() {
+    public void onClickSwitch() {
         this.view.findViewById(R.id.nextFireworks).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(stateDisplayNextFireworks) {
-                    nextFireworksOff();
+                    nextFireworksOn();
                     stateDisplayNextFireworks = false;
+                }
+                else {
+                    nextFireworksOff();
+                    stateDisplayNextFireworks = true;
                 }
             }
         });

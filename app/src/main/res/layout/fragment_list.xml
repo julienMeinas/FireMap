@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_list"
@@ -11,31 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/nextFireworks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prochains Feux d'artifice"
-            android:textColor="@color/white">
-        </Button>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
+                android:layout_width="300dp"
+                android:layout_height="match_parent">
+            </androidx.appcompat.widget.SearchView>
+
+            <Switch
+                android:id="@+id/nextFireworks"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/search"
+                android:layout_marginLeft="10dp"
+                tools:ignore="UseSwitchCompatOrMaterialXml">
+            </Switch>
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="530dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
             android:id="@+id/recycler_view">
         </androidx.recyclerview.widget.RecyclerView>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="-40dp"
             android:layout_below="@id/recycler_view">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_add"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
                 android:textSize="10sp"
                 android:textColor="@color/white"
                 android:text="Ajouter"
