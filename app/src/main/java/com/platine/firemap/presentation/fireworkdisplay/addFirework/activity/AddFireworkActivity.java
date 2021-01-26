@@ -139,7 +139,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     public void initEmptyFirework(FireworkModel firework) {
         firework.setCity("");
         firework.setAddress("");
-        firework.setDate("");
+        firework.setDate(null);
         firework.setPrice(50000);
         firework.setParking(new ArrayList<>());
         firework.setDuration("");
@@ -324,7 +324,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
                     firework.setLatitude(marker.latitude);
                     firework.setLongitude(marker.longitude);
-                    firework.setDate(date.getText().toString());
+                    firework.setDate(new Date());
                     fireworkListViewModel.addFirework(firework);
                     finish();
                 }

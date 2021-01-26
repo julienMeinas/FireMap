@@ -26,6 +26,7 @@ import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.Profil
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface {
@@ -142,13 +143,13 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String city, String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String city, String address, Date date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
         // city
         this.textViewCity.setText(city);
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(date);
+        this.textViewDate.setText(date.toString());
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);

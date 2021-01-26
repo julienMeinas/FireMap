@@ -34,7 +34,6 @@ public class ListViewModel extends ViewModel {
         this.fireworkRepository = fireworkRepository;
         this.compositeDisposable = new CompositeDisposable();
         this.fireworkToViewModelMapper = new FireworkToViewModelMapper();
-        loadFireWorks();
     }
 
     public MutableLiveData<List<FireworkViewItem>> getFireworks() {
@@ -82,7 +81,6 @@ public class ListViewModel extends ViewModel {
                         isDataLoading.setValue(false);
                     }
                 }));
-                    
     }
 
 

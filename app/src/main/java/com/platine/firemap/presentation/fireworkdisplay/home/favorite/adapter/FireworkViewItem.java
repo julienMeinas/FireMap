@@ -3,13 +3,14 @@ package com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter;
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 
+import java.util.Date;
 import java.util.List;
 
 public class FireworkViewItem {
     private int id;
     private String city;
     private String address;
-    private String date;
+    private Date date;
     private int price;
     private boolean handicapAccess;
     private String duration;
@@ -37,11 +38,11 @@ public class FireworkViewItem {
         this.address = address;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
