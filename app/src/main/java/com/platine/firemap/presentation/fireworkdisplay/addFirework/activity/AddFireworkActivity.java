@@ -324,7 +324,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
                     firework.setLatitude(marker.latitude);
                     firework.setLongitude(marker.longitude);
-                    firework.setDate(new Date());
+                    firework.setDate(StringDateToDate(date.getText().toString()));
                     fireworkListViewModel.addFirework(firework);
                     finish();
                 }
@@ -383,5 +383,13 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         return validDate(date.getText().toString()) &&
                 place.getText().toString() != null &&
                 firework.getFireworker().size() > 0;
+    }
+
+    public Date StringDateToDate(String date) {
+        Date res = new Date();
+        String day = date.substring(0, 2);
+        String month = date.substring(3, 5);
+        String year = date.substring(6);
+        return res;
     }
 }
