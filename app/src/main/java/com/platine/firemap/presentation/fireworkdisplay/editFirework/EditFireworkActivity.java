@@ -24,6 +24,7 @@ import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFirewor
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -150,7 +151,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(date.toString());
+        this.textViewDate.setText(mapDate(date));
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);
@@ -344,6 +345,13 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         Intent intent = new Intent(this, ContactActivity.class);
         intent.putExtra(EditFireworkActivity.FIREWORK_REPORT_ID, firework.getId());
         this.startActivity(intent);
+    }
+
+    public String mapDate(Date date) {
+        DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
+                DateFormat.SHORT,
+                DateFormat.SHORT);
+        return shortDateFormat.format(date);
     }
 
 }

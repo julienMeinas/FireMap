@@ -26,6 +26,7 @@ import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.Profil
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -149,7 +150,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(date.toString());
+        this.textViewDate.setText(mapDate(date));
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);
@@ -251,6 +252,14 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
                 //Write your code if there's no result
             }
         }
+    }
+
+
+    public String mapDate(Date date) {
+        DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
+                DateFormat.SHORT,
+                DateFormat.SHORT);
+        return shortDateFormat.format(date);
     }
 
 

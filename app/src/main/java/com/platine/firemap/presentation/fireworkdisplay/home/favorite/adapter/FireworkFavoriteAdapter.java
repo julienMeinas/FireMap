@@ -15,6 +15,7 @@ import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -85,7 +86,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
 
             //Date
             Date stringDate = fireworkViewItem.getDate();
-            date.setText(stringDate.toString());
+            date.setText(mapDate(stringDate));
 
             // price
             price.setImageResource(fireworkViewItem.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
@@ -144,6 +145,12 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             });
         }
 
+        public String mapDate(Date date) {
+            DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
+                    DateFormat.SHORT,
+                    DateFormat.SHORT);
+            return shortDateFormat.format(date);
+        }
 
     }
 }
