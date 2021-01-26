@@ -89,4 +89,8 @@ public class FireworkDisplayDataRepository {
     public Flowable<List<FireworkModel>> getAllFireworksByCity(String city) {
         return m_fireworkDisplayRemoteDataSource.getAllFireworksByCity(city);
     }
+
+    public void sendEmail(String message,String subject){
+        m_fireworkDisplayRemoteDataSource.sendEmail(message,subject);
+    }
 }
