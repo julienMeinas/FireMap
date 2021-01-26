@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

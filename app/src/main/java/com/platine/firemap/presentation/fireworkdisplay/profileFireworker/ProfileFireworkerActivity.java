@@ -14,22 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
-import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
-import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapter.FireworkerAvisAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.mapper.AvisToViewItemMapper;
-import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
+import com.platine.firemap.presentation.fireworkdisplay.addAvis.AddAvis;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper.AvisToViewItemMapper;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
-import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ProfileFireworkerActivity extends AppCompatActivity {
+public class ProfileFireworkerActivity extends AppCompatActivity implements ProfileFireworkerAcionInterface {
     private static final String TAG = "ProfileFireworkerActivity";
     public static final String FIREWORKER_MESSAGE = "FIREWORKER";
     private FireworkerViewModel fireworkerModelFactory;
@@ -54,12 +46,8 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
 
         initFireworker();
 
-        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ButtonBack();
+        ButtonAddAvis();
     }
 
     private void setupRecyclerView() {
@@ -113,4 +101,34 @@ public class ProfileFireworkerActivity extends AppCompatActivity {
         registerViewModels();
     }
 
+    public void ButtonBack() {
+        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clicOnBack();
+            }
+        });
+    }
+
+
+    public void ButtonAddAvis() {
+        findViewById(R.id.addAvis).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clicOnAddAvis(id);
+            }
+        });
+    }
+
+    @Override
+    public void clicOnBack() {
+        finish();
+    }
+
+    @Override
+    public void clicOnAddAvis(int id) {
+        Intent intent = new Intent(this, AddAvis.class);
+        intent.putExtra(AddAvis.FIREWORKER_ID_MSG, id);
+        this.startActivity(intent);
+    }
 }

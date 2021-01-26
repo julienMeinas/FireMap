@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter;
 
 public class FireworkerAvisViewItem {
     private double note;

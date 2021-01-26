@@ -1,9 +1,7 @@
-package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.mapper;
+package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper;
 
-import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.Avis;
-import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkViewItem;
-import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.adapter.FireworkerAvisViewItem;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

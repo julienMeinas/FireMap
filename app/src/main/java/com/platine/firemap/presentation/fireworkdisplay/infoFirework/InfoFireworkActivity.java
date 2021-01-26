@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,16 +19,11 @@ import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.Fireworker_item;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.RecyclerViewAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper.ParkingToParkingViewItemMapper;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
-import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
-import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
 import java.util.List;

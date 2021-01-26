@@ -26,6 +26,10 @@ public class FireworkDisplayRemoteDataSource {
         return this.m_fireworkDisplayService.getAllFireworks();
     }
 
+    public Flowable<List<FireworkModel>> getFireworksFuture() {
+        return this.m_fireworkDisplayService.getAllFireworksFuture();
+    }
+
     public Single<FireworkModel> getFireworkById(int id) {
         return this.m_fireworkDisplayService.getFireworkById(id);
     }
