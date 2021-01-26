@@ -24,16 +24,21 @@ import retrofit2.http.Query;
  *  Classes that call uses the news API
  */
 public interface FireworkDisplayService {
+
+
+    @GET("https://firemap-api-rest.herokuapp.com/fireworks")
+    Flowable<List<FireworkModel>> getAllFireworks();
+
     /**
      * Method to retrieve popular fireworks
      *
      * @return popular fireworks
      */
-    @GET("https://firemap-api-rest.herokuapp.com/fireworks/")
-    Flowable<List<FireworkModel>> getAllFireworks();
+    @GET("https://firemap-api-rest.herokuapp.com/fireworks/search")
+    Flowable<List<FireworkModel>> getAllFireworksWithSearch(@Query("city") String city);
 
-    @GET("https://firemap-api-rest.herokuapp.com/fireworks/future")
-    Flowable<List<FireworkModel>> getAllFireworksFuture();
+    @GET("https://firemap-api-rest.herokuapp.com/fireworks/search/future")
+    Flowable<List<FireworkModel>> getAllFireworksFutureWithSearch(@Query("city") String city);
 
     /**
      * @param id of firework

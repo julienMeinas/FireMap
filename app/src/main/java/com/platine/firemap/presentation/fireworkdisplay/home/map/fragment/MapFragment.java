@@ -116,6 +116,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
 
     public void addMarkers() {
         listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
+        listViewModel.loadFireWorks();
         listViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewItems) {

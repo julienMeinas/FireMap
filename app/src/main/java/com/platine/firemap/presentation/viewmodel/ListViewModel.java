@@ -83,11 +83,41 @@ public class ListViewModel extends ViewModel {
                 }));
     }
 
-
-    public void loadFireWorksFuture() {
+    public void loadFireWorksWithSearch(String city) {
         isDataLoading.setValue(true);
         compositeDisposable.clear();
-        compositeDisposable.add(fireworkRepository.getFireworksFuture()
+        compositeDisposable.add(fireworkRepository.getFireworksWithSearch(city)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new ResourceSubscriber<List<FireworkModel>>() {
+                    @Override
+                    public void onNext(List<FireworkModel> fireworkModels) {
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(false);
+                        fireworks.setValue(fireworkToViewModelMapper.map(fireworkModels));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(true);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Do Nothing
+                        errorConnexion.setValue(false);
+                        isDataLoading.setValue(false);
+                    }
+                }));
+    }
+
+
+    public void loadFireWorksFutureWithSearch(String city) {
+        isDataLoading.setValue(true);
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getFireworksFutureWithSearch(city)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new ResourceSubscriber<List<FireworkModel>>() {
@@ -195,6 +225,12 @@ public class ListViewModel extends ViewModel {
                 // DO NOTHING
             }
         });
+    }
+
+
+    public void cancelSubscription() {
+        compositeDisposable.clear();
+        isDataLoading.setValue(false);
     }
 
 

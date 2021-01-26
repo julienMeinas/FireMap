@@ -18,16 +18,20 @@ public class FireworkDisplayRemoteDataSource {
         this.m_fireworkDisplayService = m_fireworkDisplayService;
     }
 
-
-    /**
-     * @return : get all fireworks
-     */
     public Flowable<List<FireworkModel>> getFireworks() {
         return this.m_fireworkDisplayService.getAllFireworks();
     }
 
-    public Flowable<List<FireworkModel>> getFireworksFuture() {
-        return this.m_fireworkDisplayService.getAllFireworksFuture();
+
+    /**
+     * @return : get all fireworks
+     */
+    public Flowable<List<FireworkModel>> getFireworksWithSearch(String search) {
+        return this.m_fireworkDisplayService.getAllFireworksWithSearch(search);
+    }
+
+    public Flowable<List<FireworkModel>> getFireworksFutureWithSearch(String city) {
+        return this.m_fireworkDisplayService.getAllFireworksFutureWithSearch(city);
     }
 
     public Single<FireworkModel> getFireworkById(int id) {

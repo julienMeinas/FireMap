@@ -24,15 +24,19 @@ public class FireworkDisplayDataRepository {
         this.fireworkDisplayLocalDataSource = fireworkDisplayLocalDataSource;
     }
 
-    /**
-     * @return : get all fireworks
-     */
     public Flowable<List<FireworkModel>> getFireworks() {
         return this.m_fireworkDisplayRemoteDataSource.getFireworks();
     }
 
-    public Flowable<List<FireworkModel>> getFireworksFuture() {
-        return this.m_fireworkDisplayRemoteDataSource.getFireworksFuture();
+    /**
+     * @return : get all fireworks
+     */
+    public Flowable<List<FireworkModel>> getFireworksWithSearch(String city) {
+        return this.m_fireworkDisplayRemoteDataSource.getFireworksWithSearch(city);
+    }
+
+    public Flowable<List<FireworkModel>> getFireworksFutureWithSearch(String city) {
+        return this.m_fireworkDisplayRemoteDataSource.getFireworksFutureWithSearch(city);
     }
 
     public Single<FireworkModel> getFireworkById(int id) {

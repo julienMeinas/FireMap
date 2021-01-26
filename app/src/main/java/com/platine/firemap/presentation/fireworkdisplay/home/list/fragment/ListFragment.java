@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -29,11 +30,14 @@ import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ListFragment extends Fragment implements FireworkActionInterface {
     public static final String TAB_NAME = "List";
     private static ListFragment instance;
     private View view;
+    private SearchView search;
     private FireworkListAdapter fireworkListAdapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -65,6 +69,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         view = inflater.inflate(R.layout.fragment_list, container, false);
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
+        this.search = this.view.findViewById(R.id.search);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
         onClickSwitch();
         return view;
@@ -136,12 +141,13 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
     @Override
     public void nextFireworksOn() {
-        fireworkListViewModel.loadFireWorks();
+        fireworkListViewModel.loadFireWorksFutureWithSearch("");
     }
-    // 4
+
+
     @Override
     public void nextFireworksOff() {
-        fireworkListViewModel.loadFireWorksFuture();
+        fireworkListViewModel.loadFireWorksWithSearch("");
     }
 
 
