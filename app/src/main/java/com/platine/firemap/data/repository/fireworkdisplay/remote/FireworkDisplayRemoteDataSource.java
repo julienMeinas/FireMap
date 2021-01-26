@@ -60,4 +60,8 @@ public class FireworkDisplayRemoteDataSource {
     public Flowable<List<FireworkModel>> getAllFireworksByCity(String city) {
         return this.m_fireworkDisplayService.getAllFireworksByCity(city);
     }
+
+    public Call<FireworkerDetail> addAvis(int id, double note, String title, String comment) {
+        return this.m_fireworkDisplayService.addAvis(id, note, title, comment);
+    }
 }

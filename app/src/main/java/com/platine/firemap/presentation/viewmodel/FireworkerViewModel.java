@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
@@ -19,6 +20,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FireworkerViewModel extends ViewModel {
     private FireworkDisplayDataRepository fireworkRepository;
@@ -27,6 +31,7 @@ public class FireworkerViewModel extends ViewModel {
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> errorConnexion = new MutableLiveData<Boolean>();
     private MutableLiveData<FireworkerDetail> currentFireworker = new MutableLiveData<FireworkerDetail>();
+    private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
     private FireworkerDetailleToFireworkerItemMapper fireworkerDetailleToFireworkerItemMapper;
 
     public FireworkerViewModel(FireworkDisplayDataRepository fireworkRepository) {
@@ -87,6 +92,23 @@ public class FireworkerViewModel extends ViewModel {
                     }
                 }));
         return currentFireworker;
+    }
+
+
+
+    public void addAvis(int id, double note, String title, String comment) {
+        Call<FireworkerDetail> call = this.fireworkRepository.addAvis(id, note, title, comment);
+        call.enqueue(new Callback<FireworkerDetail>() {
+            @Override
+            public void onResponse(Call<FireworkerDetail> call, Response<FireworkerDetail> response) {
+                putSuccess.setValue(true);
+            }
+
+            @Override
+            public void onFailure(Call<FireworkerDetail> call, Throwable t) {
+                // DO NOTHING
+            }
+        });
     }
 }
 
