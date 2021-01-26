@@ -32,6 +32,9 @@ public interface FireworkDisplayService {
     @GET("https://firemap-api-rest.herokuapp.com/fireworks/")
     Flowable<List<FireworkModel>> getAllFireworks();
 
+    @GET("https://firemap-api-rest.herokuapp.com/fireworks/future")
+    Flowable<List<FireworkModel>> getAllFireworksFuture();
+
     /**
      * @param id of firework
      * @return firework
@@ -80,4 +83,8 @@ public interface FireworkDisplayService {
     @FormUrlEncoded
     @POST("http://firemap-api-rest.herokuapp.com/email")
     Call<Object> sendEmail(@Field("body") String message, @Field("subject") String subject);
+
+    @PUT("https://firemap-api-rest.herokuapp.com/fireworkers/addAvis/{id}")
+    Call<FireworkerDetail> addAvis(@Path("id") int id, @Query("note") double note, @Query("title") String title,
+                                   @Query("comment") String comment);
 }

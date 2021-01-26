@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,18 +19,15 @@ import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.Fireworker_item;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.RecyclerViewAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper.ParkingToParkingViewItemMapper;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
-import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
-import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface {
@@ -148,13 +144,13 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String city, String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String city, String address, Date date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
         // city
         this.textViewCity.setText(city);
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(date);
+        this.textViewDate.setText(mapDate(date));
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);
@@ -256,6 +252,14 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
                 //Write your code if there's no result
             }
         }
+    }
+
+
+    public String mapDate(Date date) {
+        DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
+                DateFormat.SHORT,
+                DateFormat.SHORT);
+        return shortDateFormat.format(date);
     }
 
 

@@ -40,6 +40,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private TextView textViewErrorConnexion;
     private ListViewModel fireworkListViewModel;
     private FavoriteViewModel favoriteViewModel;
+    private boolean stateDisplayNextFireworks = true;
 
     public ListFragment() {
         // Required empty public constructor
@@ -65,6 +66,8 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
+        onClickNextFireworksOn();
+        onClickNextFireworksOff();
         return view;
     }
 
@@ -91,7 +94,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private void registerViewModels() {
         fireworkListViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
-
+        fireworkListViewModel.loadFireWorks();
         fireworkListViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewModelList) {
@@ -128,5 +131,42 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         Log.d(TAB_NAME, "addFirework call");
         Intent intent = new Intent(view.getContext(), AddFireworkActivity.class);
         view.getContext().startActivity(intent);
+    }
+
+
+
+    @Override
+    public void nextFireworksOn() {
+        fireworkListViewModel.loadFireWorks();
+    }
+    // 4
+    @Override
+    public void nextFireworksOff() {
+        fireworkListViewModel.loadFireWorksFuture();
+    }
+
+
+    public void onClickNextFireworksOn() {
+        this.view.findViewById(R.id.nextFireworks).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!stateDisplayNextFireworks) {
+                    nextFireworksOn();
+                    stateDisplayNextFireworks = true;
+                }
+            }
+        });
+    }
+
+    public void onClickNextFireworksOff() {
+        this.view.findViewById(R.id.nextFireworks).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stateDisplayNextFireworks) {
+                    nextFireworksOff();
+                    stateDisplayNextFireworks = false;
+                }
+            }
+        });
     }
 }

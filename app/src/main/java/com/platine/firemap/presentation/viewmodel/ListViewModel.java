@@ -34,7 +34,6 @@ public class ListViewModel extends ViewModel {
         this.fireworkRepository = fireworkRepository;
         this.compositeDisposable = new CompositeDisposable();
         this.fireworkToViewModelMapper = new FireworkToViewModelMapper();
-        loadFireWorks();
     }
 
     public MutableLiveData<List<FireworkViewItem>> getFireworks() {
@@ -82,7 +81,38 @@ public class ListViewModel extends ViewModel {
                         isDataLoading.setValue(false);
                     }
                 }));
-                    
+    }
+
+
+    public void loadFireWorksFuture() {
+        isDataLoading.setValue(true);
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getFireworksFuture()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new ResourceSubscriber<List<FireworkModel>>() {
+                    @Override
+                    public void onNext(List<FireworkModel> fireworkModels) {
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(false);
+                        fireworks.setValue(fireworkToViewModelMapper.map(fireworkModels));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(true);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Do Nothing
+                        errorConnexion.setValue(false);
+                        isDataLoading.setValue(false);
+                    }
+                }));
+
     }
 
     

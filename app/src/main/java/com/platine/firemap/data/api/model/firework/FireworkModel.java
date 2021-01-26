@@ -1,6 +1,7 @@
 package com.platine.firemap.data.api.model.firework;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class FireworkModel implements Serializable {
@@ -9,7 +10,7 @@ public class FireworkModel implements Serializable {
     private double latitude;
     private String city;
     private String address;
-    private String date;
+    private Date date;
     private int price;
     private boolean handicapAccess;
     private String duration;
@@ -17,7 +18,7 @@ public class FireworkModel implements Serializable {
     private List<Fireworker> fireworker;
     private List<Parking> parking;
 
-    public FireworkModel(int id, String city, String address, String date, int price, boolean handicAccess, String duration, String crowded, List<Fireworker> fireworker, List<Parking> parkings) {
+    public FireworkModel(int id, String city, String address, Date date, int price, boolean handicAccess, String duration, String crowded, List<Fireworker> fireworker, List<Parking> parkings) {
         this.id = id;
         this.city = city;
         this.address = address;
@@ -53,7 +54,7 @@ public class FireworkModel implements Serializable {
         return address;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -101,7 +102,7 @@ public class FireworkModel implements Serializable {
         this.address = address;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

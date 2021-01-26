@@ -31,6 +31,10 @@ public class FireworkDisplayDataRepository {
         return this.m_fireworkDisplayRemoteDataSource.getFireworks();
     }
 
+    public Flowable<List<FireworkModel>> getFireworksFuture() {
+        return this.m_fireworkDisplayRemoteDataSource.getFireworksFuture();
+    }
+
     public Single<FireworkModel> getFireworkById(int id) {
         return this.m_fireworkDisplayRemoteDataSource.getFireworkById(id);
     }
@@ -90,7 +94,11 @@ public class FireworkDisplayDataRepository {
         return m_fireworkDisplayRemoteDataSource.getAllFireworksByCity(city);
     }
 
-    public void sendEmail(String message,String subject){
-        m_fireworkDisplayRemoteDataSource.sendEmail(message,subject);
+    public void sendEmail(String message,String subject) {
+        m_fireworkDisplayRemoteDataSource.sendEmail(message, subject);
+
+    }
+    public Call<FireworkerDetail> addAvis(int id, double note, String title, String comment) {
+        return m_fireworkDisplayRemoteDataSource.addAvis(id, note, title, comment);
     }
 }

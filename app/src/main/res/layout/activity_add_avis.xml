@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_item">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="-8dp"
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/drawable_back"
+        android:background="@drawable/custom_item">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:text="Nouvel avis">
+    </TextView>
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/header"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:text="Note : ">
+    </TextView>
+
+    <EditText
+        android:id="@+id/editNote"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:inputType="number"
+        android:layout_toRightOf="@id/note"
+        android:textColor="@color/white">
+    </EditText>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/note"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:text="Prix : ">
+    </TextView>
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="100dp"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/note"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/title"
+        android:textColor="@color/white">
+    </EditText>
+
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/editTitle"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:text="Prix : ">
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/editComment"
+        android:layout_width="100dp"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTitle"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/comment"
+        android:textColor="@color/white">
+    </EditText>
+
+
+    <Button
+        android:id="@+id/validation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valider"
+        android:layout_marginTop="50dp"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true">
+    </Button>
+
+</RelativeLayout>
