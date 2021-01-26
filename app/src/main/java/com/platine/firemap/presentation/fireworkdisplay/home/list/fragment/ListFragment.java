@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private static ListFragment instance;
     private View view;
     private SearchView search;
+    private Switch aSwitch;
     private FireworkListAdapter fireworkListAdapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -70,6 +72,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
         this.search = this.view.findViewById(R.id.search);
+        this.aSwitch = this.view.findViewById(R.id.nextFireworks);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
         onClickSwitch();
         return view;
@@ -138,31 +141,60 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     }
 
 
-
-    @Override
-    public void nextFireworksOn() {
-        fireworkListViewModel.loadFireWorksFutureWithSearch("");
-    }
-
-
-    @Override
-    public void nextFireworksOff() {
-        fireworkListViewModel.loadFireWorksWithSearch("");
-    }
-
-
     public void onClickSwitch() {
         this.view.findViewById(R.id.nextFireworks).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(stateDisplayNextFireworks) {
-                    nextFireworksOn();
+                    fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
                     stateDisplayNextFireworks = false;
                 }
                 else {
-                    nextFireworksOff();
+                    fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
                     stateDisplayNextFireworks = true;
                 }
+            }
+        });
+    }
+
+
+    private void setupSearchView() {
+        search = view.findViewById(R.id.search);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            private Timer timer = new Timer();
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(final String s) {
+                if (s.length() == 0) {
+                    fireworkListViewModel.cancelSubscription();
+                } else {
+                    timer.cancel();
+                    timer = new Timer();
+                    int sleep = 350;
+                    if (s.length() == 1)
+                        sleep = 5000;
+                    else if (s.length() <= 3)
+                        sleep = 300;
+                    else if (s.length() <= 5)
+                        sleep = 200;
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if(aSwitch.isChecked()) {
+                                fireworkListViewModel.loadFireWorksWithSearch(s);
+                            }
+                            else {
+                                fireworkListViewModel.loadFireWorksFutureWithSearch(s);
+                            }
+                        }
+                    }, sleep);
+                }
+                return true;
             }
         });
     }
