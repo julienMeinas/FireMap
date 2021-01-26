@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textSize="40sp"
         android:text="Nouveau parking">
     </TextView>
@@ -33,7 +33,7 @@
         android:layout_below="@id/title"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:text="Nom du parking : ">
     </TextView>
 
@@ -45,7 +45,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:layout_toRightOf="@id/name"
-        android:textColor="@color/white">
+        android:textColor="@color/colorText">
     </EditText>
 
     <TextView
@@ -55,7 +55,7 @@
         android:layout_below="@id/name"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:text="Prix : ">
     </TextView>
 
@@ -68,7 +68,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:layout_toRightOf="@id/price"
-        android:textColor="@color/white">
+        android:textColor="@color/colorText">
     </EditText>
 
     <TextView
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:layout_toRightOf="@id/editPrice"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:text="€"
         android:textSize="25sp"
         android:layout_marginTop="50dp"

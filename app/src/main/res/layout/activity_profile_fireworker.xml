@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/colorText"
             android:textSize="35dp"
             android:text="Artificier"/>
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/colorText"
             android:textSize="40dp"
             android:text="Name"/>
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/colorText"
             android:textSize="20dp"
             android:text="Url"/>
 

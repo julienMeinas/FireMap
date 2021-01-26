@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textSize="40sp"
         android:text="City">
     </TextView>
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textSize="30sp"
         android:text="Foire de Lille">
     </TextView>
@@ -44,7 +44,7 @@
         android:layout_marginTop="15dp"
         android:layout_below="@id/lieu"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textSize="20sp"
         android:text="14/07/2021">
     </TextView>
@@ -242,7 +242,7 @@
         android:layout_below="@id/people"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textSize="15sp"
         android:text="Organisé par : ">
     </TextView>
@@ -255,7 +255,7 @@
         android:layout_below="@id/people"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textSize="15sp"
         android:text="Benjamin Martel">
     </TextView>

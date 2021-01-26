@@ -54,6 +54,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
 
 
     public static class FireworkViewHolder extends RecyclerView.ViewHolder {
+        private TextView city;
         private TextView address;
         private TextView date;
         private ImageView price;
@@ -68,6 +69,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
         public FireworkViewHolder(View v, FireworkActionInterface fireworkActionInterface) {
             super(v);
             this.v = v;
+            city = v.findViewById(R.id.city);
             address = v.findViewById((R.id.address));
             date = v.findViewById(R.id.date);
             parentLayout = v.findViewById(R.id.parent_layout);
@@ -81,6 +83,8 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
         public void bind(FireworkViewItem fireworkViewItem) {
             this.fireworkViewItem = fireworkViewItem;
 
+            city.setText(fireworkViewItem.getCity());
+
             //Address
             address.setText(fireworkViewItem.getAddress());
 
@@ -88,6 +92,8 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             Date stringDate = fireworkViewItem.getDate();
             date.setText(mapDate(stringDate));
 
+
+            /**
             // price
             price.setImageResource(fireworkViewItem.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
 
@@ -120,7 +126,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             else {
                 people.setImageResource(R.drawable.drawable_people_high);
             }
-
+            */
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

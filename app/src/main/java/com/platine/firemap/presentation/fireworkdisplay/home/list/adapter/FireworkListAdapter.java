@@ -41,7 +41,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
     @Override
     public FireworkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.firework_item, parent, false);
+                .inflate(R.layout.firework_itemv2, parent, false);
         FireworkViewHolder fireworkViewHolder = new FireworkViewHolder(v, this.fireworkActionInterface);
         return fireworkViewHolder;
     }
@@ -62,6 +62,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
     public static class FireworkViewHolder extends RecyclerView.ViewHolder {
         private TextView address;
         private TextView date;
+        private TextView city;
         private ImageView price;
         private ImageView parking;
         private ImageView accessHandicap;
@@ -74,6 +75,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         public FireworkViewHolder(View v, FireworkActionInterface fireworkActionInterface) {
             super(v);
             this.v = v;
+            city = v.findViewById(R.id.city);
             address = v.findViewById((R.id.address));
             date = v.findViewById(R.id.date);
             parentLayout = v.findViewById(R.id.parent_layout);
@@ -87,6 +89,8 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         public void bind(FireworkViewItem fireworkViewModel) {
             this.fireworkViewModel = fireworkViewModel;
 
+            city.setText(fireworkViewModel.getCity());
+
             //Address
             address.setText(fireworkViewModel.getAddress());
 
@@ -94,6 +98,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             Date stringDate = fireworkViewModel.getDate();
             date.setText(mapDate(stringDate));
 
+            /**
             // price
             if(fireworkViewModel.getPrice() == 0) {
                 price.setImageResource(R.drawable.drawable_price_free);
@@ -136,7 +141,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             } else {
                 people.setImageResource(R.drawable.drawable_empty_people);
             }
-
+            */
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

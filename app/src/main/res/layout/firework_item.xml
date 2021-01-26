@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
-            android:textColor="@color/white"
+            android:textColor="@color/colorText"
             android:text="Address"
             android:layout_marginTop="20dp"
             android:id="@+id/address"/>
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/white"
+            android:textColor="@color/colorText"
             android:text="Date"
             android:layout_marginTop="20dp"
             android:id="@+id/date"/>
