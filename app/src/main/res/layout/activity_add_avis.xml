@@ -63,7 +63,6 @@
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="100dp"
-        android:inputType="number"
         android:layout_height="wrap_content"
         android:layout_below="@id/note"
         android:layout_marginTop="50dp"
@@ -88,7 +87,6 @@
     <EditText
         android:id="@+id/editComment"
         android:layout_width="100dp"
-        android:inputType="number"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTitle"
         android:layout_marginTop="50dp"
