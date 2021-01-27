@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.platine.firemap.R;
+import com.platine.firemap.presentation.fireworkdisplay.home.credit.CreditFragment;
 import com.platine.firemap.presentation.fireworkdisplay.home.favorite.fragment.FavoriteFragment;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.fragment.ListFragment;
 import com.platine.firemap.presentation.fireworkdisplay.home.map.fragment.MapFragment;
@@ -23,10 +24,12 @@ public class HomeActivity extends AppCompatActivity {
         add(MapFragment.newInstance());
         add(ListFragment.newInstance());
         add(FavoriteFragment.newInstance());
+        add(CreditFragment.newInstance());
     }};
     private static final int positionMapFragment = 0;
     private static final int positionListFragment = 1;
     private static final int positionFavoriteFragment = 2;
+    private static final int positionCreditFragment = 3;
     public int m_currentFragment = positionMapFragment;
 
     @Override
@@ -61,6 +64,9 @@ public class HomeActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_favorite:
                             m_currentFragment = positionFavoriteFragment;
+                            break;
+                        case R.id.nav_credit:
+                            m_currentFragment = positionCreditFragment;
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter, m_listFragment.get(m_currentFragment)).commit();

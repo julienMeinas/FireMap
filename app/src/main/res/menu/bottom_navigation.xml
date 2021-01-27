@@ -14,4 +14,9 @@
         android:icon="@drawable/drawable_star_bottom_menu"
         android:title="favoris"/>
 
+    <item
+        android:id="@+id/nav_credit"
+        android:icon="@drawable/drawable_credit"
+        android:title="Credit"/>
+
 </menu>
