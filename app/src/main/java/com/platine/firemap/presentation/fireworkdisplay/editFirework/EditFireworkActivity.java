@@ -223,6 +223,14 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
                 firework.setPrice(30);
             }
         });
+
+        imagePrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePrice.setImageResource(R.drawable.drawable_empty_price);
+                firework.setPrice(50000);
+            }
+        });
     }
 
     public void ButtonAccessHandicap() {
@@ -239,6 +247,14 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
             public void onClick(View v) {
                 imageAccessHandicap.setImageResource(R.drawable.drawable_no_handicap_access);
                 firework.setHandicAccess(false);
+            }
+        });
+
+        imageAccessHandicap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageAccessHandicap.setImageResource(R.drawable.drawable_empty_accesshandicap);
+                firework.setHandicAccess(true);
             }
         });
     }
@@ -267,6 +283,14 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
                 firework.setDuration("Long");
             }
         });
+
+        imageDuration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageDuration.setImageResource(R.drawable.drawable_empty_duration);
+                firework.setDuration("");
+            }
+        });
     }
 
 
@@ -292,6 +316,13 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
             public void onClick(View v) {
                 imagePeople.setImageResource(R.drawable.drawable_people_high);
                 firework.setCrowded("High");
+            }
+        });
+
+        imagePeople.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePeople.setImageResource(R.drawable.drawable_empty_people);
             }
         });
     }

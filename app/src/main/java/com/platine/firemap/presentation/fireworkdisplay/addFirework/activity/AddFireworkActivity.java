@@ -149,6 +149,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         firework.setAddress("");
         firework.setDate(null);
         firework.setPrice(50000);
+        firework.setHandicAccess(true);
         firework.setParking(new ArrayList<>());
         firework.setDuration("");
         firework.setCrowded("");
