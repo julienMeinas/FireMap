@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Marker;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -324,7 +325,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
                     firework.setLatitude(marker.latitude);
                     firework.setLongitude(marker.longitude);
-                    firework.setDate(StringDateToDate(date.getText().toString()));
+                    firework.setDate(StringToDate(date.getText().toString(), "17:08"));
                     fireworkListViewModel.addFirework(firework);
                     finish();
                 }
@@ -379,17 +380,30 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
 
+
+    public boolean validHour(String hour) {
+        if(hour == null)
+            return false;
+        if(hour.length() != 5)
+            return false;
+        if(Integer.parseInt(hour.substring(0, 2)) < 0 || Integer.parseInt(hour.substring(0, 2)) > 23)
+            return false;
+        if(Integer.parseInt(hour.substring(3)) < 0 || Integer.parseInt(hour.substring(3)) > 59)
+            return false;
+        return true;
+    }
+
+
     public boolean validFirework() {
         return validDate(date.getText().toString()) &&
                 place.getText().toString() != null &&
                 firework.getFireworker().size() > 0;
     }
 
-    public Date StringDateToDate(String date) {
-        Date res = new Date();
+    public String StringToDate(String date, String hour) {
         String day = date.substring(0, 2);
         String month = date.substring(3, 5);
         String year = date.substring(6);
-        return res;
+        return year+"-"+month+"-"+day+"T"+hour+".000+00:00";
     }
 }

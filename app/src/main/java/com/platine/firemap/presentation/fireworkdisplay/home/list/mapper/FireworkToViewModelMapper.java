@@ -15,7 +15,7 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setLongitude(firework.getLongitude());
         fireworkViewModel.setCity(firework.getCity());
         fireworkViewModel.setAddress(firework.getAddress());
-        fireworkViewModel.setDate(firework.getDate());
+        fireworkViewModel.setDate(convertJsonToStringDate(firework.getDate()));
         fireworkViewModel.setPrice(firework.getPrice());
         fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
         fireworkViewModel.setDuration(firework.getDuration());
@@ -35,7 +35,7 @@ public class FireworkToViewModelMapper {
     }
 
     private String convertJsonToStringDate(String date) {
-        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4);
+        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4) + " - " + date.substring(11, 16);
     }
 
 }

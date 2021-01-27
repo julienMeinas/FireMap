@@ -10,7 +10,7 @@ public class FireworkViewItem {
     private int id;
     private String city;
     private String address;
-    private Date date;
+    private String date;
     private int price;
     private boolean handicapAccess;
     private String duration;
@@ -38,11 +38,11 @@ public class FireworkViewItem {
         this.address = address;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

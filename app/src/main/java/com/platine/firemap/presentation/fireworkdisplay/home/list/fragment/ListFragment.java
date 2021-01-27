@@ -75,6 +75,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         this.aSwitch = this.view.findViewById(R.id.nextFireworks);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
         onClickSwitch();
+        setupSearchView();
         return view;
     }
 
@@ -186,10 +187,10 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
                         @Override
                         public void run() {
                             if(aSwitch.isChecked()) {
-                                fireworkListViewModel.loadFireWorksWithSearch(s);
+                                //fireworkListViewModel.loadFireWorksWithSearch(s);
                             }
                             else {
-                                fireworkListViewModel.loadFireWorksFutureWithSearch(s);
+                                //fireworkListViewModel.loadFireWorksFutureWithSearch(s);
                             }
                         }
                     }, sleep);

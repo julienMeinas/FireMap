@@ -146,12 +146,12 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
     }
 
 
-    public void setComponent(String city, String address, Date date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
+    public void setComponent(String city, String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
         this.textViewCity.setText(city);
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(mapDate(date));
+        this.textViewDate.setText(date);
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);

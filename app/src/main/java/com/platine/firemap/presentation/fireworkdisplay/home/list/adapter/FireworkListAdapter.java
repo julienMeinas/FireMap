@@ -95,8 +95,8 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             address.setText(fireworkViewModel.getAddress());
 
             //Date
-            Date stringDate = fireworkViewModel.getDate();
-            date.setText(mapDate(stringDate));
+            String stringDate = fireworkViewModel.getDate();
+            date.setText(stringDate);
 
             /**
             // price

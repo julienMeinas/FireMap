@@ -89,8 +89,8 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             address.setText(fireworkViewItem.getAddress());
 
             //Date
-            Date stringDate = fireworkViewItem.getDate();
-            date.setText(mapDate(stringDate));
+            String stringDate = fireworkViewItem.getDate();
+            date.setText(stringDate);
 
 
             /**
