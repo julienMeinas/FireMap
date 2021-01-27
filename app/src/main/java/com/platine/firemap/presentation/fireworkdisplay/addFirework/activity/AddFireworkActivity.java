@@ -323,12 +323,10 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getLocationFromAddress(getApplicationContext(), place.getText().toString() + ", " + city.getText().toString());
                 if(validFirework()){
                     firework.setCity(city.getText().toString());
                     firework.setAddress(place.getText().toString());
-                    LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
-                    firework.setLatitude(marker.latitude);
-                    firework.setLongitude(marker.longitude);
                     firework.setDate(StringToDate(date.getText().toString(), hour.getText().toString()));
                     fireworkListViewModel.addFirework(firework);
                     finish();
@@ -348,7 +346,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         firework.setFireworker(fireworkers);
     }
 
-    public LatLng getLocationFromAddress(Context context, String strAddress) {
+    public void getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
         List<Address> address;
@@ -357,19 +355,19 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         try {
             // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
-                return null;
-            }
 
             Address location = address.get(0);
             p1 = new LatLng(location.getLatitude(), location.getLongitude() );
 
-        } catch (IOException ex) {
+            firework.setLatitude(p1.latitude);
+            firework.setLongitude(p1.longitude);
 
-            ex.printStackTrace();
+        } catch (IOException ex) {
+            // incorrect address
+            firework.setLatitude(0);
+            firework.setLongitude(0);
         }
 
-        return p1;
     }
 
     public boolean validDate(String date) {
@@ -377,11 +375,11 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             return false;
         if(date.length() != 10)
             return false;
-        if(! (date.substring(2,3).equals("/") && date.substring(5,6).equals("/")) )
+        if(! (date.substring(2,3).equals("/") || date.substring(5,6).equals("/")) )
             return false;
-        if(Integer.parseInt(date.substring(0, 2)) < 0 && Integer.parseInt(date.substring(0, 2)) > 31)
+        if(Integer.parseInt(date.substring(0, 2)) < 0 || Integer.parseInt(date.substring(0, 2)) > 31)
             return false;
-        if(Integer.parseInt(date.substring(3, 5)) < 0 && Integer.parseInt(date.substring(3, 5)) > 12)
+        if(Integer.parseInt(date.substring(3, 5)) < 0 || Integer.parseInt(date.substring(3, 5)) > 12)
             return false;
         return true;
     }
@@ -400,13 +398,21 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         return true;
     }
 
+    public boolean validAddress() {
+        if(firework.getLatitude() == 0 && firework.getLongitude() == 0)
+            return false;
+        return true;
+    }
+
 
     public boolean validFirework() {
         return validDate(date.getText().toString()) &&
                 place.getText().toString() != null &&
                 firework.getFireworker().size() > 0 &&
-                validHour(hour.getText().toString());
+                validHour(hour.getText().toString()) &&
+                validAddress();
     }
+
 
     public String StringToDate(String date, String hour) {
         String day = date.substring(0, 2);
