@@ -30,18 +30,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/search"
-                android:layout_marginLeft="1dp"
-                tools:ignore="UseSwitchCompatOrMaterialXml">
+                tools:ignore="UseSwitchCompatOrMaterialXml"
+                android:text="Tout voir:"
+                android:textSize="9sp">
             </Switch>
 
             <Button
                 android:id="@+id/filter"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/white"
                 android:textSize="7sp"
-                android:text="Rechercher">
+                android:text="Filter">
             </Button>
         </RelativeLayout>
 
