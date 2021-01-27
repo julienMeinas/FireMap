@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"
         android:layout_marginLeft="130dp"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:hint="Villeneuve d'ascq">
     </EditText>
 
     <TextView
@@ -51,7 +52,8 @@
         android:layout_marginTop="55dp"
         android:textColor="@color/colorText"
         android:layout_marginLeft="130dp"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:hint="Lac du héron">
     </EditText>
 
     <TextView
@@ -72,7 +74,8 @@
         android:layout_marginLeft="60dp"
         android:layout_below="@id/place"
         android:textColor="@color/colorText"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:hint="19/12/2016">
     </EditText>
 
     <TextView
@@ -91,10 +94,11 @@
         android:id="@+id/hour"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="270dp"
+        android:layout_marginLeft="280dp"
         android:layout_below="@id/place"
         android:textColor="@color/colorText"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:hint="17:30">
     </EditText>
 
 
