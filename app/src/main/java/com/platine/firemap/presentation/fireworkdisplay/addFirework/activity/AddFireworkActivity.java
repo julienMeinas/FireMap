@@ -373,6 +373,9 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
                 firework.setLatitude(p1.latitude);
                 firework.setLongitude(p1.longitude);
+            }else {
+                firework.setLatitude(0);
+                firework.setLongitude(0);
             }
 
         } catch (IOException ex) {
