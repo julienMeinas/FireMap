@@ -54,6 +54,11 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
     // icons
     private TextView incorrect;
+    private TextView errorCity;
+    private TextView errorPlace;
+    private TextView errorDate;
+    private TextView errorHour;
+    private TextView errorFireworker;
     private EditText city;
     private EditText place;
     private EditText date;
@@ -154,6 +159,12 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
     public void initComponent() {
         this.incorrect = findViewById(R.id.incorrect);
+        this.errorCity = findViewById(R.id.errorCity);
+        this.errorPlace = findViewById(R.id.errorPlace);
+        this.errorDate = findViewById(R.id.errorDate);
+        this.errorHour = findViewById(R.id.errorHour);
+        this.errorFireworker = findViewById(R.id.errorFireworker);
+        this.errorCity = findViewById(R.id.errorCity);
         this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
         this.date = findViewById(R.id.date);
@@ -323,6 +334,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reinitializeError();
                 getLocationFromAddress(getApplicationContext(), place.getText().toString() + ", " + city.getText().toString());
                 if(validFirework()){
                     firework.setCity(city.getText().toString());
@@ -355,12 +367,13 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         try {
             // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
+            if(address.size()>0) {
+                Address location = address.get(0);
+                p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
-            Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
-
-            firework.setLatitude(p1.latitude);
-            firework.setLongitude(p1.longitude);
+                firework.setLatitude(p1.latitude);
+                firework.setLongitude(p1.longitude);
+            }
 
         } catch (IOException ex) {
             // incorrect address
@@ -371,46 +384,84 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
     public boolean validDate(String date) {
+        boolean res = true;
         if(date == null)
+            res = false;
+        if(date.length() < 10) {
+            DisplayErrorDate();
             return false;
-        if(date.length() != 10)
-            return false;
+        }
         if(! (date.substring(2,3).equals("/") || date.substring(5,6).equals("/")) )
-            return false;
+            res = false;
         if(Integer.parseInt(date.substring(0, 2)) < 0 || Integer.parseInt(date.substring(0, 2)) > 31)
-            return false;
+            res = false;
         if(Integer.parseInt(date.substring(3, 5)) < 0 || Integer.parseInt(date.substring(3, 5)) > 12)
-            return false;
-        return true;
+            res = false;
+        if(!res)
+            DisplayErrorDate();
+        return res;
     }
 
 
 
     public boolean validHour(String hour) {
+        boolean res = true;
         if(hour == null)
+            res = false;
+        if(hour.length() < 5) {
+            DisplayErrorHour();
             return false;
-        if(hour.length() != 5)
-            return false;
+        }
         if(Integer.parseInt(hour.substring(0, 2)) < 0 || Integer.parseInt(hour.substring(0, 2)) > 23)
-            return false;
+            res = false;
         if(Integer.parseInt(hour.substring(3)) < 0 || Integer.parseInt(hour.substring(3)) > 59)
+            res = false;
+        if(!res)
+            DisplayErrorHour();
+        return res;
+    }
+
+    public boolean validMarker() {
+        if(firework.getLatitude() == 0 && firework.getLongitude() == 0) {
+            DisplayErrorCity();
+            DisplayErrorPlace();
             return false;
+        }
         return true;
     }
 
     public boolean validAddress() {
-        if(firework.getLatitude() == 0 && firework.getLongitude() == 0)
+        boolean res = true;
+        if(city.getText().toString() == null)
+            res = false;
+        if(city.getText().toString().trim() == "")
+            res = false;
+        if(place.getText().toString() == null)
+            res = false;
+        if(place.getText().toString().trim() == "")
+            res = false;
+        if(!res) {
+            DisplayErrorPlace();
+            DisplayErrorCity();
+        }
+        return res;
+    }
+
+    public boolean validFireworker() {
+        if(firework.getFireworker().size() <= 0) {
+            DisplayErrorFireworker();
             return false;
+        }
         return true;
     }
 
 
     public boolean validFirework() {
         return validDate(date.getText().toString()) &&
-                place.getText().toString() != null &&
-                firework.getFireworker().size() > 0 &&
+                validAddress() &&
+                validFireworker() &&
                 validHour(hour.getText().toString()) &&
-                validAddress();
+                validMarker();
     }
 
 
@@ -419,5 +470,35 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         String month = date.substring(3, 5);
         String year = date.substring(6);
         return year+"-"+month+"-"+day+"T"+hour+".000+00:00";
+    }
+
+
+    public void reinitializeError(){
+        errorCity.setVisibility(View.GONE);
+        errorPlace.setVisibility(View.GONE);
+        errorDate.setVisibility(View.GONE);
+        errorHour.setVisibility(View.GONE);
+        errorFireworker.setVisibility(View.GONE);
+    }
+
+
+    public void DisplayErrorCity() {
+        errorCity.setVisibility(View.VISIBLE);
+    }
+
+    public void DisplayErrorPlace() {
+        errorPlace.setVisibility(View.VISIBLE);
+    }
+
+    public void DisplayErrorDate() {
+        errorDate.setVisibility(View.VISIBLE);
+    }
+
+    public void DisplayErrorHour() {
+        errorHour.setVisibility(View.VISIBLE);
+    }
+
+    public void DisplayErrorFireworker() {
+        errorFireworker.setVisibility(View.VISIBLE);
     }
 }

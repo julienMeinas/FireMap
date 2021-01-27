@@ -36,6 +36,18 @@
     </EditText>
 
     <TextView
+        android:id="@+id/errorCity"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/redMiddle"
+        android:layout_below="@id/city"
+        android:layout_alignParentRight="true"
+        android:text="Ville non valide"
+        android:textSize="9sp">
+    </TextView>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -56,6 +68,18 @@
         android:hint="Lac du héron">
     </EditText>
 
+
+    <TextView
+        android:id="@+id/errorPlace"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/redMiddle"
+        android:layout_below="@id/place"
+        android:layout_alignParentRight="true"
+        android:text="Lieu non valide"
+        android:textSize="9sp">
+    </TextView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,6 +103,18 @@
     </EditText>
 
     <TextView
+        android:id="@+id/errorDate"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/redMiddle"
+        android:layout_below="@id/date"
+        android:layout_alignParentLeft="true"
+        android:text="Date non valide"
+        android:textSize="9sp">
+    </TextView>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/place"
@@ -100,6 +136,18 @@
         android:textSize="20sp"
         android:hint="17:30">
     </EditText>
+
+    <TextView
+        android:id="@+id/errorHour"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/redMiddle"
+        android:layout_below="@id/hour"
+        android:layout_alignParentRight="true"
+        android:text="Heure non valide"
+        android:textSize="9sp">
+    </TextView>
 
 
 
@@ -291,6 +339,18 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp">
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/errorFireworker"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/redMiddle"
+        android:layout_below="@id/recyclerViewFireworker"
+        android:layout_alignParentLeft="true"
+        android:text="Veuillez selectionner un artificier"
+        android:textSize="9sp">
+    </TextView>
 
     <TextView
         android:id="@+id/fireworkerName"
