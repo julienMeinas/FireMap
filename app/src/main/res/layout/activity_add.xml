@@ -314,4 +314,18 @@
         android:layout_alignParentBottom="true">
     </Button>
 
+    <TextView
+        android:id="@+id/incorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:textColor="@color/redStart"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Veuillez entrer des informations correct dans le bon format">
+    </TextView>
+
 </RelativeLayout>

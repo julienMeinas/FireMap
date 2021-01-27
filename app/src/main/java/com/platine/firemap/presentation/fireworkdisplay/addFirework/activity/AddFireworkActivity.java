@@ -53,6 +53,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private RecyclerViewAdapter recyclerViewAdapter;
 
     // icons
+    private TextView incorrect;
     private EditText city;
     private EditText place;
     private EditText date;
@@ -152,6 +153,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
 
     public void initComponent() {
+        this.incorrect = findViewById(R.id.incorrect);
         this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
         this.date = findViewById(R.id.date);
@@ -330,6 +332,9 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     firework.setDate(StringToDate(date.getText().toString(), hour.getText().toString()));
                     fireworkListViewModel.addFirework(firework);
                     finish();
+                }
+                else {
+                    incorrect.setVisibility(View.VISIBLE);
                 }
             }
         });
