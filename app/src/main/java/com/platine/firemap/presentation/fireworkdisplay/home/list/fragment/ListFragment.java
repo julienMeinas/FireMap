@@ -104,7 +104,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private void registerViewModels() {
         fireworkListViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
-        fireworkListViewModel.loadFireWorksWithSearch("");
+        fireworkListViewModel.loadFireWorksFutureWithSearch("");
         fireworkListViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewModelList) {
@@ -158,11 +158,11 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
     public void onClickFilter() {
         if(stateDisplayNextFireworks) {
-            fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
+            fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
             stateDisplayNextFireworks = false;
         }
         else {
-            fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
+            fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
             stateDisplayNextFireworks = true;
         }
     }
