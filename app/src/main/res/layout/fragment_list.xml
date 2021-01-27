@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_list"
     android:background="@color/background">
 
@@ -19,7 +19,7 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search"
-                android:layout_width="300dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent">
             </androidx.appcompat.widget.SearchView>
 
@@ -28,9 +28,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/search"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="1dp"
                 tools:ignore="UseSwitchCompatOrMaterialXml">
             </Switch>
+
+            <Button
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:textSize="7sp"
+                android:text="Rechercher">
+            </Button>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

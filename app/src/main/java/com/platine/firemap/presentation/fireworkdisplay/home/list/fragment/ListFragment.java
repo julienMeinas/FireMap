@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private View view;
     private SearchView search;
     private Switch aSwitch;
+    private Button filter;
     private FireworkListAdapter fireworkListAdapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -73,9 +75,9 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         progressBar.setVisibility(View.VISIBLE);
         this.search = this.view.findViewById(R.id.search);
         this.aSwitch = this.view.findViewById(R.id.nextFireworks);
+        this.filter = this.view.findViewById(R.id.filter);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
-        onClickSwitch();
-        setupSearchView();
+        buttonFilter();
         return view;
     }
 
@@ -142,61 +144,26 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     }
 
 
-    public void onClickSwitch() {
-        this.view.findViewById(R.id.nextFireworks).setOnClickListener(new View.OnClickListener() {
+
+
+    public void buttonFilter() {
+        this.filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(stateDisplayNextFireworks) {
-                    fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
-                    stateDisplayNextFireworks = false;
-                }
-                else {
-                    fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
-                    stateDisplayNextFireworks = true;
-                }
+                onClickFilter();
             }
         });
     }
 
 
-    private void setupSearchView() {
-        search = view.findViewById(R.id.search);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            private Timer timer = new Timer();
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(final String s) {
-                if (s.length() == 0) {
-                    fireworkListViewModel.cancelSubscription();
-                } else {
-                    timer.cancel();
-                    timer = new Timer();
-                    int sleep = 350;
-                    if (s.length() == 1)
-                        sleep = 5000;
-                    else if (s.length() <= 3)
-                        sleep = 300;
-                    else if (s.length() <= 5)
-                        sleep = 200;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            if(aSwitch.isChecked()) {
-                                //fireworkListViewModel.loadFireWorksWithSearch(s);
-                            }
-                            else {
-                                //fireworkListViewModel.loadFireWorksFutureWithSearch(s);
-                            }
-                        }
-                    }, sleep);
-                }
-                return true;
-            }
-        });
+    public void onClickFilter() {
+        if(stateDisplayNextFireworks) {
+            fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
+            stateDisplayNextFireworks = false;
+        }
+        else {
+            fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
+            stateDisplayNextFireworks = true;
+        }
     }
 }
