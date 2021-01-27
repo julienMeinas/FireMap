@@ -56,6 +56,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private EditText city;
     private EditText place;
     private EditText date;
+    private EditText hour;
     private ImageView imagePrice;
     private ImageView imageParking;
     private ImageView imageAccessHandicap;
@@ -154,6 +155,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
         this.date = findViewById(R.id.date);
+        this.hour = findViewById(R.id.hour);
         this.imagePrice = findViewById(R.id.price);
         this.imageParking = findViewById(R.id.parking);
         this.imageAccessHandicap = findViewById(R.id.accessHandicap);
@@ -325,7 +327,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     LatLng marker = getLocationFromAddress(getApplicationContext(), place.getText().toString());
                     firework.setLatitude(marker.latitude);
                     firework.setLongitude(marker.longitude);
-                    firework.setDate(StringToDate(date.getText().toString(), "17:08"));
+                    firework.setDate(StringToDate(date.getText().toString(), hour.getText().toString()));
                     fireworkListViewModel.addFirework(firework);
                     finish();
                 }
@@ -397,7 +399,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     public boolean validFirework() {
         return validDate(date.getText().toString()) &&
                 place.getText().toString() != null &&
-                firework.getFireworker().size() > 0;
+                firework.getFireworker().size() > 0 &&
+                validHour(hour.getText().toString());
     }
 
     public String StringToDate(String date, String hour) {
