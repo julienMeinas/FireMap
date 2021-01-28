@@ -5,12 +5,25 @@
     android:background="@color/background">
 
     <TextView
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"
         android:text="Credit">
+    </TextView>
+
+    <TextView
+        android:id="@+id/texte1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorText"
+        android:layout_margin="10dp"
+        android:text= "Dans le cadre de notre Projet Plantine du Master Informatique e-Service, nous avons, Julien Meinas, Benjamin Martel et Jean Claude Tarby, développé l'application FireMap \n\n FireMap est une application sur smartphone qui permet de localiser les prochains feux d'artifices sur une carte ou une liste, de savoir où et quand ils ont lieu, de trouver le moyen de s'y rendre, des informations diverses,  etc., et également d’avoir des informations sur les artificiers. \n\n Si vous souaitez nous poser une question,  signaler une erreur,  créer votre compte artificier ou suivre notre activité veuillez vous diriger vers notre page Facebook ci-dessous. \n\n Notre Facebook : https://www.facebook.com/FireMap-100749375134966 \n">
     </TextView>
 
 </RelativeLayout>
