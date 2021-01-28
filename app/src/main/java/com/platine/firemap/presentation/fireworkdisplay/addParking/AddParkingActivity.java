@@ -19,8 +19,6 @@ import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.Ressources.Validation;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class AddParkingActivity extends AppCompatActivity implements AddParkingActionInterface {
     public final static String MSG_ID_FIREWORK = "MSG_ID_FIREWORKER";
@@ -54,6 +52,7 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
         });
     }
 
+
     public void buttonValid() {
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +68,10 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
         });
     }
 
+
+
     public boolean validation() {
-        if(!Validation.validPrice(Integer.getInteger(price.getText().toString()))) {
+        if(!Validation.validPrice(Integer.parseInt(price.getText().toString()))) {
             errorPrice.setVisibility(View.VISIBLE);
             return false;
         }
@@ -80,6 +81,7 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
         }
         return true;
     }
+
 
 
     public void resetError() {
