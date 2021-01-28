@@ -21,6 +21,7 @@ import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
+import com.platine.firemap.presentation.Ressources.Utils;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper.ParkingToParkingViewItemMapper;
@@ -86,33 +87,11 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
 
         initFirework();
         initComponent();
-        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        findViewById(R.id.button_edit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickEdit(firework);
-            }
-        });
-
-        findViewById(R.id.button_fav).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onFav(firework.getId());
-            }
-        });
-
-        findViewById(R.id.button_fireworker).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onProfile(firework.getFireworker().get(0).getId());
-            }
-        });
+        buttonBack();
+        buttonEdit();
+        buttonFav();
+        buttonProfilFireworker();
     }
 
     public void registerViewModel() {
@@ -143,104 +122,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.textViewFireworker = findViewById(R.id.fireworker);
     }
 
-    public void setComponent(String city, String address, String date, int price, boolean accessHandicap, String duration, String crowed, List<Parking> parkings, Fireworker fireworker) {
-        // city
-        this.textViewCity.setText(city);
-        // address
-        this.textViewPlace.setText(address);
-        // date
-        this.textViewDate.setText(convertJsonToStringDate(date));
-        //price
-        if(price == 0) {
-            this.imagePrice.setImageResource(R.drawable.drawable_price_free);
-            this.textViewPrice.setText(msg_price_free);
-        } else if(price < 50000) {
-            this.imagePrice.setImageResource(R.drawable.drawable_price_no_free);
-            this.textViewPrice.setText(msg_price_not_free);
-        }
-        else{
-            this.imagePrice.setImageResource(R.drawable.drawable_empty_price);
-            this.textViewPrice.setText(msg_empty);
-        }
-        // access handicap
-        this.imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
-        this.textViewAccessHandicap.setText(accessHandicap ? msg_access_handicap : msg_no_access_handicap);
-        // duration
-        if(duration.equals("Short")){
-            this.imageDuration.setImageResource(R.drawable.drawable_duration_short);
-            this.textViewDuration.setText(msg_duration_short);
-        }else if(duration.equals("Middle")){
-            this.imageDuration.setImageResource(R.drawable.drawable_duration_middle);
-            this.textViewDuration.setText(msg_duration_middle);
-        }else if (duration.equals("Long")){
-            this.imageDuration.setImageResource(R.drawable.drawable_duration_long);
-            this.textViewDuration.setText(msg_duration_long);
-        } else {
-            this.imageDuration.setImageResource(R.drawable.drawable_empty_duration);
-            this.textViewDuration.setText(msg_empty);
-        }
-        // crowed
-        if(crowed.equals("Low")) {
-            this.imagePeople.setImageResource(R.drawable.drawable_people_low);
-            this.textViewPeople.setText(msg_crowed_low);
-        }else if(crowed.equals("Medium")) {
-            this.imagePeople.setImageResource(R.drawable.drawable_people_medium);
-            this.textViewPeople.setText(msg_crowed_medium);
-        }else if(crowed.equals("High")) {
-            this.imagePeople.setImageResource(R.drawable.drawable_people_high);
-            this.textViewPeople.setText(msg_crowed_high);
-        } else{
-            this.imagePeople.setImageResource(R.drawable.drawable_empty_people);
-            this.textViewPeople.setText(msg_empty);
-        }
-        // parking
-        if(parkings.size() == 0) {
-            this.imageParking.setImageResource(R.drawable.drawable_no_parking);
-            this.textViewParking.setText(msg_no_parking);
-        }else{
-            boolean freeParking = false;
-            for(Parking p : parkings) {
-                if(p.getPrice() == 0){
-                    this.imageParking.setImageResource(R.drawable.drawable_parking_free);
-                    this.textViewParking.setText(msg_parking_free);
-                    freeParking = true;
-                }
-            }
-            if(!freeParking) {
-                this.imageParking.setImageResource(R.drawable.drawable_parking_no_free);
-                this.textViewParking.setText(msg_parking_no_free);
-            }
-        }
-        // fireworker
-        this.textViewFireworker.setText(fireworker.getName());
-    }
-
-    @Override
-    public void onClickEdit(FireworkModel fireworkModel) {
-        Intent intent = new Intent(this, EditFireworkActivity.class);
-        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
-        this.startActivityForResult(intent, 1);
-    }
-
-    @Override
-    public void onFav(int id) {
-        FireworkEntity fireworkEntity = new FireworkEntity();
-        fireworkEntity.setId(id);
-        fireworkFavoriteViewModel.addFireworkToFavorite(fireworkEntity);
-    }
-
-    @Override
-    public void onProfile(int id) {
-        Intent intent = new Intent(this, ProfileFireworkerActivity.class);
-        intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, id);
-        this.startActivity(intent);
-    }
-
-
-    public void initParkings() {
-        setupRecyclerView();
-        registerViewModel();
-    }
 
     public void initFirework() {
         Intent intent = getIntent();
@@ -249,8 +130,64 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onChanged(FireworkModel fireworkModel) {
                 firework = fireworkModel;
-                setComponent(firework.getCity(), firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(), firework.getCrowded(), firework.getParking(), firework.getFireworker().get(0));
+                Utils.setComponent(firework.getCity(), textViewCity, firework.getAddress(), textViewPlace,
+                        firework.getDate(), textViewDate, firework.getPrice(), imagePrice,
+                        firework.isHandicAccess(), imageAccessHandicap, firework.getDuration(), imageDuration,
+                        firework.getCrowded(), imagePeople, firework.getParking(), imageParking,
+                        firework.getFireworker(), textViewFireworker);
                 initParkings();
+            }
+        });
+    }
+
+    public void initParkings() {
+        setupRecyclerView();
+        registerViewModel();
+    }
+
+
+    @Override
+    public void buttonBack() {
+        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void buttonEdit() {
+        findViewById(R.id.button_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditFireworkActivity.class);
+                intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)firework);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    @Override
+    public void buttonFav() {
+        findViewById(R.id.button_fav).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FireworkEntity fireworkEntity = new FireworkEntity();
+                fireworkEntity.setId(firework.getId());
+                fireworkFavoriteViewModel.addFireworkToFavorite(fireworkEntity);
+            }
+        });
+    }
+
+    @Override
+    public void buttonProfilFireworker() {
+        findViewById(R.id.button_fireworker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileFireworkerActivity.class);
+                intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, firework.getFireworker().get(0));
+                startActivity(intent);
             }
         });
     }
@@ -262,7 +199,4 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         initFirework();
     }
 
-    private String convertJsonToStringDate(String date) {
-        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4) + " - " + date.substring(11, 16);
-    }
 }
