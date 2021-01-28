@@ -1,6 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.map.fragment;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -95,7 +98,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
                     map = googleMap;
                     if (map != null) {
                         map.getUiSettings().setAllGesturesEnabled(true);
-                        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(50.609091, 3.142121)).zoom(15.0f).build();
+                        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(47.008981, 2.574844)).zoom(5.0f).build();
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                         map.moveCamera(cameraUpdate);
                         addMarkers();
@@ -159,4 +162,5 @@ public class MapFragment extends Fragment implements MapActionInterface {
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
         view.getContext().startActivity(intent);
     }
+
 }
