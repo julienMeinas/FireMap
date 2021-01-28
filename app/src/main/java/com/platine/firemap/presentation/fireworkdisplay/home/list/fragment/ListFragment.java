@@ -157,22 +157,25 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     }
 
 
-    public void onClickFilter() {
+    public void loadFireworks() {
         if(stateDisplayNextFireworks) {
-            fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
+            fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
             stateDisplayNextFireworks = false;
         }
         else {
-            fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
+            fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
             stateDisplayNextFireworks = true;
         }
+    }
+
+
+    public void onClickFilter() {
+        loadFireworks();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        aSwitch.setChecked(false);
-        stateDisplayNextFireworks = true;
-        fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
+        loadFireworks();
     }
 }
