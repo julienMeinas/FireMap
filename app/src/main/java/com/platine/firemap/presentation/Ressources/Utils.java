@@ -61,7 +61,13 @@ public class Utils {
         //parking
         imageParking.setImageResource(R.drawable.drawable_parking_free);
         // access handicap
-        imageAccessHandicap.setImageResource(accessHandicap ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
+        if(accessHandicap) {
+            imageAccessHandicap.setImageResource(R.drawable.drawable_handicap_access);
+            textHandicap.setText(msg_access_handicap);
+        }else {
+            imageAccessHandicap.setImageResource(R.drawable.drawable_no_handicap_access);
+            textHandicap.setText(msg_no_access_handicap);
+        }
         // duration
         if(duration.equals("Short")){
             imageDuration.setImageResource(R.drawable.drawable_duration_short);

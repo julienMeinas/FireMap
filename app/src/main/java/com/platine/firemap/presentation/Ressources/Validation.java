@@ -49,10 +49,30 @@ public class Validation {
         return true;
     }
 
+
     public static boolean validFireworker(List<Fireworker> fireworkers) {
         if(fireworkers.size() <= 0) {
             return false;
         }
+        return true;
+    }
+
+    public static boolean validNote(int note) {
+        if(note < 0 || note > 5)
+            return false;
+        return true;
+    }
+
+    public static boolean validText(String text) {
+        if(text == null)
+            return false;
+        return true;
+    }
+
+
+    public static boolean validPrice(int price) {
+        if(price < 0)
+            return false;
         return true;
     }
 }

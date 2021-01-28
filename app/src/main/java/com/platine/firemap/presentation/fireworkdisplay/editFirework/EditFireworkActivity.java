@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
@@ -140,6 +143,8 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
             public void onClick(View v) {
                 fireworkListViewModel.updateFirework(firework.getId(), firework.getPrice(), firework.isHandicAccess(),
                         firework.getDuration(), firework.getCrowded());
+                RelativeLayout relativeLayout = findViewById(R.id.parent);
+                Snackbar.make(relativeLayout, "Feux d'artifice modifié !", Snackbar.LENGTH_LONG).show();
                 finish();
             }
         });

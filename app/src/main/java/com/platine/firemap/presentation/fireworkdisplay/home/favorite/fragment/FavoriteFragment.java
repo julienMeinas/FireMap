@@ -7,13 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.di.FakeDependencyInjection;
@@ -96,6 +99,8 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     @Override
     public void removeFavorite(int id) {
         m_favoriteViewModel.removeFireworkFromFavorites(id);
+        ConstraintLayout relativeLayout = this.view.findViewById(R.id.fragment_favorite);
+        Snackbar.make(relativeLayout, "Feux d'artifice supprimé des favoris !", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -49,6 +50,19 @@
     </EditText>
 
     <TextView
+        android:visibility="gone"
+        android:id="@+id/errorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editName"
+        android:textColor="@color/redMiddle"
+        android:textSize="7sp"
+        android:text="Nom non valide"
+        android:layout_marginLeft="30dp">
+    </TextView>
+
+
+    <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -70,6 +84,18 @@
         android:layout_toRightOf="@id/price"
         android:textColor="@color/colorText">
     </EditText>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/errorPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPrice"
+        android:textColor="@color/redMiddle"
+        android:textSize="7sp"
+        android:text="Prix non valide"
+        android:layout_marginLeft="30dp">
+    </TextView>
 
     <TextView
         android:layout_width="wrap_content"

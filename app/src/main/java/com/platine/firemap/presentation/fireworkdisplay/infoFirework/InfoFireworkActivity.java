@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
@@ -161,6 +164,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
                 FireworkEntity fireworkEntity = new FireworkEntity();
                 fireworkEntity.setId(firework.getId());
                 fireworkFavoriteViewModel.addFireworkToFavorite(fireworkEntity);
+                ScrollView scrollView = findViewById(R.id.parent);
+                Snackbar.make(scrollView, "Ajout aux favoris !", Snackbar.LENGTH_LONG).show();
             }
         });
     }
