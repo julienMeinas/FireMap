@@ -16,6 +16,13 @@
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <TextView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+    </TextView>
+
+    <TextView
         android:id="@+id/city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

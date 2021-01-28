@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -27,14 +26,11 @@ import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.Firewo
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.activity.AddFireworkActivity;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.AddFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ListFragment extends Fragment implements FireworkActionInterface {
     public static final String TAB_NAME = "List";

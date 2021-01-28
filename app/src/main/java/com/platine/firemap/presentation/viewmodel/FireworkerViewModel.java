@@ -3,15 +3,10 @@ package com.platine.firemap.presentation.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.platine.firemap.data.api.model.firework.FireworkModel;
-import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
-import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.Fireworker_item;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.mapper.FireworkerDetailleToFireworkerItemMapper;
-import com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter.FireworkViewItem;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter.Fireworker_item;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.mapper.FireworkerDetailleToFireworkerItemMapper;
 
 import java.util.List;
 

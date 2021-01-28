@@ -27,7 +27,6 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
     private EditText title;
     private EditText comment;
     private int idFireworker;
-    private Avis avis;
     private FireworkerViewModel fireworkerViewModel;
 
     @Override
@@ -42,10 +41,6 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
     }
 
     public void init() {
-        this.avis = new Avis();
-        this.avis.setNote(-1);
-        this.avis.setTitle("");
-        this.avis.setComment("");
         this.note = findViewById(R.id.editNote);
         this.title = findViewById(R.id.editTitle);
         this.comment = findViewById(R.id.editComment);
@@ -55,7 +50,7 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickBack();
+                finish();
             }
         });
     }
@@ -64,27 +59,14 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickValid();
+                fireworkerViewModel.addAvis(idFireworker, Double.parseDouble(note.getText().toString()),
+                                            title.getText().toString(), comment.getText().toString());
+                finish();
             }
         });
     }
 
-    @Override
-    public void onClickValid() {
-        this.avis.setNote(Double.parseDouble(this.note.getText().toString()));
-        this.avis.setTitle(this.title.getText().toString());
-        this.avis.setComment(this.comment.getText().toString());
-        fireworkerViewModel.addAvis(this.idFireworker, this.avis.getNote(), this.avis.getTitle(), this.avis.getComment());
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("result",(Serializable)this.avis);
-        setResult(Activity.RESULT_OK,returnIntent);
-        finish();
-    }
 
-    @Override
-    public void onClickBack() {
-        finish();
-    }
 
     public void getFireworkId() {
         Intent intent = getIntent();

@@ -61,21 +61,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private TextView textViewPeople;
     private TextView textViewFireworker;
 
-    private final String msg_price_free = "Gratuit";
-    private final String msg_price_not_free = "Payant";
-    private final String msg_no_parking = "Pas de parking";
-    private final String msg_parking_free = "Parking gratuit";
-    private final String msg_parking_no_free = "Parking payant";
-    private final String msg_access_handicap = "Accès handicapé";
-    private final String msg_no_access_handicap = "Pas d'accès handicapé";
-    private final String msg_duration_short = "Court";
-    private final String msg_duration_middle = "Moyen";
-    private final String msg_duration_long = "Long";
-    private final String msg_crowed_low = "Peu de gens attendu";
-    private final String msg_crowed_medium = "Moyennement de gens attendu";
-    private final String msg_crowed_high = "Beaucoup de gens attendu";
-    private final String msg_empty = "Non renseigné";
-
 
 
     @Override
@@ -131,9 +116,9 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             public void onChanged(FireworkModel fireworkModel) {
                 firework = fireworkModel;
                 Utils.setComponent(firework.getCity(), textViewCity, firework.getAddress(), textViewPlace,
-                        firework.getDate(), textViewDate, firework.getPrice(), imagePrice,
-                        firework.isHandicAccess(), imageAccessHandicap, firework.getDuration(), imageDuration,
-                        firework.getCrowded(), imagePeople, firework.getParking(), imageParking,
+                        firework.getDate(), textViewDate, firework.getPrice(), imagePrice, textViewPrice,
+                        firework.isHandicAccess(), imageAccessHandicap, textViewAccessHandicap, firework.getDuration(), imageDuration, textViewDuration,
+                        firework.getCrowded(), imagePeople, textViewPeople, firework.getParking(), imageParking,
                         firework.getFireworker(), textViewFireworker);
                 initParkings();
             }

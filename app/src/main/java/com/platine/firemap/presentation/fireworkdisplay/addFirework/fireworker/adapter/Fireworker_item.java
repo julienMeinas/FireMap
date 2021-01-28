@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter;
 
 import com.platine.firemap.data.api.model.fireworker.Avis;
 

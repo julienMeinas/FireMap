@@ -1,19 +1,15 @@
-package com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.Fireworker;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

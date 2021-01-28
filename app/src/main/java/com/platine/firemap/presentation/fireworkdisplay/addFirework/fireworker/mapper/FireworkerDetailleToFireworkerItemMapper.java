@@ -1,7 +1,7 @@
-package com.platine.firemap.presentation.fireworkdisplay.addFirework.mapper;
+package com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.mapper;
 
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
-import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.Fireworker_item;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter.Fireworker_item;
 
 import java.util.ArrayList;
 import java.util.List;
