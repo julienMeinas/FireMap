@@ -1,5 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.addParking;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,18 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addFirework.adapter.AddActionInterface;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AddParkingActivity extends AppCompatActivity implements AddParkingActionInterface {
+    public final static String MSG_ID_FIREWORK = "MSG_ID_FIREWORKER";
     private Parking parking;
     private EditText name;
     private EditText price;
-    private int idFirework = 1;
+    private int idFirework;
     private ListViewModel fireworkListViewModel;
 
     @Override
@@ -60,6 +66,9 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result",(Serializable)parking);
+                setResult(Activity.RESULT_OK,returnIntent);
                 onClickValid();
             }
         });
@@ -71,6 +80,7 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
         this.parking = new Parking("", 0, new ArrayList<>());
         this.name = findViewById(R.id.editName);
         this.price = findViewById(R.id.editPrice);
-        this.idFirework = 1;
+        Intent intent = getIntent();
+        this.idFirework = intent.getIntExtra(AddParkingActivity.MSG_ID_FIREWORK, 1);
     }
 }

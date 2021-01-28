@@ -39,15 +39,26 @@
 
     <EditText
         android:id="@+id/editNote"
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:inputType="number"
+        android:hint=" 4"
         android:layout_toRightOf="@id/note"
         android:textColor="@color/colorText">
     </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_toRightOf="@id/editNote"
+        android:textColor="@color/colorText"
+        android:text=" /5"
+        android:layout_marginTop="50dp">
+    </TextView>
 
     <TextView
         android:id="@+id/title"
@@ -57,16 +68,17 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:textColor="@color/colorText"
-        android:text="Prix : ">
+        android:text="Titre : ">
     </TextView>
 
     <EditText
         android:id="@+id/editTitle"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/note"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
+        android:hint="Votre titre"
         android:layout_toRightOf="@id/title"
         android:textColor="@color/colorText">
     </EditText>
@@ -80,18 +92,18 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:textColor="@color/colorText"
-        android:text="Prix : ">
+        android:text="Commentaire : ">
     </TextView>
 
 
     <EditText
         android:id="@+id/editComment"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTitle"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@id/comment"
+        android:layout_below="@id/comment"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="Votre commentaire"
         android:textColor="@color/colorText">
     </EditText>
 

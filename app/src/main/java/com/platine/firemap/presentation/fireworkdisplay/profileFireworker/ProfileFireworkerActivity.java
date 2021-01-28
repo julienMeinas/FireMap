@@ -1,5 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.profileFireworker;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
+import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addAvis.AddAvis;
@@ -129,6 +131,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
     public void clicOnAddAvis(int id) {
         Intent intent = new Intent(this, AddAvis.class);
         intent.putExtra(AddAvis.FIREWORKER_ID_MSG, id);
-        this.startActivity(intent);
+        this.startActivityForResult(intent, 1);
     }
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.addAvis;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AddAvis extends AppCompatActivity implements AddAvisActionInterface {
@@ -73,6 +75,9 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
         this.avis.setTitle(this.title.getText().toString());
         this.avis.setComment(this.comment.getText().toString());
         fireworkerViewModel.addAvis(this.idFireworker, this.avis.getNote(), this.avis.getTitle(), this.avis.getComment());
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result",(Serializable)this.avis);
+        setResult(Activity.RESULT_OK,returnIntent);
         finish();
     }
 

@@ -1,6 +1,8 @@
 package com.platine.firemap.data.api.model.fireworker;
 
-public class Avis {
+import java.io.Serializable;
+
+public class Avis implements Serializable {
     private double note;
     private String title;
     private String comment;

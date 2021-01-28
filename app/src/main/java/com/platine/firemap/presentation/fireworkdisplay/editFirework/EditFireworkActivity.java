@@ -360,6 +360,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
     @Override
     public void onClikAddParking() {
         Intent intent = new Intent(this, AddParkingActivity.class);
+        intent.putExtra(AddParkingActivity.MSG_ID_FIREWORK, firework.getId());
         startActivityForResult(intent, 1);
     }
 
@@ -385,4 +386,19 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         return shortDateFormat.format(date);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Parking parking = (Parking) data.getSerializableExtra("result");
+                firework.getParking().add(parking);
+                setComponent(firework.getCity(), firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(),
+                        firework.getCrowded(), firework.getParking(), firework.getFireworker().get(0));
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -165,5 +166,13 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
             fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
             stateDisplayNextFireworks = true;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        aSwitch.setChecked(false);
+        stateDisplayNextFireworks = true;
+        fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
     }
 }
