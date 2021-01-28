@@ -135,5 +135,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initFireworker();
+    }
 }

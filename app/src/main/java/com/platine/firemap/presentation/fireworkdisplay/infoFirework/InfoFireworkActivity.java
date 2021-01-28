@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +26,7 @@ import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.ada
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper.ParkingToParkingViewItemMapper;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
+import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -38,6 +41,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private RecyclerView recyclerView;
     private ParkingToParkingViewItemMapper parkingToParkingViewItemMapper = new ParkingToParkingViewItemMapper();
 
+    private ListViewModel listViewModel;
+    private int fireworkId;
     private FireworkModel firework;
 
     private TextView textViewCity;
@@ -76,17 +81,11 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.artivity_info);
+        listViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         fireworkFavoriteViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
 
-        Intent intent = getIntent();
-
-        this.firework = (FireworkModel) intent.getSerializableExtra(FIREWORK_MESSAGE);
-
+        initFirework();
         initComponent();
-        setupRecyclerView();
-        registerViewModel();
-        setComponent(this.firework.getCity(), this.firework.getAddress(), this.firework.getDate(), this.firework.getPrice(), this.firework.isHandicAccess(), this.firework.getDuration(), this.firework.getCrowded(), this.firework.getParking(), this.firework.getFireworker().get(0));
-
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +149,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(date);
+        this.textViewDate.setText(convertJsonToStringDate(date));
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);
@@ -238,30 +237,32 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     }
 
 
+    public void initParkings() {
+        setupRecyclerView();
+        registerViewModel();
+    }
+
+    public void initFirework() {
+        Intent intent = getIntent();
+        this.fireworkId =  intent.getIntExtra(FIREWORK_MESSAGE, 1);
+        listViewModel.getFireworkById(this.fireworkId).observe(this, new Observer<FireworkModel>() {
+            @Override
+            public void onChanged(FireworkModel fireworkModel) {
+                firework = fireworkModel;
+                setComponent(firework.getCity(), firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(), firework.getCrowded(), firework.getParking(), firework.getFireworker().get(0));
+                initParkings();
+            }
+        });
+    }
+
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if(resultCode == Activity.RESULT_OK){
-                FireworkModel firework = (FireworkModel)data.getSerializableExtra("result");
-                setComponent(firework.getCity(), firework.getAddress(), firework.getDate(), firework.getPrice(), firework.isHandicAccess(), firework.getDuration(),
-                        firework.getCrowded(), firework.getParking(), firework.getFireworker().get(0));
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
-        }
+    protected void onResume() {
+        super.onResume();
+        initFirework();
     }
 
-
-    public String mapDate(Date date) {
-        DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
-                DateFormat.SHORT,
-                DateFormat.SHORT);
-        return shortDateFormat.format(date);
+    private String convertJsonToStringDate(String date) {
+        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4) + " - " + date.substring(11, 16);
     }
-
-
-
 }

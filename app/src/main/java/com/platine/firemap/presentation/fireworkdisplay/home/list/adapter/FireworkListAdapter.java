@@ -98,50 +98,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             String stringDate = fireworkViewModel.getDate();
             date.setText(stringDate);
 
-            /**
-            // price
-            if(fireworkViewModel.getPrice() == 0) {
-                price.setImageResource(R.drawable.drawable_price_free);
-            } else if(fireworkViewModel.getPrice() < 50000) {
-                price.setImageResource(R.drawable.drawable_price_no_free);
-            }
-            else{
-                price.setImageResource(R.drawable.drawable_empty_price);
-            }
-            // parking
-            if(fireworkViewModel.getParkings().size() == 0) {
-                parking.setImageResource(R.drawable.drawable_no_parking);
-            }else {
-                boolean freeParking = false;
-                for(Parking p : fireworkViewModel.getParkings()) {
-                    Log.d(TAG, String.valueOf(p.getPrice()));
-                    if(p.getPrice() == 0){
-                        parking.setImageResource(R.drawable.drawable_parking_free);
-                        freeParking = true;
-                    }
-                }
-                if(!freeParking) {
-                    parking.setImageResource(R.drawable.drawable_parking_no_free);
-                }
-            }
 
-            // access handicap
-            accessHandicap.setImageResource(fireworkViewModel.isHandicapAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
-
-
-            // people
-            if(fireworkViewModel.getCrowded().equals("Low")) {
-                people.setImageResource(R.drawable.drawable_people_low);
-            }
-            else if(fireworkViewModel.getCrowded().equals("Medium")) {
-                people.setImageResource(R.drawable.drawable_people_medium);
-            }
-            else if(fireworkViewModel.getCrowded().equals("High")){
-                people.setImageResource(R.drawable.drawable_people_high);
-            } else {
-                people.setImageResource(R.drawable.drawable_empty_people);
-            }
-            */
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

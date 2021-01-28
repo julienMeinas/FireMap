@@ -89,13 +89,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         ButtonReport();
         ButtonDuration();
         ButtonAddParking();
-
-        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ButtonBack();
         registerViewModel();
     }
 
@@ -151,7 +145,7 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         // address
         this.textViewPlace.setText(address);
         // date
-        this.textViewDate.setText(date);
+        this.textViewDate.setText(convertJsonToStringDate(date));
         //price
         if(price == 0) {
             this.imagePrice.setImageResource(R.drawable.drawable_price_free);
@@ -356,6 +350,23 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         });
     }
 
+    public void ButtonBack(){
+        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBack();
+            }
+        });
+    }
+
+
+    @Override
+    public void onClickBack() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("resultBack",(Serializable)firework);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+    }
 
     @Override
     public void onClikAddParking() {
@@ -379,12 +390,6 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         this.startActivity(intent);
     }
 
-    public String mapDate(Date date) {
-        DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
-                DateFormat.SHORT,
-                DateFormat.SHORT);
-        return shortDateFormat.format(date);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -400,5 +405,10 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
                 //Write your code if there's no result
             }
         }
+    }
+
+
+    private String convertJsonToStringDate(String date) {
+        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4) + " - " + date.substring(11, 16);
     }
 }

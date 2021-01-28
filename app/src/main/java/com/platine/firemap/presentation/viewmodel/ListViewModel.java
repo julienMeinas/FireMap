@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Parking;
+import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.repository.fireworkdisplay.FireworkDisplayDataRepository;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.mapper.FireworkToViewModelMapper;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
 import retrofit2.Call;
@@ -25,6 +27,7 @@ public class ListViewModel extends ViewModel {
     private FireworkToViewModelMapper fireworkToViewModelMapper;
     private MutableLiveData<List<FireworkViewItem>> fireworks = new MutableLiveData<List<FireworkViewItem>>();
     private MutableLiveData<List<FireworkViewItem>> fireworksByCity = new MutableLiveData<List<FireworkViewItem>>();
+    private MutableLiveData<FireworkModel> currentFirework = new MutableLiveData<FireworkModel>();
     private MutableLiveData<Boolean> isDataLoading = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> postSuccess = new MutableLiveData<Boolean>();
     private MutableLiveData<Boolean> putSuccess = new MutableLiveData<Boolean>();
@@ -82,6 +85,32 @@ public class ListViewModel extends ViewModel {
                     }
                 }));
     }
+
+
+    public MutableLiveData<FireworkModel> getFireworkById(int id) {
+        isDataLoading.setValue(true);
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getFireworkById(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<FireworkModel>() {
+
+                    @Override
+                    public void onSuccess(FireworkModel firework) {
+                        currentFirework.setValue(firework);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        // handle the error case
+                        //Yet, do not do nothing in this app
+                    }
+                }));
+        return currentFirework;
+    }
+
+
+
 
     public void loadFireWorksWithSearch(String city) {
         isDataLoading.setValue(true);
