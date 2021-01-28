@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custom_item">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_marginTop="-8dp"
@@ -214,37 +221,34 @@
         android:text="Benjamin Martel">
     </TextView>
 
-    <Button
-        android:id="@+id/button_fireworker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/people"
-        android:layout_toRightOf="@id/fireworker"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp"
-        android:textSize="10sp"
-        android:textColor="@color/white"
-        android:text="Voir profil">
-    </Button>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_fav"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
-        android:textSize="10sp"
-        android:drawableLeft="@drawable/drawable_star"
-        android:text="Ajouter aux favoris"
-        android:textColor="@color/colorText"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/custom_button_fav">
-    </androidx.appcompat.widget.AppCompatButton>
-
-
-
-
-
+        <Button
+            android:id="@+id/button_fireworker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/people"
+            android:layout_toRightOf="@id/fireworker"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="25dp"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:text="Voir profil">
+        </Button>
 
 </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_fav"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="10sp"
+            android:drawableLeft="@drawable/drawable_star"
+            android:text="Ajouter aux favoris"
+            android:textColor="@color/colorText"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/custom_button_fav">
+        </androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+</ScrollView>
