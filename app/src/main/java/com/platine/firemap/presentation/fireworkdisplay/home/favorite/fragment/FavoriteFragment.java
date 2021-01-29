@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -39,6 +40,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     private FavoriteViewModel m_favoriteViewModel;
     private FireworkFavoriteAdapter m_recyclerViewAdapter;
     private ProgressBar progressBar;
+    private TextView favoriteEmpty;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -68,6 +70,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         progressBar = view.findViewById(R.id.progress_bar);
+        favoriteEmpty = view.findViewById(R.id.listFavoriteEmpty);
         initRecyclerView();
     }
 
@@ -83,8 +86,13 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
         m_favoriteViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
         m_favoriteViewModel.getFavorites().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
-            public void onChanged(List<FireworkViewItem> articleItemViewModelList) {
-                m_recyclerViewAdapter.bindViewModels(articleItemViewModelList);
+            public void onChanged(List<FireworkViewItem> fireworksItemViewModelList) {
+                m_recyclerViewAdapter.bindViewModels(fireworksItemViewModelList);
+                if(fireworksItemViewModelList.size() == 0) {
+                    favoriteEmpty.setVisibility(View.VISIBLE);
+                }else {
+                    favoriteEmpty.setVisibility(View.GONE);
+                }
             }
         });
 
