@@ -80,8 +80,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/rate_star_big_off_holo_dark"/>
-
         </LinearLayout>
+
 
         <Button
             android:id="@+id/addAvis"

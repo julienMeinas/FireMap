@@ -90,9 +90,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
         rateStars[4] = findViewById(R.id.rate_star_five);
 
         for(int i =0; i<5 ;i++){
-            if(fireworkerDetail.getNote()<i+1.25){
+            if(fireworkerDetail.getNote()<i+0.25){
                 rateStars[i].setImageResource(R.drawable.rate_star_big_off_holo_dark);
-            }else if(fireworkerDetail.getNote()>i+1.75){
+            }else if(fireworkerDetail.getNote()>i+0.75){
                 rateStars[i].setImageResource(R.drawable.rate_star_big_on_holo_dark);
             }else {
                 rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);

@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.di.FakeDependencyInjection;
+import com.platine.firemap.presentation.fireworkdisplay.addFirework.AddFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.map.adapter.MapActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
@@ -89,6 +90,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
         listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         setupMap();
         buttonFilter();
+        buttonAddFirework();
         return view;
     }
 
@@ -137,7 +139,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
                 fireworks = fireworkViewItems;
                 map.clear();
                 for(FireworkViewItem fireworkViewItem : fireworks) {
-                    MarkerOptions marker = new MarkerOptions().position(new LatLng(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude())).title(fireworkViewItem.getAddress());
+                    MarkerOptions marker = new MarkerOptions().position(new LatLng(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude())).title(String.valueOf(fireworkViewItem.getId()));
                     markerMap.put(String.valueOf(fireworkViewItem.getId()), fireworkViewItem);
                     map.addMarker(marker);
                 }
@@ -151,6 +153,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                String t = marker.getTitle();
                 FireworkViewItem fireworkViewItem = markerMap.get(marker.getTitle());
                 List<Fireworker> fireworkers = new ArrayList<>();
                 fireworkers.add(fireworkViewItem.getFireworker());
@@ -162,6 +165,18 @@ public class MapFragment extends Fragment implements MapActionInterface {
                         fireworkViewItem.getParkings());
                 onInfoClicked(fireworkModel);
                 return false;
+            }
+        });
+    }
+
+
+    public void buttonAddFirework() {
+        this.view.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAB_NAME, "addFirework call");
+                Intent intent = new Intent(view.getContext(), AddFireworkActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
     }
@@ -201,7 +216,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
     public void onInfoClicked(FireworkModel fireworkModel) {
         Log.d(TAB_NAME, "onClick call");
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
-        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, fireworkModel.getId());
         view.getContext().startActivity(intent);
     }
 

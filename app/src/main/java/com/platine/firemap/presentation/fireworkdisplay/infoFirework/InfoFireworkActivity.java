@@ -176,7 +176,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileFireworkerActivity.class);
-                intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, firework.getFireworker().get(0));
+                intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, firework.getFireworker().get(0).getId());
                 startActivity(intent);
             }
         });
