@@ -75,8 +75,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
             });
 
+            this.v.findViewById(R.id.info).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addActionInterface.onClickInfo(fireworker_item.getId());
+                }
+            });
+
         }
 
 
     }
+
+
+
 }

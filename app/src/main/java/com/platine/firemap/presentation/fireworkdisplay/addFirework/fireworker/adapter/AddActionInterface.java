@@ -4,4 +4,5 @@ import com.platine.firemap.data.api.model.firework.Fireworker;
 
 public interface AddActionInterface {
     public void selectFireworker(Fireworker fireworker);
+    public void onClickInfo(int fireworkerId);
 }

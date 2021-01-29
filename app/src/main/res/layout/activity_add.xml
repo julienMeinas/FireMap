@@ -345,7 +345,7 @@
         android:layout_height="80dp"
         android:layout_toRightOf="@id/textLinkFireworker"
         android:layout_below="@id/people"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="5dp">
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -365,7 +365,7 @@
         android:id="@+id/fireworkerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/recyclerViewFireworker"
+        android:layout_toRightOf="@id/textLinkFireworker"
         android:layout_below="@id/people"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
@@ -382,7 +382,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valider"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:textSize="10sp"
         android:layout_alignParentBottom="true">
     </Button>

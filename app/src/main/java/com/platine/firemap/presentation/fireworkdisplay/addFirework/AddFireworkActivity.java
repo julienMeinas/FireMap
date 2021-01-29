@@ -1,6 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.addFirework;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.platine.firemap.presentation.Ressources.Validation;
 import com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter.AddActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter.Fireworker_item;
 import com.platine.firemap.presentation.fireworkdisplay.addFirework.fireworker.adapter.RecyclerViewAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
@@ -212,6 +214,13 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         List<Fireworker> fireworkers = new ArrayList<>();
         fireworkers.add(fireworker);
         firework.setFireworker(fireworkers);
+    }
+
+    @Override
+    public void onClickInfo(int fireworkerId) {
+        Intent intent = new Intent(getApplicationContext(), ProfileFireworkerActivity.class);
+        intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, fireworkerId);
+        startActivity(intent);
     }
 
     public void getLocationFromAddress(Context context, String strAddress) {
