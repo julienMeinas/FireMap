@@ -45,7 +45,6 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private TextView textViewErrorConnexion;
     private ListViewModel fireworkListViewModel;
     private FavoriteViewModel favoriteViewModel;
-    private boolean stateDisplayNextFireworks = true;
 
     public ListFragment() {
         // Required empty public constructor
@@ -75,6 +74,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         this.filter = this.view.findViewById(R.id.filter);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
         buttonFilter();
+        buttonAddFirework();
         return view;
     }
 
@@ -83,12 +83,6 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         super.onActivityCreated(savedInstanceState);
         setupRecyclerView();
         registerViewModels();
-        this.view.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFirework();
-            }
-        });
     }
 
     private void setupRecyclerView() {
@@ -133,12 +127,18 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         view.getContext().startActivity(intent);
     }
 
-    @Override
-    public void addFirework() {
-        Log.d(TAB_NAME, "addFirework call");
-        Intent intent = new Intent(view.getContext(), AddFireworkActivity.class);
-        view.getContext().startActivity(intent);
+
+    public void buttonAddFirework() {
+        this.view.findViewById(R.id.button_add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAB_NAME, "addFirework call");
+                Intent intent = new Intent(view.getContext(), AddFireworkActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
+
 
 
 
@@ -147,27 +147,19 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         this.filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickFilter();
+                loadFireworks();
             }
         });
     }
 
 
     public void loadFireworks() {
-        if(stateDisplayNextFireworks) {
+        if(! aSwitch.isChecked())
             fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
-            stateDisplayNextFireworks = false;
-        }
-        else {
+        else
             fireworkListViewModel.loadFireWorksWithSearch(search.getQuery().toString());
-            stateDisplayNextFireworks = true;
-        }
     }
 
-
-    public void onClickFilter() {
-        loadFireworks();
-    }
 
     @Override
     public void onResume() {

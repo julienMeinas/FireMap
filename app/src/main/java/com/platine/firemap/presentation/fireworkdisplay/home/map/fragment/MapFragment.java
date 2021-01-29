@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -49,6 +52,9 @@ public class MapFragment extends Fragment implements MapActionInterface {
     public static final String TAB_NAME = "Map";
     private static MapFragment instance;
     private View view;
+    private SearchView search;
+    private Switch aSwitch;
+    private Button filter;
     private SupportMapFragment mSupportMapFragment;
     private ListViewModel listViewModel;
     private GoogleMap map;
@@ -77,7 +83,12 @@ public class MapFragment extends Fragment implements MapActionInterface {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.fragment_map, container, false);
+        this.search = this.view.findViewById(R.id.search);
+        this.aSwitch = this.view.findViewById(R.id.nextFireworks);
+        this.filter = this.view.findViewById(R.id.filter);
+        listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         setupMap();
+        buttonFilter();
         return view;
     }
 
@@ -101,6 +112,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(47.008981, 2.574844)).zoom(5.0f).build();
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
                         map.moveCamera(cameraUpdate);
+                        listViewModel.loadFireWorksFutureWithSearch("");
                         addMarkers();
                         onClickMap();
                     }
@@ -117,16 +129,16 @@ public class MapFragment extends Fragment implements MapActionInterface {
     }
 
 
+
     public void addMarkers() {
-        listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
-        listViewModel.loadFireWorks();
         listViewModel.getFireworks().observe(getViewLifecycleOwner(), new Observer<List<FireworkViewItem>>() {
             @Override
             public void onChanged(List<FireworkViewItem> fireworkViewItems) {
                 fireworks = fireworkViewItems;
+                map.clear();
                 for(FireworkViewItem fireworkViewItem : fireworks) {
                     MarkerOptions marker = new MarkerOptions().position(new LatLng(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude())).title(fireworkViewItem.getAddress());
-                    markerMap.put(fireworkViewItem.getAddress(), fireworkViewItem);
+                    markerMap.put(String.valueOf(fireworkViewItem.getId()), fireworkViewItem);
                     map.addMarker(marker);
                 }
             }
@@ -154,6 +166,36 @@ public class MapFragment extends Fragment implements MapActionInterface {
         });
     }
 
+    public void buttonFilter() {
+        this.filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFireworks();
+            }
+        });
+    }
+
+
+
+    public void loadFireworks() {
+        if(!aSwitch.isChecked()) {
+            listViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());
+            addMarkers();
+        }
+        else {
+            listViewModel.loadFireWorksWithSearch(search.getQuery().toString());
+            addMarkers();
+        }
+    }
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadFireworks();
+    }
+
 
     @Override
     public void onInfoClicked(FireworkModel fireworkModel) {
@@ -162,5 +204,11 @@ public class MapFragment extends Fragment implements MapActionInterface {
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
         view.getContext().startActivity(intent);
     }
+
+
+    public void removeAllMarker() {
+        map.clear();
+    }
+
 
 }
