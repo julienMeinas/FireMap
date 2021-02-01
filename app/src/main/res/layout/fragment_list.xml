@@ -30,10 +30,24 @@
                 android:textSize="9sp">
             </Switch>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9sp"
+                android:textColor="@color/colorText"
+                android:text="Trié par date"
+                android:layout_alignParentRight="true">
+            </TextView>
+        </RelativeLayout>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             android:id="@+id/recycler_view">
         </androidx.recyclerview.widget.RecyclerView>
 

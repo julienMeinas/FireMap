@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ import com.platine.firemap.presentation.viewmodel.ListViewModel;
 public class AddParkingActivity extends AppCompatActivity implements AddParkingActionInterface {
     public final static String MSG_ID_FIREWORK = "MSG_ID_FIREWORKER";
     private EditText name;
-    private EditText price;
+    private NumberPicker price;
     private TextView errorName;
     private TextView errorPrice;
     private int idFirework;
@@ -35,7 +36,9 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
         setContentView(R.layout.activity_add_parking);
         fireworkListViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         name = findViewById(R.id.editName);
-        price = findViewById(R.id.editPrice);
+        price = findViewById(R.id.numberPicker);
+        price.setMinValue(0);
+        price.setMaxValue(100);
         errorName = findViewById(R.id.errorName);
         errorPrice = findViewById(R.id.errorPrice);
         init();
@@ -61,7 +64,7 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
                 if(validation()) {
                     RelativeLayout relativeLayout = findViewById(R.id.parent);
                     Snackbar.make(relativeLayout, "Parking ajouté !", Snackbar.LENGTH_LONG).show();
-                    fireworkListViewModel.addParking(idFirework, name.getText().toString(), Integer.parseInt(price.getText().toString()));
+                    fireworkListViewModel.addParking(idFirework, name.getText().toString(), price.getValue());
                     finish();
                 }
             }
@@ -71,7 +74,7 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
 
 
     public boolean validation() {
-        if(!Validation.validPrice(Integer.parseInt(price.getText().toString()))) {
+        if(!Validation.validPrice(price.getValue())) {
             errorPrice.setVisibility(View.VISIBLE);
             return false;
         }
