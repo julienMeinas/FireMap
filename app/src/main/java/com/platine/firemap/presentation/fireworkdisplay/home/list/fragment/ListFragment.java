@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -38,7 +39,6 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     private View view;
     private SearchView search;
     private Switch aSwitch;
-    private Button filter;
     private FireworkListAdapter fireworkListAdapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
@@ -71,11 +71,32 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
         progressBar.setVisibility(View.VISIBLE);
         this.search = this.view.findViewById(R.id.search);
         this.aSwitch = this.view.findViewById(R.id.nextFireworks);
-        this.filter = this.view.findViewById(R.id.filter);
         textViewErrorConnexion = view.findViewById(R.id.textViewErrorConnexion);
-        buttonFilter();
+        setupListener();
         buttonAddFirework();
         return view;
+    }
+
+    private void setupListener() {
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                loadFireworks();
+                return false;
+            }
+        });
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                loadFireworks();
+            }
+        });
     }
 
     @Override
@@ -135,19 +156,6 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
                 Log.d(TAB_NAME, "addFirework call");
                 Intent intent = new Intent(view.getContext(), AddFireworkActivity.class);
                 view.getContext().startActivity(intent);
-            }
-        });
-    }
-
-
-
-
-
-    public void buttonFilter() {
-        this.filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFireworks();
             }
         });
     }

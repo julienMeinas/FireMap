@@ -19,11 +19,6 @@
             app:queryHint="Ville">
         </androidx.appcompat.widget.SearchView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
             <Switch
                 android:id="@+id/nextFireworks"
                 android:layout_width="wrap_content"
@@ -33,17 +28,6 @@
                 android:text="voir les feux passés:"
                 android:textSize="9sp">
             </Switch>
-
-            <Button
-                android:id="@+id/filter"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="7sp"
-                android:text="Filter">
-            </Button>
-
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
