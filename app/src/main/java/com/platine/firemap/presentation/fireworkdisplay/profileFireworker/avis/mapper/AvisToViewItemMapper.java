@@ -12,7 +12,6 @@ public class AvisToViewItemMapper {
         FireworkerAvisViewItem fireworkerAvisViewItem = new FireworkerAvisViewItem();
         fireworkerAvisViewItem.setComment(avis.getComment());
         fireworkerAvisViewItem.setNote(avis.getNote());
-        fireworkerAvisViewItem.setTitle(avis.getTitle());
         return fireworkerAvisViewItem;
     }
 

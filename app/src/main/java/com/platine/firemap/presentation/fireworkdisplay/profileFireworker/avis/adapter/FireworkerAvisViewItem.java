@@ -2,7 +2,6 @@ package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.
 
 public class FireworkerAvisViewItem {
     private double note;
-    private String title;
     private String comment;
 
     public double getNote() {
@@ -11,14 +10,6 @@ public class FireworkerAvisViewItem {
 
     public void setNote(double note) {
         this.note = note;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getComment() {

@@ -102,7 +102,7 @@ public class FireworkDisplayDataRepository {
         m_fireworkDisplayRemoteDataSource.sendEmail(message, subject);
 
     }
-    public Call<FireworkerDetail> addAvis(int id, double note, String title, String comment) {
-        return m_fireworkDisplayRemoteDataSource.addAvis(id, note, title, comment);
+    public Call<FireworkerDetail> addAvis(int id, double note, String comment) {
+        return m_fireworkDisplayRemoteDataSource.addAvis(id, note, comment);
     }
 }

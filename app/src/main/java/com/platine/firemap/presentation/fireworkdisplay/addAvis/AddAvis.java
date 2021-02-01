@@ -28,10 +28,8 @@ import java.util.ArrayList;
 public class AddAvis extends AppCompatActivity implements AddAvisActionInterface {
     public static final String FIREWORKER_ID_MSG = "FIREWORKER_ID_MSG";
     private TextView errorNote;
-    private TextView errorTitle;
     private TextView errorComment;
     private EditText note;
-    private EditText title;
     private EditText comment;
     private int idFireworker;
     private FireworkerViewModel fireworkerViewModel;
@@ -49,10 +47,8 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
 
     public void init() {
         this.note = findViewById(R.id.editNote);
-        this.title = findViewById(R.id.editTitle);
         this.comment = findViewById(R.id.editComment);
         this.errorNote = findViewById(R.id.errorNote);
-        this.errorTitle = findViewById(R.id.errorTitle);
         this.errorComment = findViewById(R.id.errorComment);
     }
 
@@ -71,8 +67,7 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
             public void onClick(View v) {
                 resetError();
                 if(validation()) {
-                    fireworkerViewModel.addAvis(idFireworker, Double.parseDouble(note.getText().toString()),
-                            title.getText().toString(), comment.getText().toString());
+                    fireworkerViewModel.addAvis(idFireworker, Double.parseDouble(note.getText().toString()), comment.getText().toString());
                     RelativeLayout relativeLayout = findViewById(R.id.parent);
                     Snackbar.make(relativeLayout, "Avis ajouté !", Snackbar.LENGTH_LONG).show();
                     finish();
@@ -87,10 +82,6 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
             this.errorNote.setVisibility(View.VISIBLE);
             return false;
         }
-        if(!Validation.validText(title.getText().toString())) {
-            this.errorTitle.setVisibility(View.VISIBLE);
-            return false;
-        }
         if(!Validation.validText(comment.getText().toString())) {
             this.errorComment.setVisibility(View.VISIBLE);
             return false;
@@ -100,7 +91,6 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
 
     public void resetError() {
         this.errorNote.setVisibility(View.GONE);
-        this.errorTitle.setVisibility(View.GONE);
         this.errorComment.setVisibility(View.GONE);
     }
 

@@ -90,6 +90,6 @@ public interface FireworkDisplayService {
     Call<Object> sendEmail(@Field("body") String message, @Field("subject") String subject);
 
     @PUT("https://firemap-api-rest.herokuapp.com/fireworkers/addAvis/{id}")
-    Call<FireworkerDetail> addAvis(@Path("id") int id, @Query("note") double note, @Query("title") String title,
+    Call<FireworkerDetail> addAvis(@Path("id") int id, @Query("note") double note,
                                    @Query("comment") String comment);
 }

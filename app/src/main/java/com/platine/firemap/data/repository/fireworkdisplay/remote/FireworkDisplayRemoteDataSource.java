@@ -74,7 +74,7 @@ public class FireworkDisplayRemoteDataSource {
         this.m_fireworkDisplayService.sendEmail(message, subject);
     }
 
-    public Call<FireworkerDetail> addAvis(int id, double note, String title, String comment) {
-        return this.m_fireworkDisplayService.addAvis(id, note, title, comment);
+    public Call<FireworkerDetail> addAvis(int id, double note, String comment) {
+        return this.m_fireworkDisplayService.addAvis(id, note, comment);
     }
 }

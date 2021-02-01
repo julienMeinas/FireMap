@@ -115,7 +115,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     public void onInfoClicked(FireworkModel fireworkModel) {
         Log.d(TAB_NAME, "onClick call");
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
-        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)fireworkModel);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, fireworkModel.getId());
         view.getContext().startActivity(intent);
     }
 }

@@ -49,20 +49,17 @@ public class FireworkerAvisAdapter extends RecyclerView.Adapter<FireworkerAvisAd
 
     public static class FireworkerAvisViewHolder extends RecyclerView.ViewHolder {
         private View v;
-        private TextView title;
         private TextView note;
         private TextView comment;
 
         public FireworkerAvisViewHolder(View v) {
             super(v);
-            title = v.findViewById((R.id.title));
             note = v.findViewById((R.id.note));
             comment = v.findViewById((R.id.comment));
             this.v = v;
         }
 
         public void bind(FireworkerAvisViewItem fireworkerAvisViewModel) {
-            title.setText(fireworkerAvisViewModel.getTitle());
             note.setText(String.valueOf(fireworkerAvisViewModel.getNote()) + "/5");
             comment.setText(fireworkerAvisViewModel.getComment());
         }

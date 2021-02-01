@@ -73,47 +73,13 @@
         android:layout_marginTop="50dp">
     </TextView>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@id/note"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorText"
-        android:text="Titre : ">
-    </TextView>
-
-    <EditText
-        android:id="@+id/editTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/note"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="30dp"
-        android:hint="Votre titre"
-        android:layout_toRightOf="@id/title"
-        android:textColor="@color/colorText">
-    </EditText>
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/errorTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTitle"
-        android:textColor="@color/redMiddle"
-        android:textSize="7sp"
-        android:text="Title non valide"
-        android:layout_marginLeft="30dp">
-    </TextView>
 
 
     <TextView
         android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@id/editTitle"
+        android:layout_below="@id/editNote"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:textColor="@color/colorText"

@@ -91,8 +91,8 @@ public class FireworkerViewModel extends ViewModel {
 
 
 
-    public void addAvis(int id, double note, String title, String comment) {
-        Call<FireworkerDetail> call = this.fireworkRepository.addAvis(id, note, title, comment);
+    public void addAvis(int id, double note, String comment) {
+        Call<FireworkerDetail> call = this.fireworkRepository.addAvis(id, note, comment);
         call.enqueue(new Callback<FireworkerDetail>() {
             @Override
             public void onResponse(Call<FireworkerDetail> call, Response<FireworkerDetail> response) {
