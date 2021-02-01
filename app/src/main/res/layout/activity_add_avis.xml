@@ -27,51 +27,42 @@
         android:text="Nouvel avis">
     </TextView>
 
-    <TextView
-        android:id="@+id/note"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@id/header"
+
+    <LinearLayout
+        android:id="@+id/rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/colorText"
-        android:text="Note : ">
-    </TextView>
+        android:layout_below="@id/header">
 
-    <EditText
-        android:id="@+id/editNote"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/header"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:inputType="number"
-        android:hint=" 4"
-        android:layout_toRightOf="@id/note"
-        android:textColor="@color/colorText">
-    </EditText>
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/errorNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editNote"
-        android:textColor="@color/redMiddle"
-        android:textSize="7sp"
-        android:text="Note non valide"
-        android:layout_marginLeft="30dp">
-    </TextView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/header"
-        android:layout_toRightOf="@id/editNote"
-        android:textColor="@color/colorText"
-        android:text=" /5"
-        android:layout_marginTop="50dp">
-    </TextView>
+        <ImageView
+            android:id="@+id/rate_star_one"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/rate_star_big_off_holo_dark"/>
+        <ImageView
+            android:id="@+id/rate_star_two"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/rate_star_big_off_holo_dark"/>
+        <ImageView
+            android:id="@+id/rate_star_three"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/rate_star_big_off_holo_dark"/>
+        <ImageView
+            android:id="@+id/rate_star_four"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/rate_star_big_off_holo_dark"/>
+        <ImageView
+            android:id="@+id/rate_star_five"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/rate_star_big_off_holo_dark"/>
+    </LinearLayout>
 
 
 
@@ -79,11 +70,13 @@
         android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@id/editNote"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
+        android:layout_below="@id/rate"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/colorText"
-        android:text="Commentaire : ">
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Ajouter un commenataire ">
     </TextView>
 
 
@@ -116,9 +109,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valider"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textSize="10sp"
-        android:layout_alignParentBottom="true">
+        android:layout_below="@id/editComment"
+        android:layout_alignParentRight="true">
     </Button>
 
 </RelativeLayout>

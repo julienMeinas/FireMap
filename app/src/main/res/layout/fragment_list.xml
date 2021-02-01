@@ -25,7 +25,8 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/search"
                 tools:ignore="UseSwitchCompatOrMaterialXml"
-                android:text="voir les feux passés:"
+                android:layout_marginLeft="5dp"
+                android:text="voir également les feux passés:"
                 android:textSize="9sp">
             </Switch>
 
