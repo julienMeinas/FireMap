@@ -11,19 +11,19 @@ import com.platine.firemap.presentation.viewmodel.ListViewModel;
 import java.util.List;
 
 public class Utils {
-    public static final String msg_price_free = "Gratuit";
-    public static final String msg_price_not_free = "Payant";
+    public static final String msg_price_free = "Feu d'artifice gratuit";
+    public static final String msg_price_not_free = "Feu d'artifice payant";
     public static final String msg_no_parking = "Pas de parking";
     public static final String msg_parking_free = "Parking gratuit";
     public static final String msg_parking_no_free = "Parking payant";
     public static final String msg_access_handicap = "Accès handicapé";
     public static final String msg_no_access_handicap = "Pas d'accès handicapé";
-    public static final String msg_duration_short = "Court";
-    public static final String msg_duration_middle = "Moyen";
-    public static final String msg_duration_long = "Long";
-    public static final String msg_crowed_low = "Peu";
-    public static final String msg_crowed_medium = "Moyen";
-    public static final String msg_crowed_high = "Beaucoup";
+    public static final String msg_duration_short = "Durée : court";
+    public static final String msg_duration_middle = "Durée : moyen";
+    public static final String msg_duration_long = "Durée : long";
+    public static final String msg_crowed_low = "Peu de gens attendu";
+    public static final String msg_crowed_medium = "Moyennement de gens attendu";
+    public static final String msg_crowed_high = "Beaucoup de gens attendu";
     public static final String msg_empty = "Non indiqué";
 
 
