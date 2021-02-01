@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,12 +28,16 @@ import java.util.ArrayList;
 
 public class AddAvis extends AppCompatActivity implements AddAvisActionInterface {
     public static final String FIREWORKER_ID_MSG = "FIREWORKER_ID_MSG";
-    private TextView errorNote;
     private TextView errorComment;
-    private EditText note;
     private EditText comment;
     private int idFireworker;
     private FireworkerViewModel fireworkerViewModel;
+    private int note = 0;
+    private ImageView starOne;
+    private ImageView starTwo;
+    private ImageView starThree;
+    private ImageView starFour;
+    private ImageView starFive;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,13 +48,17 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
         init();
         buttonBack();
         buttonValid();
+        buttonNote();
     }
 
     public void init() {
-        this.note = findViewById(R.id.editNote);
         this.comment = findViewById(R.id.editComment);
-        this.errorNote = findViewById(R.id.errorNote);
         this.errorComment = findViewById(R.id.errorComment);
+        this.starOne = findViewById(R.id.rate_star_one);
+        this.starTwo = findViewById(R.id.rate_star_two);
+        this.starThree = findViewById(R.id.rate_star_three);
+        this.starFour = findViewById(R.id.rate_star_four);
+        this.starFive = findViewById(R.id.rate_star_five);
     }
 
     public void buttonBack() {
@@ -67,7 +76,7 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
             public void onClick(View v) {
                 resetError();
                 if(validation()) {
-                    fireworkerViewModel.addAvis(idFireworker, Double.parseDouble(note.getText().toString()), comment.getText().toString());
+                    fireworkerViewModel.addAvis(idFireworker, note, comment.getText().toString());
                     RelativeLayout relativeLayout = findViewById(R.id.parent);
                     Snackbar.make(relativeLayout, "Avis ajouté !", Snackbar.LENGTH_LONG).show();
                     finish();
@@ -77,11 +86,70 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
     }
 
 
+    public void buttonNote() {
+        this.starOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                note = 1;
+                starOne.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starTwo.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                starThree.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                starFour.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                starFive.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+            }
+        });
+
+        this.starTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                note = 2;
+                starOne.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starTwo.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starThree.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                starFour.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                starFive.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+            }
+        });
+
+        this.starThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                note = 3;
+                starOne.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starTwo.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starThree.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starFour.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                starFive.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+            }
+        });
+
+        this.starFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                note = 4;
+                starOne.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starTwo.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starThree.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starFour.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starFive.setImageResource(R.drawable.rate_star_big_off_holo_dark);
+            }
+        });
+
+        this.starFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                note = 5;
+                starOne.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starTwo.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starThree.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starFour.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                starFive.setImageResource(R.drawable.rate_star_big_on_holo_dark);
+            }
+        });
+    }
+
+
     public boolean validation() {
-        if(!Validation.validNote(Integer.parseInt(note.getText().toString()))) {
-            this.errorNote.setVisibility(View.VISIBLE);
-            return false;
-        }
         if(!Validation.validText(comment.getText().toString())) {
             this.errorComment.setVisibility(View.VISIBLE);
             return false;
@@ -90,7 +158,6 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
     }
 
     public void resetError() {
-        this.errorNote.setVisibility(View.GONE);
         this.errorComment.setVisibility(View.GONE);
     }
 
@@ -99,4 +166,5 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
         Intent intent = getIntent();
         this.idFireworker =  intent.getIntExtra(FIREWORKER_ID_MSG, 1);
     }
+
 }
