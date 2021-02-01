@@ -28,8 +28,42 @@ public class Utils {
 
 
     public static String convertJsonToStringDate(String date) {
-        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4) + " - " + date.substring(11, 16);
+        return date.substring(8,10)+" "+jsonMonthtoMonth(date.substring(5,7))+" "+date.substring(0,4) + " - " + date.substring(11, 16);
     }
+
+
+
+    public static String jsonMonthtoMonth(String month) {
+        String res = "";
+        switch (month) {
+            case "01":
+                res = "Janvier";
+            case "02":
+                res = "Février";
+            case "03":
+                res = "Mars";
+            case "04":
+                res = "Avril";
+            case "05":
+                res = "Mai";
+            case "06":
+                res = "Juin";
+            case "07":
+                res = "Juillet";
+            case "08":
+                res = "Août";
+            case "09":
+                res = "Septembre";
+            case "10":
+                res = "Octobre";
+            case "11":
+                res = "Novembre";
+            case "12":
+                res = "Decembre";
+        }
+        return res;
+    }
+
 
 
     public static void setComponent(String city, TextView textViewCity,

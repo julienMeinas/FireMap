@@ -235,22 +235,21 @@
             android:textColor="@color/white"
             android:text="Voir profil">
         </Button>
-
-</RelativeLayout>
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_fav"
             android:layout_width="160dp"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_margin="15dp"
             android:layout_marginBottom="5dp"
             android:textSize="10sp"
             android:drawableLeft="@drawable/drawable_star"
             android:text="Ajouter aux favoris"
             android:textColor="@color/colorText"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/textLinkFireworker"
             android:background="@drawable/custom_button_fav">
         </androidx.appcompat.widget.AppCompatButton>
+
+
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

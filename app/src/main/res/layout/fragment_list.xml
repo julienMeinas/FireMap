@@ -34,29 +34,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
             android:id="@+id/recycler_view">
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
-    <RelativeLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_add"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="@color/white"
-                android:text="Ajouter"
-                android:layout_alignParentRight="true"
-                android:drawableLeft="@drawable/drawable_add"
-                android:background="@drawable/custom_button_add">
-            </androidx.appcompat.widget.AppCompatButton>
 
-        </RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/drawable_add"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

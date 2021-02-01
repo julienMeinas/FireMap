@@ -4,14 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
@@ -55,8 +59,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private TextView errorFireworker;
     private EditText city;
     private EditText place;
-    private EditText date;
-    private EditText hour;
+    private DatePicker date;
+    private TimePicker hour;
     private ImageView imagePrice;
     private ImageView imageParking;
     private ImageView imageAccessHandicap;
@@ -149,8 +153,9 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.errorCity = findViewById(R.id.errorCity);
         this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
-        this.date = findViewById(R.id.date);
-        this.hour = findViewById(R.id.hour);
+        this.date = findViewById(R.id.datePicker);
+        this.hour = findViewById(R.id.hourPicker);
+        this.hour.setIs24HourView(true);
         this.imagePrice = findViewById(R.id.price);
         this.imageParking = findViewById(R.id.parking);
         this.imageAccessHandicap = findViewById(R.id.accessHandicap);
@@ -190,6 +195,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
     public void ButtonValidation() {
         findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
                 reinitializeError();
@@ -197,7 +203,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                 if(validFirework()){
                     firework.setCity(city.getText().toString());
                     firework.setAddress(place.getText().toString());
-                    firework.setDate(StringToDate(date.getText().toString(), hour.getText().toString()));
+                    firework.setDate(pickerToDate());
                     fireworkListViewModel.addFirework(firework);
                     finish();
                 }
@@ -254,14 +260,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
 
     public boolean validFirework() {
-        if(!Validation.validDate(date.getText().toString())){
-            DisplayErrorDate();
-            return false;
-        }
-        if(!Validation.validHour(hour.getText().toString())){
-            DisplayErrorHour();
-            return false;
-        }
         if(!Validation.validAddress(city.getText().toString())){
             DisplayErrorCity();
             return false;
@@ -278,11 +276,24 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
 
-    public String StringToDate(String date, String hour) {
-        String day = date.substring(0, 2);
-        String month = date.substring(3, 5);
-        String year = date.substring(6);
-        return year+"-"+month+"-"+day+"T"+hour+".000+00:00";
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public String pickerToDate() {
+        String day;
+        String month;
+        if(date.getDayOfMonth() < 10) {
+            day = "0"+String.valueOf(date.getDayOfMonth());
+        }else{
+            day = String.valueOf(date.getDayOfMonth());
+        }
+        if(date.getMonth() < 10){
+            month = "0" + String.valueOf(date.getMonth());
+        }else {
+            month = String.valueOf(date.getMonth());
+        }
+        String year = String.valueOf(date.getYear());
+        String h = String.valueOf(hour.getHour());
+        String m = String.valueOf(hour.getMinute());
+        return year+"-"+month+"-"+day+"T"+h+":"+m+".000+00:00";
     }
 
 

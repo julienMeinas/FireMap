@@ -89,27 +89,28 @@
         android:text="Lieu non valide"
         android:textSize="9sp">
     </TextView>
+
     <TextView
+        android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/place"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="6dp"
-        android:textColor="@color/colorText"
         android:textSize="20sp"
-        android:text="Date : ">
+        android:textColor="@color/colorText"
+        android:text="Date : "
+        android:layout_below="@id/errorPlace"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp">
     </TextView>
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_below="@id/place"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:hint="19/12/2016">
-    </EditText>
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_below="@id/errorPlace"
+        android:layout_toRightOf="@id/textDate"
+        android:layout_margin="10dp"/>
 
     <TextView
         android:id="@+id/errorDate"
@@ -117,34 +118,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/redMiddle"
-        android:layout_below="@id/date"
+        android:layout_below="@id/datePicker"
         android:layout_alignParentLeft="true"
         android:text="Date non valide"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="100dp"
         android:textSize="9sp">
     </TextView>
 
+
     <TextView
+        android:id="@+id/textHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/place"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/date"
-        android:textColor="@color/colorText"
         android:textSize="20sp"
-        android:text="Heure : ">
+        android:textColor="@color/colorText"
+        android:text="Heure : "
+        android:layout_below="@id/errorDate"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="15dp">
     </TextView>
 
-    <EditText
-        android:id="@+id/hour"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="280dp"
-        android:layout_below="@id/place"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:hint="17:30">
-    </EditText>
+    <TimePicker
+        android:id="@+id/hourPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:timePickerMode="spinner"
+        android:layout_below="@id/datePicker"
+        android:layout_toRightOf="@id/textHour"/>
+
+
 
     <TextView
         android:id="@+id/errorHour"
@@ -152,13 +155,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/redMiddle"
-        android:layout_below="@id/hour"
+        android:layout_below="@id/datePicker"
         android:layout_alignParentRight="true"
         android:text="Heure non valide"
+        android:layout_marginTop="-15dp"
+        android:layout_marginRight="5dp"
         android:textSize="9sp">
     </TextView>
-
-
 
 
 
@@ -167,7 +170,7 @@
         android:id="@+id/price"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@id/date"
+        android:layout_below="@id/hourPicker"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/drawable_empty_price">
@@ -178,7 +181,7 @@
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_toRightOf="@id/price"
-        android:layout_below="@id/date"
+        android:layout_below="@id/hourPicker"
         android:layout_marginTop="20dp"
         android:textSize="10sp"
         android:layout_marginLeft="30dp"
@@ -190,7 +193,7 @@
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_toRightOf="@id/buttonPriceFree"
-        android:layout_below="@id/date"
+        android:layout_below="@id/hourPicker"
         android:layout_marginTop="20dp"
         android:textSize="10sp"
         android:layout_marginLeft="15dp"

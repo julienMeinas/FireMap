@@ -161,6 +161,7 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
     }
 
 
+
     public void loadFireworks() {
         if(! aSwitch.isChecked())
             fireworkListViewModel.loadFireWorksFutureWithSearch(search.getQuery().toString());

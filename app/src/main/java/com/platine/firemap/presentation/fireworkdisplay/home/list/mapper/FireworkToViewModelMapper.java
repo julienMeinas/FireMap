@@ -1,6 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.list.mapper;
 
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.presentation.Ressources.Utils;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setLongitude(firework.getLongitude());
         fireworkViewModel.setCity(firework.getCity());
         fireworkViewModel.setAddress(firework.getAddress());
-        fireworkViewModel.setDate(convertJsonToStringDate(firework.getDate()));
+        fireworkViewModel.setDate(Utils.convertJsonToStringDate(firework.getDate()));
         fireworkViewModel.setPrice(firework.getPrice());
         fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
         fireworkViewModel.setDuration(firework.getDuration());
@@ -26,6 +27,7 @@ public class FireworkToViewModelMapper {
         return fireworkViewModel;
     }
 
+
     public List<FireworkViewItem> map(List<FireworkModel> fireworkList) {
         List<FireworkViewItem> fireworkViewModelList = new ArrayList<>();
         for (FireworkModel firework : fireworkList) {
@@ -34,8 +36,6 @@ public class FireworkToViewModelMapper {
         return fireworkViewModelList;
     }
 
-    private String convertJsonToStringDate(String date) {
-        return date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4) + " - " + date.substring(11, 16);
-    }
+
 
 }
