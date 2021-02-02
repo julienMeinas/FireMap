@@ -42,6 +42,10 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
     private FireworkerDetail fireworkerDetail;
     private int id;
     private TextView name;
+    private TextView littleName;
+    private TextView mail;
+    private TextView phone;
+    private TextView address;
     private TextView url;
     private ImageView[] rateStars = new ImageView[5];
 
@@ -50,6 +54,7 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
     private BottomNavigationView m_BottomNav;
     private RelativeLayout layoutProfile;
     private RelativeLayout layoutAvis;
+
 
 
     @Override
@@ -92,8 +97,17 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
 
     public void createProfileFireworker() {
         name = findViewById(R.id.name);
+        littleName = findViewById(R.id.littleName);
+        address = findViewById(R.id.address);
+        mail = findViewById(R.id.mail);
+        phone = findViewById(R.id.phone);
+        url = findViewById(R.id.link);
+
         name.setText(fireworkerDetail.getName());
-        url = findViewById(R.id.url);
+        littleName.setText(fireworkerDetail.getName());
+        address.setText(fireworkerDetail.getAddress());
+        mail.setText(fireworkerDetail.getMail());
+        phone.setText(fireworkerDetail.getTel());
         url.setText(fireworkerDetail.getUrlPage());
 
         //favorite binding
