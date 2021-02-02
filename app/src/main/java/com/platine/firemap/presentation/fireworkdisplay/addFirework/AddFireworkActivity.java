@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -51,7 +52,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private RecyclerViewAdapter recyclerViewAdapter;
 
     // icons
-    private TextView incorrect;
     private TextView errorCity;
     private TextView errorPlace;
     private TextView errorDate;
@@ -79,6 +79,21 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private AppCompatButton buttonCrowedMedium;
     private AppCompatButton buttonCrowedHigh;
 
+    private android.widget.Button nextAddress;
+    private android.widget.Button nextDate;
+    private android.widget.Button backDate;
+    private android.widget.Button nextInfo;
+    private android.widget.Button backInfo;
+    private android.widget.Button nextFireworker;
+    private android.widget.Button backFireworker;
+    private RelativeLayout layoutAddress;
+    private RelativeLayout layoutDate;
+    private RelativeLayout layoutInfo;
+    private RelativeLayout layoutFireworker;
+
+    private boolean canBack = true;
+    private android.widget.Button currentButtonBack;
+
 
 
     @Override
@@ -93,16 +108,14 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         Button.ButtonAccessHandicap(buttonAccessHandicap, buttonNotAccessHandicap, imageAccessHandicap, firework);
         Button.ButtonCrowed(buttonCrowedLow, buttonCrowedMedium, buttonCrowedHigh, imagePeople, firework);
         Button.ButtonDuration(buttonDurationShort, buttonDurationMiddle, buttonDurationLong, imageDuration, firework);
-        ButtonValidation();
+        buttonValidationNextAddress();
+        buttonValidationNextDate();
+        buttonValidationNextInfo();
+        buttonValidationNextFireworker();
         setupRecyclerView();
         registerViewModel();
 
-        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        buttonBack();
 
 
     }
@@ -144,7 +157,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
 
     public void initComponent() {
-        this.incorrect = findViewById(R.id.incorrect);
         this.errorCity = findViewById(R.id.errorCity);
         this.errorPlace = findViewById(R.id.errorPlace);
         this.errorDate = findViewById(R.id.errorDate);
@@ -187,32 +199,21 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.buttonCrowedMedium.setText(Utils.msg_crowed_medium);
         this.buttonCrowedHigh = findViewById(R.id.buttonCrowedHigh);
         this.buttonCrowedHigh.setText(Utils.msg_crowed_high);
-        //
-
+        // button
+        this.nextAddress = findViewById(R.id.nextAddress);
+        this.nextDate = findViewById(R.id.validationDate);
+        this.backDate = findViewById(R.id.backDate);
+        this.nextInfo = findViewById(R.id.validationInfo);
+        this.backInfo = findViewById(R.id.backInfo);
+        this.nextFireworker = findViewById(R.id.validation);
+        this.backFireworker = findViewById(R.id.backFireworker);
+        //layout
+        this.layoutAddress = findViewById(R.id.layoutAddress);
+        this.layoutDate = findViewById(R.id.layoutDate);
+        this.layoutInfo = findViewById(R.id.layoutInfo);
+        this.layoutFireworker = findViewById(R.id.layoutFireworker);
     }
 
-
-
-    public void ButtonValidation() {
-        findViewById(R.id.validation).setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
-                reinitializeError();
-                getLocationFromAddress(getApplicationContext(), place.getText().toString() + ", " + city.getText().toString());
-                if(validFirework()){
-                    firework.setCity(city.getText().toString());
-                    firework.setAddress(place.getText().toString());
-                    firework.setDate(pickerToDate());
-                    fireworkListViewModel.addFirework(firework);
-                    finish();
-                }
-                else {
-                    incorrect.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-    }
 
     @Override
     public void selectFireworker(Fireworker fireworker) {
@@ -258,22 +259,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
 
-
-    public boolean validFirework() {
-        if(!Validation.validAddress(city.getText().toString())){
-            DisplayErrorCity();
-            return false;
-        }
-        if(!Validation.validAddress(place.getText().toString())){
-            DisplayErrorPlace();
-            return false;
-        }
-        if(!Validation.validFireworker(firework.getFireworker())){
-            DisplayErrorFireworker();
-            return false;
-        }
-        return true;
-    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -325,4 +310,126 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     public void DisplayErrorFireworker() {
         errorFireworker.setVisibility(View.VISIBLE);
     }
+
+
+    public void buttonValidationNextAddress() {
+        this.nextAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reinitializeError();
+                if(validAddress()) {
+                    firework.setCity(city.getText().toString());
+                    firework.setAddress(place.getText().toString());
+                    layoutAddress.setVisibility(View.GONE);
+                    layoutDate.setVisibility(View.VISIBLE);
+                    canBack = false;
+                    currentButtonBack = backDate;
+                }
+
+            }
+        });
+    }
+
+
+    public void buttonValidationNextDate() {
+        this.nextDate.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                reinitializeError();
+                firework.setDate(pickerToDate());
+                layoutDate.setVisibility(View.GONE);
+                layoutInfo.setVisibility(View.VISIBLE);
+                canBack = false;
+                currentButtonBack = backInfo;
+            }
+        });
+        this.backDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutDate.setVisibility(View.GONE);
+                layoutAddress.setVisibility(View.VISIBLE);
+                canBack = true;
+            }
+        });
+    }
+
+    public void buttonValidationNextInfo() {
+        this.nextInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutInfo.setVisibility(View.GONE);
+                layoutFireworker.setVisibility(View.VISIBLE);
+                currentButtonBack = backFireworker;
+                canBack = false;
+            }
+        });
+        this.backInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutInfo.setVisibility(View.GONE);
+                layoutDate.setVisibility(View.VISIBLE);
+                currentButtonBack = backDate;
+                canBack = false;
+            }
+        });
+    }
+
+    public void buttonValidationNextFireworker() {
+        this.nextFireworker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validFireworker()) {
+                    fireworkListViewModel.addFirework(firework);
+                    finish();
+                }
+            }
+        });
+        this.backFireworker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutFireworker.setVisibility(View.GONE);
+                layoutInfo.setVisibility(View.VISIBLE);
+                currentButtonBack = backInfo;
+                canBack = false;
+            }
+        });
+    }
+
+    public boolean validAddress() {
+        boolean res = true;
+        if(!Validation.validAddress(city.getText().toString())) {
+            DisplayErrorCity();
+            res = false;
+        }
+        if(!Validation.validAddress(place.getText().toString())) {
+            DisplayErrorPlace();
+            res = false;
+        }
+        return res;
+    }
+
+
+    public boolean validFireworker() {
+        boolean res = true;
+        if(!Validation.validFireworker(firework.getFireworker())) {
+            DisplayErrorFireworker();
+            res = false;
+        }
+        return false;
+    }
+
+
+    public void buttonBack() {
+        findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(canBack)
+                    finish();
+                else
+                    currentButtonBack.callOnClick();
+            }
+        });
+    }
+
 }

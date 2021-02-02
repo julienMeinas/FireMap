@@ -24,384 +24,543 @@
         android:background="@drawable/custom_item">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:text="Ville : "
-        android:layout_marginLeft="60dp">
-    </TextView>
 
-    <EditText
-        android:id="@+id/city"
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:layout_below="@id/button_back"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:text="Création d'un nouveau feu d'artifice">
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/layoutAddress"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:id="@+id/headerAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorText"
+                android:text="Le lieu"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                android:text="Ville : "
+                android:layout_below="@id/headerAddress"
+                android:layout_marginLeft="30dp">
+            </TextView>
+
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/textViewCity"
+                android:textSize="20sp"
+                android:hint="Villeneuve d'ascq"
+                android:layout_below="@id/headerAddress">
+            </EditText>
+
+            <TextView
+                android:id="@+id/errorCity"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/redMiddle"
+                android:layout_below="@id/city"
+                android:layout_alignParentRight="true"
+                android:text="Ville non valide"
+                android:textSize="9sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                android:text="Adresse : "
+                android:layout_marginLeft="30dp"
+                android:layout_below="@id/errorCity">
+            </TextView>
+
+            <EditText
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:textColor="@color/colorText"
+                android:layout_toRightOf="@id/textViewAddress"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp"
+                android:hint="Lac du héron"
+                android:layout_below="@id/errorCity">
+            </EditText>
+
+
+            <TextView
+                android:id="@+id/errorPlace"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/redMiddle"
+                android:layout_below="@id/place"
+                android:layout_alignParentRight="true"
+                android:text="Lieu non valide"
+                android:textSize="9sp">
+            </TextView>
+
+
+            <Button
+                android:id="@+id/nextAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errorPlace"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp"
+                android:text="Suivant">
+            </Button>
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutDate"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorText"
-        android:layout_marginLeft="130dp"
-        android:textSize="20sp"
-        android:hint="Villeneuve d'ascq">
-    </EditText>
+        android:layout_below="@id/header"
+        android:layout_marginTop="50dp">
 
-    <TextView
-        android:id="@+id/errorCity"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/redMiddle"
-        android:layout_below="@id/city"
-        android:layout_alignParentRight="true"
-        android:text="Ville non valide"
-        android:textSize="9sp">
-    </TextView>
+        <TextView
+            android:id="@+id/headerDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:text="La date"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold">
+        </TextView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:text="Lieu : "
-        android:layout_marginLeft="60dp">
-    </TextView>
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:text="Date : "
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/headerDate">
+        </TextView>
 
-    <EditText
-        android:id="@+id/place"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:textColor="@color/colorText"
-        android:layout_marginLeft="130dp"
-        android:textSize="20sp"
-        android:hint="Lac du héron">
-    </EditText>
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:layout_toRightOf="@id/textDate"
+            android:layout_margin="10dp"
+            android:layout_below="@id/headerDate"/>
 
-
-    <TextView
-        android:id="@+id/errorPlace"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/redMiddle"
-        android:layout_below="@id/place"
-        android:layout_alignParentRight="true"
-        android:text="Lieu non valide"
-        android:textSize="9sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/textDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorText"
-        android:text="Date : "
-        android:layout_below="@id/errorPlace"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="15dp">
-    </TextView>
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        android:layout_below="@id/errorPlace"
-        android:layout_toRightOf="@id/textDate"
-        android:layout_margin="10dp"/>
-
-    <TextView
-        android:id="@+id/errorDate"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/redMiddle"
-        android:layout_below="@id/datePicker"
-        android:layout_alignParentLeft="true"
-        android:text="Date non valide"
-        android:layout_marginTop="-15dp"
-        android:layout_marginLeft="100dp"
-        android:textSize="9sp">
-    </TextView>
+        <TextView
+            android:id="@+id/errorDate"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/redMiddle"
+            android:layout_below="@id/datePicker"
+            android:layout_alignParentLeft="true"
+            android:text="Date non valide"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="9sp">
+        </TextView>
 
 
-    <TextView
-        android:id="@+id/textHour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorText"
-        android:text="Heure : "
-        android:layout_below="@id/errorDate"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="15dp">
-    </TextView>
+        <TextView
+            android:id="@+id/textHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:text="Heure : "
+            android:layout_below="@id/errorDate"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="15dp">
+        </TextView>
 
-    <TimePicker
-        android:id="@+id/hourPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:timePickerMode="spinner"
-        android:layout_below="@id/datePicker"
-        android:layout_toRightOf="@id/textHour"/>
+        <TimePicker
+            android:id="@+id/hourPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:timePickerMode="spinner"
+            android:layout_below="@id/datePicker"
+            android:layout_toRightOf="@id/textHour"/>
 
 
 
-    <TextView
-        android:id="@+id/errorHour"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/redMiddle"
-        android:layout_below="@id/datePicker"
-        android:layout_alignParentRight="true"
-        android:text="Heure non valide"
-        android:layout_marginTop="-15dp"
-        android:layout_marginRight="5dp"
-        android:textSize="9sp">
-    </TextView>
+        <TextView
+            android:id="@+id/errorHour"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/redMiddle"
+            android:layout_below="@id/hourPicker"
+            android:layout_alignParentLeft="true"
+            android:text="Heure non valide"
+            android:layout_marginTop="-15dp"
+            android:layout_marginLeft="25dp"
+            android:textSize="9sp">
+        </TextView>
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/validationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorHour"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:text="Suivant">
+        </Button>
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/backDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorHour"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="15dp"
+            android:text="Précedent">
+        </Button>
+    </RelativeLayout>
 
 
 
+        <RelativeLayout
+            android:id="@+id/layoutInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@id/header"
+            android:layout_marginTop="50dp">
 
-    <ImageView
-        android:id="@+id/price"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/hourPicker"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_empty_price">
-    </ImageView>
+            <TextView
+                android:id="@+id/headerInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorText"
+                android:text="Informations"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold">
+            </TextView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonPriceFree"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_toRightOf="@id/price"
-        android:layout_below="@id/hourPicker"
-        android:layout_marginTop="20dp"
-        android:textSize="10sp"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/custom_button_green">
-    </androidx.appcompat.widget.AppCompatButton>
+            <ImageView
+                android:id="@+id/price"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/drawable_empty_price"
+                android:layout_below="@id/headerInfo">
+            </ImageView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonPriceNotFree"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_toRightOf="@id/buttonPriceFree"
-        android:layout_below="@id/hourPicker"
-        android:layout_marginTop="20dp"
-        android:textSize="10sp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/custom_button_red">
-    </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonPriceFree"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/price"
+                android:layout_marginTop="20dp"
+                android:textSize="10sp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/custom_button_green"
+                android:layout_below="@id/headerInfo">
+            </androidx.appcompat.widget.AppCompatButton>
 
-
-    <ImageView
-        android:id="@+id/accessHandicap"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:textSize="10sp"
-        android:layout_below="@id/price"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_empty_accesshandicap">
-    </ImageView>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonAccessHandicap"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/accessHandicap"
-        android:layout_below="@id/price"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/custom_button_green">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonNotAccessHandicap"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/buttonAccessHandicap"
-        android:layout_below="@id/price"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/custom_button_red">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <ImageView
-        android:id="@+id/duration"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/accessHandicap"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_empty_duration">
-    </ImageView>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_duration_short"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/people"
-        android:layout_below="@id/accessHandicap"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/custom_button_green">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_duration_middle"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/button_duration_short"
-        android:layout_below="@id/accessHandicap"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/custom_button_orange">
-    </androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_duration_long"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/button_duration_middle"
-        android:layout_below="@id/accessHandicap"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/custom_button_red">
-    </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonPriceNotFree"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/buttonPriceFree"
+                android:layout_marginTop="20dp"
+                android:textSize="10sp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_button_red"
+                android:layout_below="@id/headerInfo">
+            </androidx.appcompat.widget.AppCompatButton>
 
 
-    <ImageView
-        android:id="@+id/people"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/duration"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_empty_people">
-    </ImageView>
+            <ImageView
+                android:id="@+id/accessHandicap"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:textSize="10sp"
+                android:layout_below="@id/price"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/drawable_empty_accesshandicap">
+            </ImageView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonCrowedLow"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/people"
-        android:layout_below="@id/duration"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/custom_button_green">
-    </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonAccessHandicap"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/accessHandicap"
+                android:layout_below="@id/price"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/custom_button_green">
+            </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonCrowedMedium"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/buttonCrowedLow"
-        android:layout_below="@id/duration"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/custom_button_orange">
-    </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonNotAccessHandicap"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/buttonAccessHandicap"
+                android:layout_below="@id/price"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_button_red">
+            </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonCrowedHigh"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/buttonCrowedMedium"
-        android:layout_below="@id/duration"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/custom_button_red">
-    </androidx.appcompat.widget.AppCompatButton>
+            <ImageView
+                android:id="@+id/duration"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/accessHandicap"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/drawable_empty_duration">
+            </ImageView>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_duration_short"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/people"
+                android:layout_below="@id/accessHandicap"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/custom_button_green">
+            </androidx.appcompat.widget.AppCompatButton>
 
-    <TextView
-        android:id="@+id/textLinkFireworker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/people"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="15dp"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="Organisé par : ">
-    </TextView>
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFireworker"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_toRightOf="@id/textLinkFireworker"
-        android:layout_below="@id/people"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="5dp">
-    </androidx.recyclerview.widget.RecyclerView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_duration_middle"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/button_duration_short"
+                android:layout_below="@id/accessHandicap"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_button_orange">
+            </androidx.appcompat.widget.AppCompatButton>
 
-    <TextView
-        android:id="@+id/errorFireworker"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/redMiddle"
-        android:layout_below="@id/recyclerViewFireworker"
-        android:layout_alignParentLeft="true"
-        android:text="Veuillez selectionner un artificier"
-        android:textSize="9sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/fireworkerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/textLinkFireworker"
-        android:layout_below="@id/people"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="15dp"
-        android:textColor="@color/colorText"
-        android:text="Artificier">
-    </TextView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_duration_long"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/button_duration_middle"
+                android:layout_below="@id/accessHandicap"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_button_red">
+            </androidx.appcompat.widget.AppCompatButton>
 
 
+            <ImageView
+                android:id="@+id/people"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/duration"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/drawable_empty_people">
+            </ImageView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCrowedLow"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/people"
+                android:layout_below="@id/duration"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/custom_button_green">
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCrowedMedium"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/buttonCrowedLow"
+                android:layout_below="@id/duration"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_button_orange">
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCrowedHigh"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textSize="10sp"
+                android:layout_toRightOf="@id/buttonCrowedMedium"
+                android:layout_below="@id/duration"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_button_red">
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <Button
+                android:id="@+id/validationInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buttonCrowedHigh"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp"
+                android:text="Suivant">
+            </Button>
+
+            <Button
+                android:id="@+id/backInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buttonCrowedHigh"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="15dp"
+                android:text="Précedent">
+            </Button>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/layoutFireworker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@id/header"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:id="@+id/headerFireworker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorText"
+                android:text="Artificier"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/textLinkFireworker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/colorText"
+                android:textSize="15sp"
+                android:text="Organisé par : "
+                android:layout_below="@id/headerFireworker">
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFireworker"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_toRightOf="@id/textLinkFireworker"
+                android:layout_marginTop="110dp"
+                android:layout_marginLeft="5dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/errorFireworker"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/redMiddle"
+                android:layout_below="@id/recyclerViewFireworker"
+                android:layout_alignParentLeft="true"
+                android:text="Veuillez selectionner un artificier"
+                android:textSize="9sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/fireworkerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textLinkFireworker"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/colorText"
+                android:text="Choisir un artificier"
+                android:layout_below="@id/headerFireworker">
+            </TextView>
+
+            <Button
+                android:id="@+id/validation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valider"
+                android:layout_marginTop="10dp"
+                android:textSize="10sp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/errorFireworker"
+                android:layout_margin="15dp">
+            </Button>
+
+            <Button
+                android:id="@+id/backFireworker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Précedent"
+                android:layout_marginTop="10dp"
+                android:textSize="10sp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/errorFireworker"
+                android:layout_margin="15dp">
+            </Button>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/validation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/valider"
-        android:layout_marginTop="10dp"
-        android:textSize="10sp"
-        android:layout_alignParentBottom="true">
-    </Button>
 
-    <TextView
-        android:id="@+id/incorrect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textSize="10sp"
-        android:visibility="gone"
-        android:textColor="@color/redStart"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Veuillez entrer des informations correct dans le bon format">
-    </TextView>
     </LinearLayout>
 </ScrollView>
