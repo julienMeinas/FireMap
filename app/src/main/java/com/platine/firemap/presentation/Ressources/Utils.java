@@ -73,8 +73,7 @@ public class Utils {
                                     boolean accessHandicap, ImageView imageAccessHandicap, TextView textHandicap,
                                     String duration, ImageView imageDuration, TextView textDuration,
                                     String crowed, ImageView imagePeople, TextView textCrowed,
-                                    List<Parking> parkings, ImageView imageParking,
-                                    List<Fireworker> fireworker, TextView textViewFireworker) {
+                                    List<Parking> parkings, ImageView imageParking) {
         textViewCity.setText(city);
         // address
         textViewPlace.setText(address);
@@ -145,7 +144,5 @@ public class Utils {
                 imageParking.setImageResource(R.drawable.drawable_parking_no_free);
             }
         }
-        // fireworker
-        textViewFireworker.setText(fireworker.get(0).getName());
     }
 }

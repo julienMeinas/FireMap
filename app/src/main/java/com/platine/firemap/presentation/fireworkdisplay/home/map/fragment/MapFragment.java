@@ -155,13 +155,11 @@ public class MapFragment extends Fragment implements MapActionInterface {
             public boolean onMarkerClick(Marker marker) {
                 String t = marker.getTitle();
                 FireworkViewItem fireworkViewItem = markerMap.get(marker.getTitle());
-                List<Fireworker> fireworkers = new ArrayList<>();
-                fireworkers.add(fireworkViewItem.getFireworker());
                 FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getCity(),
                         fireworkViewItem.getAddress(),
                         fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                         fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
-                        fireworkViewItem.getCrowded(), fireworkers,
+                        fireworkViewItem.getCrowded(), fireworkViewItem.getIdFireworker(),
                         fireworkViewItem.getParkings());
                 onInfoClicked(fireworkModel);
                 return false;

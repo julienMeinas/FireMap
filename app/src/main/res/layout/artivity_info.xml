@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     android:id="@+id/parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custom_item">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_marginTop="-8dp"
@@ -71,8 +64,8 @@
 
     <ImageView
         android:id="@+id/price"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@id/date"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
@@ -86,17 +79,17 @@
         android:layout_toRightOf="@id/price"
         android:layout_below="@id/date"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="Gratuit">
     </TextView>
 
 
     <ImageView
         android:id="@+id/parking"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@id/price"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
@@ -120,7 +113,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewParking"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_toRightOf="@id/parking"
         android:layout_below="@id/textPrice"
         android:layout_marginLeft="20dp"
@@ -129,8 +122,8 @@
 
     <ImageView
         android:id="@+id/accessHandicap"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@id/parking"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
@@ -144,16 +137,16 @@
         android:layout_toRightOf="@id/accessHandicap"
         android:layout_below="@id/parking"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="Accès handicapés">
     </TextView>
 
     <ImageView
         android:id="@+id/duration"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@id/accessHandicap"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
@@ -167,17 +160,17 @@
         android:layout_toRightOf="@id/duration"
         android:layout_below="@id/accessHandicap"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="30 min">
     </TextView>
 
 
     <ImageView
         android:id="@+id/people"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@id/duration"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
@@ -191,65 +184,52 @@
         android:layout_toRightOf="@id/people"
         android:layout_below="@id/duration"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="Beaucoup de gens attendu">
     </TextView>
 
 
-    <TextView
-        android:id="@+id/textLinkFireworker"
+
+    <Button
+        android:id="@+id/button_fireworker"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/textPeople"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:textSize="7sp"
+        android:textColor="@color/white"
+        android:text="Voir informations sur l'artificier">
+    </Button>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_fav"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="10sp"
+        android:drawableLeft="@drawable/drawable_star"
+        android:text="Ajouter aux favoris"
+        android:textColor="@color/colorText"
+        android:background="@drawable/custom_button_fav"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <Button
+        android:id="@+id/itinéraire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/people"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="15dp"
+        android:textSize="10sp"
         android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="Organisé par : ">
-    </TextView>
-
-    <TextView
-        android:id="@+id/fireworker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/textLinkFireworker"
-        android:layout_below="@id/people"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="Benjamin Martel">
-    </TextView>
-
-        <Button
-            android:id="@+id/button_fireworker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/people"
-            android:layout_toRightOf="@id/fireworker"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="25dp"
-            android:textSize="10sp"
-            android:textColor="@color/white"
-            android:text="Voir profil">
-        </Button>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_fav"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_margin="15dp"
-            android:layout_marginBottom="5dp"
-            android:textSize="10sp"
-            android:drawableLeft="@drawable/drawable_star"
-            android:text="Ajouter aux favoris"
-            android:textColor="@color/colorText"
-            android:layout_below="@id/textLinkFireworker"
-            android:background="@drawable/custom_button_fav">
-        </androidx.appcompat.widget.AppCompatButton>
+        android:text="Itinéraire"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp">
+    </Button>
 
 
-        </RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

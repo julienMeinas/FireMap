@@ -17,7 +17,7 @@ public class FireworkViewItem {
     private boolean handicapAccess;
     private String duration;
     private String crowded;
-    private Fireworker fireworker;
+    private int idFireworker;
     private List<Parking> parkings;
 
     public int getId() {
@@ -68,8 +68,8 @@ public class FireworkViewItem {
         return crowded;
     }
 
-    public Fireworker getFireworker() {
-        return fireworker;
+    public int getIdFireworker() {
+        return idFireworker;
     }
 
     public List<Parking> getParkings() {
@@ -108,8 +108,8 @@ public class FireworkViewItem {
         this.crowded = crowded;
     }
 
-    public void setFireworker(Fireworker fireworker) {
-        this.fireworker = fireworker;
+    public void setIdFireworker(int idFireworker) {
+        this.idFireworker = idFireworker;
     }
 
     public void setParkings(List<Parking> parkings) {

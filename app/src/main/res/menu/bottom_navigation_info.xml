@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_description"
+        android:icon="@drawable/drawable_description"
+        android:title="Description"/>
+    <item
+        android:id="@+id/nav_info"
+        android:icon="@drawable/drawable_info"
+        android:title="Info"/>
+    <item
+        android:id="@+id/nav_parking"
+        android:icon="@drawable/drawable_empty_parking"
+        android:title="Parkings"/>
+
+    <item
+        android:id="@+id/nav_fireworker"
+        android:icon="@drawable/drawable_profile_fireworker"
+        android:title="Artificier"/>
+
+    <item
+        android:id="@+id/nav_signaler"
+        android:icon="@drawable/drawable_email"
+        android:title="Signaler"/>
+
+</menu>

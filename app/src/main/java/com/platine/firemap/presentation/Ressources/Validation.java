@@ -50,10 +50,9 @@ public class Validation {
     }
 
 
-    public static boolean validFireworker(List<Fireworker> fireworkers) {
-        if(fireworkers.size() <= 0) {
+    public static boolean validFireworker(int idFireworker) {
+        if(idFireworker == -1)
             return false;
-        }
         return true;
     }
 

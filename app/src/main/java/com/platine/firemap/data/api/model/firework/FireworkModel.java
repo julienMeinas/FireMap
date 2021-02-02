@@ -15,10 +15,10 @@ public class FireworkModel implements Serializable {
     private boolean handicapAccess;
     private String duration;
     private String crowded;
-    private List<Fireworker> fireworker;
+    private int idFireworker;
     private List<Parking> parking;
 
-    public FireworkModel(int id, String city, String address, String date, int price, boolean handicAccess, String duration, String crowded, List<Fireworker> fireworker, List<Parking> parkings) {
+    public FireworkModel(int id, String city, String address, String date, int price, boolean handicAccess, String duration, String crowded, int idFireworker, List<Parking> parkings) {
         this.id = id;
         this.city = city;
         this.address = address;
@@ -27,7 +27,7 @@ public class FireworkModel implements Serializable {
         this.handicapAccess = handicAccess;
         this.duration = duration;
         this.crowded = crowded;
-        this.fireworker = fireworker;
+        this.idFireworker = idFireworker;
         this.parking = parkings;
     }
 
@@ -74,8 +74,8 @@ public class FireworkModel implements Serializable {
         return crowded;
     }
 
-    public List<Fireworker> getFireworker() {
-        return fireworker;
+    public int getIdFireworker() {
+        return idFireworker;
     }
 
     public List<Parking> getParking() {
@@ -122,8 +122,8 @@ public class FireworkModel implements Serializable {
         this.crowded = crowded;
     }
 
-    public void setFireworker(List<Fireworker> fireworker) {
-        this.fireworker = fireworker;
+    public void setIdFireworker(int idFireworker) {
+        this.idFireworker = idFireworker;
     }
 
     public void setParking(List<Parking> parkings) {
@@ -149,7 +149,7 @@ public class FireworkModel implements Serializable {
                 ", 'handicapAccess'=" + isHandicAccess() +
                 ", 'duration'=" + getDuration() +
                 ", 'crowded'='" + getCrowded() + '\'' +
-                ", 'fireworker'='" + getFireworker().toString() + '\'' +
+                ", 'idFireworker'='" + getIdFireworker() + '\'' +
                 ", 'parking'='" + parking + '\'' +
                 '}';
     }

@@ -151,7 +151,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         firework.setParking(new ArrayList<>());
         firework.setDuration("");
         firework.setCrowded("");
-        firework.setFireworker(new ArrayList<>());
+        firework.setIdFireworker(-1);
     }
 
 
@@ -218,9 +218,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     @Override
     public void selectFireworker(Fireworker fireworker) {
         this.fireworkerName.setText(fireworker.getName());
-        List<Fireworker> fireworkers = new ArrayList<>();
-        fireworkers.add(fireworker);
-        firework.setFireworker(fireworkers);
+        firework.setIdFireworker(fireworker.getId());
     }
 
     @Override
@@ -228,34 +226,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         Intent intent = new Intent(getApplicationContext(), ProfileFireworkerActivity.class);
         intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, fireworkerId);
         startActivity(intent);
-    }
-
-    public void getLocationFromAddress(Context context, String strAddress) {
-
-        Geocoder coder = new Geocoder(context);
-        List<Address> address;
-        LatLng p1 = null;
-
-        try {
-            // May throw an IOException
-            address = coder.getFromLocationName(strAddress, 5);
-            if(address.size()>0) {
-                Address location = address.get(0);
-                p1 = new LatLng(location.getLatitude(), location.getLongitude());
-
-                firework.setLatitude(p1.latitude);
-                firework.setLongitude(p1.longitude);
-            }else {
-                firework.setLatitude(0);
-                firework.setLongitude(0);
-            }
-
-        } catch (IOException ex) {
-            // incorrect address
-            firework.setLatitude(0);
-            firework.setLongitude(0);
-        }
-
     }
 
 
@@ -398,6 +368,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
 
     public boolean validAddress() {
         boolean res = true;
+        getLocationFromAddress(this, place.getText().toString()+" ,"+city.getText().toString());
         if(!Validation.validAddress(city.getText().toString())) {
             DisplayErrorCity();
             res = false;
@@ -409,14 +380,42 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         return res;
     }
 
+    public void getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if(address.size()>0) {
+                Address location = address.get(0);
+                p1 = new LatLng(location.getLatitude(), location.getLongitude());
+
+                firework.setLatitude(p1.latitude);
+                firework.setLongitude(p1.longitude);
+            }else {
+                firework.setLatitude(0);
+                firework.setLongitude(0);
+            }
+
+        } catch (IOException ex) {
+            // incorrect address
+            firework.setLatitude(0);
+            firework.setLongitude(0);
+        }
+
+    }
+
 
     public boolean validFireworker() {
         boolean res = true;
-        if(!Validation.validFireworker(firework.getFireworker())) {
+        if(!Validation.validFireworker(firework.getIdFireworker())) {
             DisplayErrorFireworker();
             res = false;
         }
-        return false;
+        return res;
     }
 
 

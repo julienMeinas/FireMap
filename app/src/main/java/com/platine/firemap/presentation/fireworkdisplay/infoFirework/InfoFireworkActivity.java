@@ -2,9 +2,11 @@ package com.platine.firemap.presentation.fireworkdisplay.infoFirework;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -22,6 +24,7 @@ import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
+import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.presentation.Ressources.Utils;
@@ -30,6 +33,7 @@ import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.ada
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper.ParkingToParkingViewItemMapper;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
+import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
@@ -46,8 +50,10 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private ParkingToParkingViewItemMapper parkingToParkingViewItemMapper = new ParkingToParkingViewItemMapper();
 
     private ListViewModel listViewModel;
+    private FireworkerViewModel fireworkerViewModel;
     private int fireworkId;
     private FireworkModel firework;
+    private FireworkerDetail fireworker;
 
     private TextView textViewCity;
     private TextView textViewPlace;
@@ -70,6 +76,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.artivity_info);
+        fireworkerViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFireworkerFactory()).get(FireworkerViewModel.class);
         listViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         fireworkFavoriteViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
 
@@ -79,6 +86,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         buttonBack();
         buttonEdit();
         buttonFav();
+        buttonItinéraire();
         buttonProfilFireworker();
     }
 
@@ -121,9 +129,18 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
                 Utils.setComponent(firework.getCity(), textViewCity, firework.getAddress(), textViewPlace,
                         firework.getDate(), textViewDate, firework.getPrice(), imagePrice, textViewPrice,
                         firework.isHandicAccess(), imageAccessHandicap, textViewAccessHandicap, firework.getDuration(), imageDuration, textViewDuration,
-                        firework.getCrowded(), imagePeople, textViewPeople, firework.getParking(), imageParking,
-                        firework.getFireworker(), textViewFireworker);
+                        firework.getCrowded(), imagePeople, textViewPeople, firework.getParking(), imageParking);
+                initFireworker();
                 initParkings();
+            }
+        });
+    }
+
+    public void initFireworker() {
+        fireworkerViewModel.getFireworkerById(firework.getIdFireworker()).observe(this, new Observer<FireworkerDetail>() {
+            @Override
+            public void onChanged(FireworkerDetail fireworkerDetail) {
+                fireworker = fireworkerDetail;
             }
         });
     }
@@ -164,7 +181,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
                 FireworkEntity fireworkEntity = new FireworkEntity();
                 fireworkEntity.setId(firework.getId());
                 fireworkFavoriteViewModel.addFireworkToFavorite(fireworkEntity);
-                ScrollView scrollView = findViewById(R.id.parent);
+                RelativeLayout scrollView = findViewById(R.id.parent);
                 Snackbar.make(scrollView, "Ajout aux favoris !", Snackbar.LENGTH_LONG).show();
             }
         });
@@ -176,8 +193,22 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileFireworkerActivity.class);
-                intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, firework.getFireworker().get(0).getId());
+                intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, firework.getIdFireworker());
                 startActivity(intent);
+            }
+        });
+    }
+
+
+    public void buttonItinéraire() {
+        this.findViewById(R.id.itinéraire).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = "google.navigation:q="+firework.getLatitude()+","+firework.getLongitude()+"&mode=d";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setPackage("com.google.android.apps.maps");
+                if(intent.resolveActivity(getPackageManager()) != null)
+                    startActivity(intent);
             }
         });
     }

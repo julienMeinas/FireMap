@@ -93,50 +93,15 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             date.setText(stringDate);
 
 
-            /**
-            // price
-            price.setImageResource(fireworkViewItem.getPrice() == 0 ? R.drawable.drawable_price_free : R.drawable.drawable_price_no_free);
 
-            // parking
-            if(fireworkViewItem.getParkings().size() == 0) {
-                parking.setImageResource(R.drawable.drawable_no_parking);
-            }else {
-                boolean freeParking = false;
-                for(Parking p : fireworkViewItem.getParkings()) {
-                    if(p.getPrice() == 0){
-                        parking.setImageResource(R.drawable.drawable_parking_free);
-                        freeParking = true;
-                    }
-                }
-                if(!freeParking) {
-                    parking.setImageResource(R.drawable.drawable_parking_no_free);
-                }
-            }
-
-            // access handicap
-            accessHandicap.setImageResource(fireworkViewItem.isHandicapAccess() ? R.drawable.drawable_handicap_access : R.drawable.drawable_no_handicap_access);
-
-            // people
-            if(fireworkViewItem.getCrowded().equals("Low")) {
-                people.setImageResource(R.drawable.drawable_people_low);
-            }
-            else if(fireworkViewItem.getCrowded().equals("Medium")) {
-                people.setImageResource(R.drawable.drawable_people_medium);
-            }
-            else {
-                people.setImageResource(R.drawable.drawable_people_high);
-            }
-            */
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    List<Fireworker> fireworkers = new ArrayList<>();
-                    fireworkers.add(fireworkViewItem.getFireworker());
                     FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getCity(),
                             fireworkViewItem.getAddress(),
                             fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
                             fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
-                            fireworkViewItem.getCrowded(), fireworkers,
+                            fireworkViewItem.getCrowded(), fireworkViewItem.getIdFireworker(),
                             fireworkViewItem.getParkings());
 
                     fireworkActionInterface.onInfoClicked(fireworkModel);
