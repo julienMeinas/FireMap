@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/parent"
+<RelativeLayout android:id="@+id/parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/custom_item">
+    android:background="@drawable/custom_item"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 
@@ -62,147 +62,289 @@
         android:text="14/07/2021">
     </TextView>
 
-    <ImageView
-        android:id="@+id/price"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/date"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_price_free">
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textPrice"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_info"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/price"
+        app:menu="@menu/bottom_navigation_info"
         android:layout_below="@id/date"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="Gratuit">
-    </TextView>
+        android:background="@color/background"
+        android:layout_marginTop="5dp">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
-    <ImageView
-        android:id="@+id/parking"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/price"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_no_parking">
-    </ImageView>
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/layoutDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nav_info"
+        android:layout_marginTop="30dp">
 
-    <TextView
-        android:id="@+id/textParking"
+        <TextView
+            android:id="@+id/headerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:text="Description"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold">
+        </TextView>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:layout_below="@id/headerDescription"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Venez admirer une ville transformée aux couleurs de l'amour, plus de 1 000 ballons en forme de cœur habillent le centre-ville. De nombreuses animations divertiront les amoureux !">
+        </TextView>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:visibility="gone"
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutInfo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/parking"
-        android:layout_below="@id/textPrice"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:text="Absence de Parking">
-    </TextView>
+        android:layout_below="@id/nav_info"
+        android:layout_marginTop="30dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewParking"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_toRightOf="@id/parking"
-        android:layout_below="@id/textPrice"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp">
-    </androidx.recyclerview.widget.RecyclerView>
 
-    <ImageView
-        android:id="@+id/accessHandicap"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/parking"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_handicap_access">
-    </ImageView>
+        <ImageView
+            android:id="@+id/price"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/drawable_price_free">
+        </ImageView>
 
-    <TextView
-        android:id="@+id/textAccessHandicap"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/price"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorText"
+            android:textSize="15sp"
+            android:text="Gratuit">
+        </TextView>
+
+
+        <ImageView
+            android:id="@+id/parking"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/price"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/drawable_no_parking">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/textParking"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/parking"
+            android:layout_below="@id/textPrice"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="45dp"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:text="Absence de Parking">
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewParking"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_toRightOf="@id/parking"
+            android:layout_below="@id/textPrice"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/accessHandicap"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/parking"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/drawable_handicap_access">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/textAccessHandicap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/accessHandicap"
+            android:layout_below="@id/parking"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:textColor="@color/colorText"
+            android:textSize="15sp"
+            android:text="Accès handicapés">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/duration"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/accessHandicap"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/drawable_duration_short">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/textDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/duration"
+            android:layout_below="@id/accessHandicap"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:textColor="@color/colorText"
+            android:textSize="15sp"
+            android:text="30 min">
+        </TextView>
+
+
+        <ImageView
+            android:id="@+id/people"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/duration"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/drawable_people_high">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/textPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/people"
+            android:layout_below="@id/duration"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:textColor="@color/colorText"
+            android:textSize="15sp"
+            android:text="Beaucoup de gens attendu">
+        </TextView>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/layoutFireworker"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/accessHandicap"
-        android:layout_below="@id/parking"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="Accès handicapés">
-    </TextView>
+        android:layout_below="@id/nav_info"
+        android:layout_marginTop="30dp">
 
-    <ImageView
-        android:id="@+id/duration"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/accessHandicap"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_duration_short">
-    </ImageView>
+        <TextView
+            android:id="@+id/headerFireworker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:text="Organisateur"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold">
+        </TextView>
 
-    <TextView
-        android:id="@+id/textDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/duration"
-        android:layout_below="@id/accessHandicap"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="30 min">
-    </TextView>
+        <LinearLayout
+            android:id="@+id/rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@id/headerFireworker"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/rate_star_one"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/rate_star_big_on_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_two"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/rate_star_big_on_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_three"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/rate_star_big_half_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_four"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/rate_star_big_off_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_five"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/rate_star_big_off_holo_dark"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fireworker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:layout_below="@id/headerFireworker"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Feu d'artifice Hubert ThÃ©zÃ© Pyrotechnie : spectacle pyrotechnique et illuminations de rue">
+        </TextView>
+
+        <Button
+            android:id="@+id/button_fireworker"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="30dp"
+            android:layout_below="@id/fireworker"
+            android:layout_alignParentRight="true"
+            android:textSize="7sp"
+            android:textColor="@color/white"
+            android:text="Voir profil">
+        </Button>
+    </RelativeLayout>
 
 
-    <ImageView
-        android:id="@+id/people"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/duration"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/drawable_people_high">
-    </ImageView>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/layoutSignaler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textPeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/people"
-        android:layout_below="@id/duration"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        android:text="Beaucoup de gens attendu">
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:layout_centerInParent="true"
+            android:text="Signaler">
+        </TextView>
+
+    </RelativeLayout>
 
 
 
-    <Button
-        android:id="@+id/button_fireworker"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@id/textPeople"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:textSize="7sp"
-        android:textColor="@color/white"
-        android:text="Voir informations sur l'artificier">
-    </Button>
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fav"
@@ -224,11 +366,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10sp"
-        android:textColor="@color/colorText"
+        android:textColor="@color/white"
         android:text="Itinéraire"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp">
+        android:layout_margin="15dp">
     </Button>
 
 

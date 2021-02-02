@@ -9,15 +9,11 @@
         android:id="@+id/nav_info"
         android:icon="@drawable/drawable_info"
         android:title="Info"/>
-    <item
-        android:id="@+id/nav_parking"
-        android:icon="@drawable/drawable_empty_parking"
-        android:title="Parkings"/>
 
     <item
         android:id="@+id/nav_fireworker"
         android:icon="@drawable/drawable_profile_fireworker"
-        android:title="Artificier"/>
+        android:title="Organisateur"/>
 
     <item
         android:id="@+id/nav_signaler"

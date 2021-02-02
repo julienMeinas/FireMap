@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,6 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
@@ -19,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
@@ -69,6 +72,15 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private ImageView imagePeople;
     private TextView textViewPeople;
     private TextView textViewFireworker;
+    
+    private BottomNavigationView nav_info;
+    private RelativeLayout layoutDescription;
+    private RelativeLayout layoutInfo;
+    private RelativeLayout layoutFireworker;
+    private RelativeLayout layoutSignaler;
+
+    private ImageView[] rateStars = new ImageView[5];
+
 
 
 
@@ -79,7 +91,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         fireworkerViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFireworkerFactory()).get(FireworkerViewModel.class);
         listViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         fireworkFavoriteViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFavoriteFactory()).get(FavoriteViewModel.class);
-
+        nav_info = findViewById(R.id.nav_info);
+        nav_info.setOnNavigationItemSelectedListener(navListerner);
         initFirework();
         initComponent();
 
@@ -116,6 +129,15 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         this.imagePeople = findViewById(R.id.people);
         this.textViewPeople = findViewById(R.id.textPeople);
         this.textViewFireworker = findViewById(R.id.fireworker);
+        this.layoutDescription = findViewById(R.id.layoutDescription);
+        this.layoutInfo = findViewById(R.id.layoutInfo);
+        this.layoutFireworker = findViewById(R.id.layoutFireworker);
+        this.layoutSignaler = findViewById(R.id.layoutSignaler);
+        rateStars[0] = findViewById(R.id.rate_star_one);
+        rateStars[1] = findViewById(R.id.rate_star_two);
+        rateStars[2] = findViewById(R.id.rate_star_three);
+        rateStars[3] = findViewById(R.id.rate_star_four);
+        rateStars[4] = findViewById(R.id.rate_star_five);
     }
 
 
@@ -141,6 +163,16 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onChanged(FireworkerDetail fireworkerDetail) {
                 fireworker = fireworkerDetail;
+                textViewFireworker.setText(fireworkerDetail.getName());
+                for(int i =0; i<5 ;i++){
+                    if(fireworkerDetail.getNote()<i+0.25){
+                        rateStars[i].setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                    }else if(fireworkerDetail.getNote()>i+0.75){
+                        rateStars[i].setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                    }else {
+                        rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
+                    }
+                }
             }
         });
     }
@@ -212,6 +244,43 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             }
         });
     }
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListerner =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    switch (item.getItemId()) {
+                        case R.id.nav_description:
+                            layoutDescription.setVisibility(View.VISIBLE);
+                            layoutInfo.setVisibility(View.GONE);
+                            layoutFireworker.setVisibility(View.GONE);
+                            layoutSignaler.setVisibility(View.GONE);
+                            break;
+                        case R.id.nav_info:
+                            layoutDescription.setVisibility(View.GONE);
+                            layoutInfo.setVisibility(View.VISIBLE);
+                            layoutFireworker.setVisibility(View.GONE);
+                            layoutSignaler.setVisibility(View.GONE);
+                            break;
+                        case R.id.nav_fireworker:
+                            layoutDescription.setVisibility(View.GONE);
+                            layoutInfo.setVisibility(View.GONE);
+                            layoutFireworker.setVisibility(View.VISIBLE);
+                            layoutSignaler.setVisibility(View.GONE);
+                            break;
+                        case R.id.nav_signaler:
+                            layoutDescription.setVisibility(View.GONE);
+                            layoutFireworker.setVisibility(View.GONE);
+                            layoutInfo.setVisibility(View.GONE);
+                            layoutSignaler.setVisibility(View.VISIBLE);
+                            break;
+                    }
+                    return true;
+                }
+            };
 
 
     @Override
