@@ -5,6 +5,9 @@ import java.util.List;
 public class FireworkerDetail {
     private int id;
     private String name;
+    private String mail;
+    private String address;
+    private String tel;
     private double note;
     private List<Avis> avis;
     private List<String> images;
@@ -16,6 +19,18 @@ public class FireworkerDetail {
 
     public String getName() {
         return name;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getTel() {
+        return tel;
     }
 
     public double getNote() {
@@ -40,6 +55,18 @@ public class FireworkerDetail {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public void setNote(double note) {

@@ -3,65 +3,75 @@ package com.platine.firemap.presentation.fireworkdisplay.profileFireworker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addAvis.AddAvis;
+import com.platine.firemap.presentation.fireworkdisplay.home.credit.CreditFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.favorite.fragment.FavoriteFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.fragment.ListFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.map.fragment.MapFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.fragment.AvisFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper.AvisToViewItemMapper;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.profil.ProfilFragment;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileFireworkerActivity extends AppCompatActivity implements ProfileFireworkerAcionInterface {
     private static final String TAG = "ProfileFireworkerActivity";
     public static final String FIREWORKER_MESSAGE = "FIREWORKER";
+    public static final String ARGUMENT = "idFireworker";
     private FireworkerViewModel fireworkerModelFactory;
     private FireworkerDetail fireworkerDetail;
     private int id;
-
     private TextView name;
-    private TextView url;
-    private ImageView[] rateStars = new ImageView[5];
-
-    private RecyclerView recyclerView;
-    private FireworkerAvisAdapter fireworkerAvisAdapter;
+    private BottomNavigationView m_BottomNav;
+    public static final List<Fragment> m_listFragment = new ArrayList<Fragment>() {{
+        add(ProfilFragment.newInstance());
+        add(AvisFragment.newInstance());
+    }};
+    private static final int positionProfileFragment = 0;
+    private static final int positionAvisFragment = 1;
+    public int m_currentFragment = positionProfileFragment;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_fireworker);
-
+        m_BottomNav = findViewById(R.id.nav_profile_fireworker);
+        m_BottomNav.setOnNavigationItemSelectedListener(navListerner);
         Intent intent = getIntent();
         this.id = intent.getIntExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, 1);
-
         initFireworker();
+        buttonBack();
 
-        ButtonBack();
-        ButtonAddAvis();
-    }
-
-    private void setupRecyclerView() {
-        recyclerView = findViewById(R.id.recycler_view);
-        fireworkerAvisAdapter = new FireworkerAvisAdapter();
-        recyclerView.setAdapter(fireworkerAvisAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    private void registerViewModels(){
-        AvisToViewItemMapper avisToViewItemMapper = new AvisToViewItemMapper();
-        fireworkerAvisAdapter.bindViewModels(avisToViewItemMapper.map(fireworkerDetail.getAvis()));
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARGUMENT, id);
+        for(Fragment f : m_listFragment){
+            f.setArguments(bundle);
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter,
+                m_listFragment.get(m_currentFragment)).commit();
     }
 
     public void initFireworker() {
@@ -78,66 +88,36 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
     public void createProfileFireworker() {
         name = findViewById(R.id.name);
         name.setText(fireworkerDetail.getName());
-
-        url = findViewById(R.id.url);
-        url.setText(fireworkerDetail.getUrlPage());
-
-        //favorite binding
-        rateStars[0] = findViewById(R.id.rate_star_one);
-        rateStars[1] = findViewById(R.id.rate_star_two);
-        rateStars[2] = findViewById(R.id.rate_star_three);
-        rateStars[3] = findViewById(R.id.rate_star_four);
-        rateStars[4] = findViewById(R.id.rate_star_five);
-
-        for(int i =0; i<5 ;i++){
-            if(fireworkerDetail.getNote()<i+0.25){
-                rateStars[i].setImageResource(R.drawable.rate_star_big_off_holo_dark);
-            }else if(fireworkerDetail.getNote()>i+0.75){
-                rateStars[i].setImageResource(R.drawable.rate_star_big_on_holo_dark);
-            }else {
-                rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
-            }
-        }
-
-        setupRecyclerView();
-        registerViewModels();
     }
 
-    public void ButtonBack() {
+    public void buttonBack() {
         findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicOnBack();
+                finish();
             }
         });
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navListerner =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-    public void ButtonAddAvis() {
-        findViewById(R.id.addAvis).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clicOnAddAvis(id);
-            }
-        });
-    }
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-    @Override
-    public void clicOnBack() {
-        finish();
-    }
-
-    @Override
-    public void clicOnAddAvis(int id) {
-        Intent intent = new Intent(this, AddAvis.class);
-        intent.putExtra(AddAvis.FIREWORKER_ID_MSG, id);
-        this.startActivityForResult(intent, 1);
-    }
+                    switch (item.getItemId()) {
+                        case R.id.nav_profile:
+                            m_currentFragment = positionProfileFragment;
+                            break;
+                        case R.id.nav_avis:
+                            m_currentFragment = positionAvisFragment;
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter, m_listFragment.get(m_currentFragment)).commit();
+                    return true;
+                }
+            };
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initFireworker();
-    }
+
 }

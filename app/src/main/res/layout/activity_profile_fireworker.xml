@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/custom_item">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,88 +19,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:textColor="@color/colorText"
-            android:textSize="35dp"
-            android:text="Artificier"/>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="45dp"
             android:gravity="center"
             android:textColor="@color/colorText"
-            android:textSize="40dp"
+            android:textSize="25dp"
             android:text="Name"/>
 
-        <TextView
-            android:id="@+id/url"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:textColor="@color/colorText"
-            android:textSize="20dp"
-            android:text="Url"/>
-
-        <LinearLayout
-            android:id="@+id/rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/rate_star_one"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/rate_star_big_on_holo_dark"/>
-            <ImageView
-                android:id="@+id/rate_star_two"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/rate_star_big_on_holo_dark"/>
-            <ImageView
-                android:id="@+id/rate_star_three"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/rate_star_big_half_holo_dark"/>
-            <ImageView
-                android:id="@+id/rate_star_four"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/rate_star_big_off_holo_dark"/>
-            <ImageView
-                android:id="@+id/rate_star_five"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/rate_star_big_off_holo_dark"/>
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/addAvis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Ajouter un avis"
-            android:layout_margin="5dp"
-            android:layout_gravity="right">
-        </Button>
-
-        <androidx.recyclerview.widget.RecyclerView
+        <FrameLayout
+            android:id="@+id/fragment_containter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:id="@+id/recycler_view"/>
+            android:layout_above="@id/bottom_navigation"
+            android:layout_marginBottom="60dp"/>
 
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_profile_fireworker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation_profile"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background"
+        android:layout_marginTop="20dp">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </RelativeLayout>

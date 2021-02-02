@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/rate_star_one"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_on_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_two"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_on_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_three"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_half_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_four"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_off_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_five"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_off_holo_dark"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addAvis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Ajouter un avis"
+            android:layout_margin="5dp"
+            android:layout_gravity="right">
+        </Button>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:id="@+id/recycler_view"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/avisEmpty"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/colorText"
+        android:text="Aucun avis pour l'instant \n Vous pouvez ajouter le votre"
+        android:layout_centerInParent="true">
+    </TextView>
+
+</RelativeLayout>
