@@ -16,4 +16,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="link"><a href="https://www.facebook.com/FireMap-100749375134966/">FaceBook</a></string>
+    <string name="txtContact">Nous Contacter : https://m.facebook.com/messages/compose?ids=100749375134966</string>
+
+
 </resources>

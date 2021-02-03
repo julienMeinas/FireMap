@@ -4,11 +4,29 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/headerSignaler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:textColor="@color/colorText"
-        android:layout_centerInParent="true"
-        android:text="Signaler">
+        android:text="Signaler"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:autoLink="web"
+        android:id="@+id/signaler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="20sp"
+        android:layout_below="@id/headerSignaler"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:linksClickable="true"
+        android:text="@string/txtContact">
     </TextView>
 
 </RelativeLayout>
