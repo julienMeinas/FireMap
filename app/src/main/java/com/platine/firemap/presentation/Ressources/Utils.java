@@ -66,19 +66,11 @@ public class Utils {
 
 
 
-    public static void setComponent(String city, TextView textViewCity,
-                                    String address, TextView textViewPlace,
-                                    String date, TextView textViewDate,
-                                    int price, ImageView imagePrice, TextView textPrice,
+    public static void setComponent(int price, ImageView imagePrice, TextView textPrice,
                                     boolean accessHandicap, ImageView imageAccessHandicap, TextView textHandicap,
                                     String duration, ImageView imageDuration, TextView textDuration,
                                     String crowed, ImageView imagePeople, TextView textCrowed,
                                     List<Parking> parkings, ImageView imageParking) {
-        textViewCity.setText(city);
-        // address
-        textViewPlace.setText(address);
-        // date
-        textViewDate.setText(convertJsonToStringDate(date));
         //price
         if(price == 0) {
             imagePrice.setImageResource(R.drawable.drawable_price_free);

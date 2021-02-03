@@ -92,4 +92,13 @@ public interface FireworkDisplayService {
     @PUT("https://firemap-api-rest.herokuapp.com/fireworkers/addAvis/{id}")
     Call<FireworkerDetail> addAvis(@Path("id") int id, @Query("note") double note,
                                    @Query("comment") String comment);
+
+    @PUT("https://firemap-api-rest.herokuapp.com/fireworks/addAvis/{id}")
+    Call<FireworkModel> addAvisFirework(@Path("id") int id, @Query("note") double note,
+                                   @Query("comment") String comment);
+
+
+    @GET("http://firemap-api-rest.herokuapp.com/fireworkers/byCity/{id}")
+    Flowable<List<FireworkModel>> getAllFireworksByCityByFireworker(@Path("id") int id, @Query("city") String city);
+
 }

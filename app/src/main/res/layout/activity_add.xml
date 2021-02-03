@@ -37,9 +37,62 @@
             android:text="Création d'un nouveau feu d'artifice">
         </TextView>
 
+
+        <RelativeLayout
+            android:id="@+id/layoutDescription"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:id="@+id/headerDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorText"
+                android:text="Description"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/headerDescription"
+                android:layout_margin="20dp"
+                android:hint="Description du feu d'artifice">
+            </EditText>
+
+            <TextView
+                android:id="@+id/errorDescription"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/redMiddle"
+                android:layout_below="@id/description"
+                android:layout_alignParentLeft="true"
+                android:text="Ville non valide"
+                android:textSize="9sp">
+            </TextView>
+
+            <Button
+                android:id="@+id/nextDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errorDescription"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp"
+                android:text="Suivant">
+            </Button>
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/layoutAddress"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
@@ -141,6 +194,17 @@
                 android:layout_alignParentRight="true"
                 android:layout_margin="15dp"
                 android:text="Suivant">
+            </Button>
+
+            <Button
+                android:visibility="visible"
+                android:id="@+id/backAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errorPlace"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="15dp"
+                android:text="Précedent">
             </Button>
 
         </RelativeLayout>

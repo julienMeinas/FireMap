@@ -1,4 +1,4 @@
-package com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter;
+package com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.parking.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

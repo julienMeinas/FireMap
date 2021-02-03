@@ -156,11 +156,12 @@ public class MapFragment extends Fragment implements MapActionInterface {
                 String t = marker.getTitle();
                 FireworkViewItem fireworkViewItem = markerMap.get(marker.getTitle());
                 FireworkModel fireworkModel = new FireworkModel(fireworkViewItem.getId(), fireworkViewItem.getCity(),
-                        fireworkViewItem.getAddress(),
-                        fireworkViewItem.getDate(), fireworkViewItem.getPrice(),
+                        fireworkViewItem.getAddress(), fireworkViewItem.getDate(),
+                        fireworkViewItem.getDescription(), fireworkViewItem.getPrice(),
                         fireworkViewItem.isHandicapAccess(), fireworkViewItem.getDuration(),
                         fireworkViewItem.getCrowded(), fireworkViewItem.getIdFireworker(),
-                        fireworkViewItem.getParkings());
+                        fireworkViewItem.getParkings(), fireworkViewItem.getAvis(),
+                        fireworkViewItem.getNote());
                 onInfoClicked(fireworkModel);
                 return false;
             }

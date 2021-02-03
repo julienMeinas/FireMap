@@ -1,5 +1,7 @@
 package com.platine.firemap.data.api.model.firework;
 
+import com.platine.firemap.data.api.model.fireworker.Avis;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -11,24 +13,30 @@ public class FireworkModel implements Serializable {
     private String city;
     private String address;
     private String date;
+    private String description;
     private int price;
     private boolean handicapAccess;
     private String duration;
     private String crowded;
     private int idFireworker;
     private List<Parking> parking;
+    private List<Avis> avis;
+    private double note;
 
-    public FireworkModel(int id, String city, String address, String date, int price, boolean handicAccess, String duration, String crowded, int idFireworker, List<Parking> parkings) {
+    public FireworkModel(int id, String city, String address, String date, String description, int price, boolean handicAccess, String duration, String crowded, int idFireworker, List<Parking> parkings, List<Avis> avis, double note) {
         this.id = id;
         this.city = city;
         this.address = address;
         this.date = date;
+        this.description = description;
         this.price = price;
         this.handicapAccess = handicAccess;
         this.duration = duration;
         this.crowded = crowded;
         this.idFireworker = idFireworker;
         this.parking = parkings;
+        this.avis = avis;
+        this.note = note;
     }
 
     public FireworkModel() {
@@ -58,6 +66,10 @@ public class FireworkModel implements Serializable {
         return date;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -80,6 +92,10 @@ public class FireworkModel implements Serializable {
 
     public List<Parking> getParking() {
         return parking;
+    }
+
+    public List<Avis> getAvis() {
+        return avis;
     }
 
     public void setId(int id) {
@@ -106,6 +122,10 @@ public class FireworkModel implements Serializable {
         this.date = date;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setPrice(int price) {
         this.price = price;
     }
@@ -130,6 +150,18 @@ public class FireworkModel implements Serializable {
         this.parking = parkings;
     }
 
+    public void setAvis(List<Avis> avis) {
+        this.avis = avis;
+    }
+
+    public double getNote() {
+        return note;
+    }
+
+    public void setNote(double note) {
+        this.note = note;
+    }
+
     @Override
     public String toString() {
         String parking = "[";
@@ -151,6 +183,8 @@ public class FireworkModel implements Serializable {
                 ", 'crowded'='" + getCrowded() + '\'' +
                 ", 'idFireworker'='" + getIdFireworker() + '\'' +
                 ", 'parking'='" + parking + '\'' +
+                ", 'avis'='" + getAvis().toString() + '\'' +
+                ", 'note'='" + getNote() + '\'' +
                 '}';
     }
 }

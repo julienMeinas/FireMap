@@ -14,6 +14,7 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setCity(firework.getCity());
         fireworkViewModel.setAddress(firework.getAddress());
         fireworkViewModel.setDate(convertJsonToStringDate(firework.getDate()));
+        fireworkViewModel.setDescription(firework.getDescription());
         fireworkViewModel.setPrice(firework.getPrice());
         fireworkViewModel.setHandicapAccess(firework.isHandicAccess());
         fireworkViewModel.setDuration(firework.getDuration());
@@ -21,6 +22,8 @@ public class FireworkToViewModelMapper {
         fireworkViewModel.setCrowded(firework.getCrowded());
         fireworkViewModel.setIdFireworker(firework.getIdFireworker());
         fireworkViewModel.setParkings(firework.getParking());
+        fireworkViewModel.setAvis(firework.getAvis());
+        fireworkViewModel.setNote(firework.getNote());
         return fireworkViewModel;
     }
 

@@ -257,6 +257,53 @@ public class ListViewModel extends ViewModel {
     }
 
 
+    public void addAvis(int id, double note, String comment) {
+        Call<FireworkModel> call = this.fireworkRepository.addAvisFirework(id, note, comment);
+        call.enqueue(new Callback<FireworkModel>() {
+            @Override
+            public void onResponse(Call<FireworkModel> call, Response<FireworkModel> response) {
+                postSuccess.setValue(true);
+            }
+
+            @Override
+            public void onFailure(Call<FireworkModel> call, Throwable t) {
+                // DO NOTHING
+            }
+        });
+    }
+
+    public void loadAllFireworksByCityByFireworker(int id, String city) {
+        isDataLoading.setValue(true);
+        compositeDisposable.clear();
+        compositeDisposable.add(fireworkRepository.getAllFireworksByCityByFireworker(id, city)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new ResourceSubscriber<List<FireworkModel>>() {
+                    @Override
+                    public void onNext(List<FireworkModel> fireworkModels) {
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(false);
+                        fireworks.setValue(fireworkToViewModelMapper.map(fireworkModels));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        isDataLoading.setValue(false);
+                        errorConnexion.setValue(true);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Do Nothing
+                        errorConnexion.setValue(false);
+                        isDataLoading.setValue(false);
+                    }
+                }));
+
+    }
+
+
     public void cancelSubscription() {
         compositeDisposable.clear();
         isDataLoading.setValue(false);

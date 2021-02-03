@@ -23,4 +23,10 @@ public class Avis implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    @Override
+    public String toString() {
+        return "{'note':" + getNote() +
+                ", 'comment':'" + getComment() + "'";
+    }
 }

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageName"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_profile_fireworker">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/littleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="12sp"
+        android:text="Name"
+        android:layout_toRightOf="@id/imageName"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imageAddress"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_address"
+        android:layout_below="@id/littleName">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="12sp"
+        android:text="Address"
+        android:layout_toRightOf="@id/imageName"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@id/littleName"
+        android:autoLink="web">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/imageMail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_email"
+        android:layout_below="@id/address">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="12sp"
+        android:text="Mail"
+        android:layout_toRightOf="@id/imageName"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@id/address"
+        android:autoLink="email">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/imagePhone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_phone"
+        android:layout_below="@id/mail">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="12sp"
+        android:text="phone"
+        android:layout_toRightOf="@id/imageName"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@id/mail"
+        android:autoLink="phone">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imageLink"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_computer"
+        android:layout_below="@id/phone">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/link"
+        android:autoLink="web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="12sp"
+        android:text="link"
+        android:layout_toRightOf="@id/imageName"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@id/phone">
+    </TextView>
+
+</RelativeLayout>

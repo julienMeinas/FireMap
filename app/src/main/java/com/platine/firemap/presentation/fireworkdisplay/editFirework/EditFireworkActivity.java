@@ -71,10 +71,6 @@ public class EditFireworkActivity extends AppCompatActivity implements EditFirew
         this.firework = (FireworkModel)intent.getSerializableExtra(InfoFireworkActivity.FIREWORK_MESSAGE);
         initComponent();
         empty = findViewById(R.id.empty);
-        Utils.setComponent(this.firework.getCity(), this.textViewCity, this.firework.getAddress(), this.textViewPlace,
-                           this.firework.getDate(), this.textViewDate, this.firework.getPrice(), this.imagePrice, empty,
-                           this.firework.isHandicAccess(), this.imageAccessHandicap, empty, this.firework.getDuration(), this.imageDuration, empty,
-                           this.firework.getCrowded(), this.imagePeople, empty, this.firework.getParking(), this.imageParking);
 
         Button.ButtonPrice(buttonPriceFree, buttonPriceNotFree, imagePrice, firework);
         Button.ButtonAccessHandicap(buttonAccessHandicap, buttonNotAccessHandicap, imageAccessHandicap, firework);

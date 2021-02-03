@@ -1,7 +1,7 @@
-package com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper;
+package com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.parking.mapper;
 
 import com.platine.firemap.data.api.model.firework.Parking;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewItem;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.parking.adapter.ParkingViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

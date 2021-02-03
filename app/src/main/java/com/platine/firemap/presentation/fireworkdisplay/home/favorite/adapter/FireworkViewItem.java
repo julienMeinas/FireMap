@@ -2,6 +2,7 @@ package com.platine.firemap.presentation.fireworkdisplay.home.favorite.adapter;
 
 import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.api.model.firework.Parking;
+import com.platine.firemap.data.api.model.fireworker.Avis;
 
 import java.util.Date;
 import java.util.List;
@@ -11,12 +12,15 @@ public class FireworkViewItem {
     private String city;
     private String address;
     private String date;
+    private String description;
     private int price;
     private boolean handicapAccess;
     private String duration;
     private String crowded;
     private int idFireworker;
     private List<Parking> parkings;
+    private List<Avis> avis;
+    private double note;
 
     public int getId() {
         return id;
@@ -44,6 +48,14 @@ public class FireworkViewItem {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getPrice() {
@@ -96,5 +108,21 @@ public class FireworkViewItem {
 
     public void setParkings(List<Parking> parkings) {
         this.parkings = parkings;
+    }
+
+    public List<Avis> getAvis() {
+        return avis;
+    }
+
+    public double getNote() {
+        return note;
+    }
+
+    public void setAvis(List<Avis> avis) {
+        this.avis = avis;
+    }
+
+    public void setNote(double note) {
+        this.note = note;
     }
 }

@@ -58,6 +58,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private TextView errorHour;
     private TextView errorFireworker;
     private EditText city;
+    private EditText description;
     private EditText place;
     private DatePicker date;
     private TimePicker hour;
@@ -79,13 +80,17 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private AppCompatButton buttonCrowedMedium;
     private AppCompatButton buttonCrowedHigh;
 
+
+    private android.widget.Button nextDescription;
     private android.widget.Button nextAddress;
+    private android.widget.Button backAddress;
     private android.widget.Button nextDate;
     private android.widget.Button backDate;
     private android.widget.Button nextInfo;
     private android.widget.Button backInfo;
     private android.widget.Button nextFireworker;
     private android.widget.Button backFireworker;
+    private RelativeLayout layoutDescription;
     private RelativeLayout layoutAddress;
     private RelativeLayout layoutDate;
     private RelativeLayout layoutInfo;
@@ -108,6 +113,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         Button.ButtonAccessHandicap(buttonAccessHandicap, buttonNotAccessHandicap, imageAccessHandicap, firework);
         Button.ButtonCrowed(buttonCrowedLow, buttonCrowedMedium, buttonCrowedHigh, imagePeople, firework);
         Button.ButtonDuration(buttonDurationShort, buttonDurationMiddle, buttonDurationLong, imageDuration, firework);
+        buttonValidationNextDescription();
         buttonValidationNextAddress();
         buttonValidationNextDate();
         buttonValidationNextInfo();
@@ -166,6 +172,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
         this.date = findViewById(R.id.datePicker);
+        this.description = findViewById(R.id.description);
         this.hour = findViewById(R.id.hourPicker);
         this.hour.setIs24HourView(true);
         this.imagePrice = findViewById(R.id.price);
@@ -200,7 +207,9 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.buttonCrowedHigh = findViewById(R.id.buttonCrowedHigh);
         this.buttonCrowedHigh.setText(Utils.msg_crowed_high);
         // button
+        this.nextDescription = findViewById(R.id.nextDescription);
         this.nextAddress = findViewById(R.id.nextAddress);
+        this.backAddress = findViewById(R.id.backAddress);
         this.nextDate = findViewById(R.id.validationDate);
         this.backDate = findViewById(R.id.backDate);
         this.nextInfo = findViewById(R.id.validationInfo);
@@ -208,6 +217,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         this.nextFireworker = findViewById(R.id.validation);
         this.backFireworker = findViewById(R.id.backFireworker);
         //layout
+        this.layoutDescription = findViewById(R.id.layoutDescription);
         this.layoutAddress = findViewById(R.id.layoutAddress);
         this.layoutDate = findViewById(R.id.layoutDate);
         this.layoutInfo = findViewById(R.id.layoutInfo);
@@ -282,6 +292,20 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
 
+
+    public void buttonValidationNextDescription() {
+        this.nextDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canBack = false;
+                firework.setDescription(description.getText().toString());
+                layoutDescription.setVisibility(View.GONE);
+                layoutAddress.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+
     public void buttonValidationNextAddress() {
         this.nextAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -296,6 +320,15 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     currentButtonBack = backDate;
                 }
 
+            }
+        });
+
+        this.backAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canBack = true;
+                layoutAddress.setVisibility(View.GONE);
+                layoutDescription.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -319,7 +352,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             public void onClick(View v) {
                 layoutDate.setVisibility(View.GONE);
                 layoutAddress.setVisibility(View.VISIBLE);
-                canBack = true;
+                canBack = false;
             }
         });
     }

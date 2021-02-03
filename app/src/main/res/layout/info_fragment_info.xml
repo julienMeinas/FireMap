@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/price"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_price_free">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/price"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:text="Gratuit">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/parking"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/price"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_no_parking">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textParking"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/parking"
+        android:layout_below="@id/textPrice"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="45dp"
+        android:textColor="@color/colorText"
+        android:textSize="20sp"
+        android:text="Absence de Parking">
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewParking"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/parking"
+        android:layout_below="@id/textPrice"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/accessHandicap"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/parking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_handicap_access">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textAccessHandicap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/accessHandicap"
+        android:layout_below="@id/parking"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:text="Accès handicapés">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/duration"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/accessHandicap"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_duration_short">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/duration"
+        android:layout_below="@id/accessHandicap"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:text="30 min">
+    </TextView>
+
+
+    <ImageView
+        android:id="@+id/people"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/duration"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/drawable_people_high">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/people"
+        android:layout_below="@id/duration"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:text="Beaucoup de gens attendu">
+    </TextView>
+
+</RelativeLayout>

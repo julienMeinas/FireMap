@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/headerAvis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorText"
+        android:text="Avis sur l'événement"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/headerAvis">
+
+        <LinearLayout
+            android:id="@+id/rateFirework"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/rate_star_oneFirework"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_on_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_twoFirework"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_on_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_threeFirework"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_half_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_fourFirework"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_off_holo_dark"/>
+            <ImageView
+                android:id="@+id/rate_star_fiveFirework"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rate_star_big_off_holo_dark"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addAvis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Ajouter un avis"
+            android:layout_margin="5dp"
+            android:layout_gravity="right">
+        </Button>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
+            android:id="@+id/recycler_view"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/avisEmpty"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/colorText"
+        android:text="Aucun avis pour l'instant \n Vous pouvez ajouter le votre"
+        android:layout_centerInParent="true">
+    </TextView>
+
+</RelativeLayout>

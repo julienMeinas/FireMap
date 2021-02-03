@@ -16,6 +16,11 @@
         android:title="Organisateur"/>
 
     <item
+        android:id="@+id/nav_avis"
+        android:icon="@drawable/drawable_nav_avis_fireworker"
+        android:title="Avis"/>
+
+    <item
         android:id="@+id/nav_signaler"
         android:icon="@drawable/drawable_email"
         android:title="Signaler"/>

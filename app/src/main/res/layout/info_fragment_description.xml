@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/headerDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorText"
+        android:text="Description"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:layout_below="@id/headerDescription"
+        android:layout_margin="15dp"
+        android:gravity="left"
+        android:text="Venez admirer une ville transformée aux couleurs de l'amour, plus de 1 000 ballons en forme de cœur habillent le centre-ville. De nombreuses animations divertiront les amoureux !">
+    </TextView>
+
+
+</RelativeLayout>

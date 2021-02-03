@@ -1,8 +1,9 @@
 package com.platine.firemap.data.api.model.fireworker;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FireworkerDetail {
+public class FireworkerDetail implements Serializable {
     private int id;
     private String name;
     private String mail;

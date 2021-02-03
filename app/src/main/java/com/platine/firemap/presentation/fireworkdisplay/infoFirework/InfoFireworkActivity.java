@@ -1,21 +1,19 @@
 package com.platine.firemap.presentation.fireworkdisplay.infoFirework;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,32 +23,36 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
-import com.platine.firemap.data.api.model.firework.Fireworker;
-import com.platine.firemap.data.api.model.firework.Parking;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.data.entity.FireworkEntity;
 import com.platine.firemap.presentation.Ressources.Utils;
+import com.platine.firemap.presentation.fireworkdisplay.addAvisFirework.AddAvis;
 import com.platine.firemap.presentation.fireworkdisplay.editFirework.EditFireworkActivity;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.adapter.ParkingViewAdapter;
-import com.platine.firemap.presentation.fireworkdisplay.infoFirework.parking.mapper.ParkingToParkingViewItemMapper;
+import com.platine.firemap.presentation.fireworkdisplay.home.credit.CreditFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.favorite.fragment.FavoriteFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.list.fragment.ListFragment;
+import com.platine.firemap.presentation.fireworkdisplay.home.map.fragment.MapFragment;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.avis.fragment.AvisFragment;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.description.fragment.DescriptionFragment;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.fireworker.fragment.FireworkerFragment;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.InfoFragment;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.signaler.fragment.SignalerFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisAdapter;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper.AvisToViewItemMapper;
 import com.platine.firemap.presentation.viewmodel.FavoriteViewModel;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InfoFireworkActivity extends AppCompatActivity implements InfoFireworkActionInterface {
     private static final String TAG = "InfoFireworkActivity";
     public static final String FIREWORK_MESSAGE = "FIREWORK";
     private FavoriteViewModel fireworkFavoriteViewModel;
-    private ParkingViewAdapter recyclerViewAdapter;
-    private RecyclerView recyclerView;
-    private ParkingToParkingViewItemMapper parkingToParkingViewItemMapper = new ParkingToParkingViewItemMapper();
 
     private ListViewModel listViewModel;
     private FireworkerViewModel fireworkerViewModel;
@@ -61,27 +63,21 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private TextView textViewCity;
     private TextView textViewPlace;
     private TextView textViewDate;
-    private ImageView imagePrice;
-    private TextView textViewPrice;
-    private ImageView imageParking;
-    private TextView textViewParking;
-    private ImageView imageAccessHandicap;
-    private TextView textViewAccessHandicap;
-    private TextView textViewDuration;
-    private ImageView imageDuration;
-    private ImageView imagePeople;
-    private TextView textViewPeople;
-    private TextView textViewFireworker;
     
     private BottomNavigationView nav_info;
-    private RelativeLayout layoutDescription;
-    private RelativeLayout layoutInfo;
-    private RelativeLayout layoutFireworker;
-    private RelativeLayout layoutSignaler;
-
-    private ImageView[] rateStars = new ImageView[5];
-
-
+    public static final List<Fragment> m_listFragment = new ArrayList<Fragment>() {{
+        add(DescriptionFragment.newInstance());
+        add(InfoFragment.newInstance());
+        add(FireworkerFragment.newInstance());
+        add(AvisFragment.newInstance());
+        add(SignalerFragment.newInstance());
+    }};
+    private static final int positionDescriptionFragment = 0;
+    private static final int positionInfoFragment = 1;
+    private static final int positionFireworkerFragment = 2;
+    private static final int positionAvisFragment = 3;
+    private static final int positionSignalerFragment = 4;
+    public int m_currentFragment = positionDescriptionFragment;
 
 
     @Override
@@ -95,49 +91,32 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         nav_info.setOnNavigationItemSelectedListener(navListerner);
         initFirework();
         initComponent();
-
         buttonBack();
-        buttonEdit();
         buttonFav();
         buttonItinéraire();
-        buttonProfilFireworker();
+        if(savedInstanceState != null) {
+            m_currentFragment = savedInstanceState.getInt("currentPositionFragment");
+        }
+        else {
+            m_currentFragment = positionDescriptionFragment;
+        }
     }
 
-    public void registerViewModel() {
-        recyclerViewAdapter.bindViewModels(parkingToParkingViewItemMapper.map(firework.getParking()));
-    }
-
-    private void setupRecyclerView() {
-        recyclerView = findViewById(R.id.recyclerViewParking);
-        recyclerViewAdapter = new ParkingViewAdapter();
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
 
     public void initComponent() {
         this.textViewCity = findViewById(R.id.city);
         this.textViewPlace = findViewById(R.id.lieu);
         this.textViewDate = findViewById(R.id.date);
-        this.imagePrice = findViewById(R.id.price);
-        this.textViewPrice = findViewById(R.id.textPrice);
-        this.imageParking = findViewById(R.id.parking);
-        this.textViewParking = findViewById(R.id.textParking);
-        this.imageAccessHandicap = findViewById(R.id.accessHandicap);
-        this.textViewAccessHandicap = findViewById(R.id.textAccessHandicap);
-        this.textViewDuration = findViewById(R.id.textDuration);
-        this.imageDuration = findViewById(R.id.duration);
-        this.imagePeople = findViewById(R.id.people);
-        this.textViewPeople = findViewById(R.id.textPeople);
-        this.textViewFireworker = findViewById(R.id.fireworker);
-        this.layoutDescription = findViewById(R.id.layoutDescription);
-        this.layoutInfo = findViewById(R.id.layoutInfo);
-        this.layoutFireworker = findViewById(R.id.layoutFireworker);
-        this.layoutSignaler = findViewById(R.id.layoutSignaler);
-        rateStars[0] = findViewById(R.id.rate_star_one);
-        rateStars[1] = findViewById(R.id.rate_star_two);
-        rateStars[2] = findViewById(R.id.rate_star_three);
-        rateStars[3] = findViewById(R.id.rate_star_four);
-        rateStars[4] = findViewById(R.id.rate_star_five);
+    }
+
+    public void initDataFirework() {
+        textViewCity.setText(firework.getCity());
+        textViewPlace.setText(firework.getAddress());
+        textViewDate.setText(Utils.convertJsonToStringDate(firework.getDate()));
+    }
+
+    public void initFragment() {
+
     }
 
 
@@ -148,12 +127,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onChanged(FireworkModel fireworkModel) {
                 firework = fireworkModel;
-                Utils.setComponent(firework.getCity(), textViewCity, firework.getAddress(), textViewPlace,
-                        firework.getDate(), textViewDate, firework.getPrice(), imagePrice, textViewPrice,
-                        firework.isHandicAccess(), imageAccessHandicap, textViewAccessHandicap, firework.getDuration(), imageDuration, textViewDuration,
-                        firework.getCrowded(), imagePeople, textViewPeople, firework.getParking(), imageParking);
+                initDataFirework();
                 initFireworker();
-                initParkings();
             }
         });
     }
@@ -163,24 +138,13 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onChanged(FireworkerDetail fireworkerDetail) {
                 fireworker = fireworkerDetail;
-                textViewFireworker.setText(fireworkerDetail.getName());
-                for(int i =0; i<5 ;i++){
-                    if(fireworkerDetail.getNote()<i+0.25){
-                        rateStars[i].setImageResource(R.drawable.rate_star_big_off_holo_dark);
-                    }else if(fireworkerDetail.getNote()>i+0.75){
-                        rateStars[i].setImageResource(R.drawable.rate_star_big_on_holo_dark);
-                    }else {
-                        rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
-                    }
-                }
+                sendData();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter,
+                        m_listFragment.get(m_currentFragment)).commit();
             }
         });
     }
 
-    public void initParkings() {
-        setupRecyclerView();
-        registerViewModel();
-    }
 
 
     @Override
@@ -189,18 +153,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-    }
-
-    @Override
-    public void buttonEdit() {
-        findViewById(R.id.button_edit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EditFireworkActivity.class);
-                intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, (Serializable)firework);
-                startActivityForResult(intent, 1);
             }
         });
     }
@@ -219,17 +171,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         });
     }
 
-    @Override
-    public void buttonProfilFireworker() {
-        findViewById(R.id.button_fireworker).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfileFireworkerActivity.class);
-                intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, firework.getIdFireworker());
-                startActivity(intent);
-            }
-        });
-    }
 
 
     public void buttonItinéraire() {
@@ -254,33 +195,35 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
 
                     switch (item.getItemId()) {
                         case R.id.nav_description:
-                            layoutDescription.setVisibility(View.VISIBLE);
-                            layoutInfo.setVisibility(View.GONE);
-                            layoutFireworker.setVisibility(View.GONE);
-                            layoutSignaler.setVisibility(View.GONE);
+                            m_currentFragment = positionDescriptionFragment;
                             break;
                         case R.id.nav_info:
-                            layoutDescription.setVisibility(View.GONE);
-                            layoutInfo.setVisibility(View.VISIBLE);
-                            layoutFireworker.setVisibility(View.GONE);
-                            layoutSignaler.setVisibility(View.GONE);
+                            m_currentFragment = positionInfoFragment;
                             break;
                         case R.id.nav_fireworker:
-                            layoutDescription.setVisibility(View.GONE);
-                            layoutInfo.setVisibility(View.GONE);
-                            layoutFireworker.setVisibility(View.VISIBLE);
-                            layoutSignaler.setVisibility(View.GONE);
+                            m_currentFragment = positionFireworkerFragment;
+                            break;
+                        case R.id.nav_avis:
+                            m_currentFragment = positionAvisFragment;
                             break;
                         case R.id.nav_signaler:
-                            layoutDescription.setVisibility(View.GONE);
-                            layoutFireworker.setVisibility(View.GONE);
-                            layoutInfo.setVisibility(View.GONE);
-                            layoutSignaler.setVisibility(View.VISIBLE);
+                            m_currentFragment = positionSignalerFragment;
                             break;
                     }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter, m_listFragment.get(m_currentFragment)).commit();
                     return true;
                 }
             };
+
+
+    public void sendData() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("firework", (Serializable)firework);
+        bundle.putSerializable("fireworker", (Serializable)fireworker);
+        for(Fragment f : m_listFragment) {
+            f.setArguments(bundle);
+        }
+    }
 
 
     @Override
@@ -288,5 +231,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         super.onResume();
         initFirework();
     }
+
 
 }
