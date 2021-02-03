@@ -64,7 +64,6 @@ public class ProfileFragment extends Fragment {
 
 
     public void initDateInfoFireworker() {
-
         littleName.setText(fireworkerDetail.getName());
         address.setText(fireworkerDetail.getAddress());
         mail.setText(fireworkerDetail.getMail());

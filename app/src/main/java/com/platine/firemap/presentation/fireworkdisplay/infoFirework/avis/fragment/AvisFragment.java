@@ -10,7 +10,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,15 +21,18 @@ import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.Avis;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addAvisFirework.AddAvis;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.fireworker.fragment.FireworkerFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper.AvisToViewItemMapper;
+import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 public class AvisFragment extends Fragment {
     private static AvisFragment instance = null;
     private View view;
 
+    private  FireworkModel fireworkid;
     // le feu d'artifice
     private FireworkModel firework;
     // data
@@ -39,6 +45,8 @@ public class AvisFragment extends Fragment {
     private FireworkerAvisAdapter fireworkAvisAdapter;
     // message si aucun avis
     private TextView avisEmpty;
+    // firework view model
+    private ListViewModel fireworkViewModel;
 
 
 
@@ -65,10 +73,10 @@ public class AvisFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_avis, container, false);
-        firework = (FireworkModel)getArguments().getSerializable("firework");
+        fireworkid = (FireworkModel) getArguments().getSerializable("firework");
         // initialise les elements du layout
         initElementsLayout();
-        initDataAvisFirework();
+        initFirework();
         buttonAddAvis();
         return view;
     }
@@ -82,7 +90,8 @@ public class AvisFragment extends Fragment {
 
         addAvisFirework = this.view.findViewById(R.id.addAvis);
         avisEmpty = this.view.findViewById(R.id.avisEmpty);
-    }
+
+         }
 
 
 
@@ -129,9 +138,24 @@ public class AvisFragment extends Fragment {
     }
 
 
+
+    public void initFirework() {
+        fireworkViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
+        fireworkViewModel.getFireworkById(fireworkid.getId()).observe(getViewLifecycleOwner(), new Observer<FireworkModel>() {
+            @Override
+            public void onChanged(FireworkModel fireworkModel) {
+                firework = fireworkModel;
+                initDataAvisFirework();
+            }
+        });
+    }
+
+
+
     @Override
     public void onResume() {
         super.onResume();
-        initDataAvisFirework();
+        initFirework();
     }
+
 }

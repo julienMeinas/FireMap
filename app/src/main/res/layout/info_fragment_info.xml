@@ -59,6 +59,16 @@
         android:layout_marginTop="25dp">
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginTop="20dp"
+        android:id="@+id/button_add_parking"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/drawable_add"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/textPrice">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
     <ImageView
         android:id="@+id/accessHandicap"
         android:layout_width="30dp"

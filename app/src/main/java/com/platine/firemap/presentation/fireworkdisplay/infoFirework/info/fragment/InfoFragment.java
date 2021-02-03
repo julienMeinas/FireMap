@@ -1,26 +1,36 @@
 package com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.Ressources.Utils;
+import com.platine.firemap.presentation.fireworkdisplay.addParking.AddParkingActivity;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.parking.adapter.ParkingViewAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.parking.mapper.ParkingToParkingViewItemMapper;
+import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 public class InfoFragment extends Fragment {
     private static InfoFragment instance = null;
     private View view;
 
+    private  FireworkModel fireworkid;
     // le feu d'artifice
     private FireworkModel firework;
 
@@ -35,11 +45,15 @@ public class InfoFragment extends Fragment {
     private ImageView imageDuration;
     private ImageView imagePeople;
     private TextView textViewPeople;
+    private FloatingActionButton addParking;
 
     // pour afficher le recycler view parking
     private ParkingViewAdapter recyclerViewAdapter;
     private RecyclerView recyclerView;
     private ParkingToParkingViewItemMapper parkingToParkingViewItemMapper = new ParkingToParkingViewItemMapper();
+
+    // firework view model
+    private ListViewModel fireworkViewModel;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -62,9 +76,10 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_info, container, false);
-        firework = (FireworkModel)getArguments().getSerializable("firework");
+        fireworkid = (FireworkModel) getArguments().getSerializable("firework");
         initElementsLayout();
-        initDateInfoFirework();
+        initFirework();
+        buttonAddParking();
         return view;
     }
 
@@ -82,6 +97,7 @@ public class InfoFragment extends Fragment {
         this.imageDuration = this.view.findViewById(R.id.duration);
         this.imagePeople = this.view.findViewById(R.id.people);
         this.textViewPeople = this.view.findViewById(R.id.textPeople);
+        this.addParking = this.view.findViewById(R.id.button_add_parking);
     }
 
 
@@ -104,5 +120,36 @@ public class InfoFragment extends Fragment {
         recyclerViewAdapter = new ParkingViewAdapter();
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+
+    private void buttonAddParking() {
+        this.addParking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddParkingActivity.class);
+                intent.putExtra(AddParkingActivity.MSG_ID_FIREWORK, firework.getId());
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+
+    public void initFirework() {
+        fireworkViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
+        fireworkViewModel.getFireworkById(fireworkid.getId()).observe(getViewLifecycleOwner(), new Observer<FireworkModel>() {
+            @Override
+            public void onChanged(FireworkModel fireworkModel) {
+                firework = fireworkModel;
+                initDateInfoFirework();
+            }
+        });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initFirework();
     }
 }

@@ -8,21 +8,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addAvis.AddAvis;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.InfoFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper.AvisToViewItemMapper;
+import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 
 public class AvisFragment extends Fragment {
     private static AvisFragment instance = null;
     private View view;
+
+    private FireworkerDetail fireworkerDetailId;
 
     private FireworkerDetail fireworkerDetail;
 
@@ -30,6 +37,8 @@ public class AvisFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private FireworkerAvisAdapter fireworkerAvisAdapter;
+
+    private FireworkerViewModel fireworkerViewModel;
 
     public AvisFragment() {
         // Required empty public constructor
@@ -52,9 +61,9 @@ public class AvisFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.profile_fragment_avis, container, false);
-        fireworkerDetail = (FireworkerDetail) getArguments().getSerializable("fireworker");
+        fireworkerDetailId = (FireworkerDetail) getArguments().getSerializable("fireworker");
+        fireworkerViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFireworkerFactory()).get(FireworkerViewModel.class);
         initElementsLayout();
-        initDateInfoFireworker();
         buttonAddAvis();
         return view;
     }
@@ -110,16 +119,20 @@ public class AvisFragment extends Fragment {
     }
 
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        initDateInfoFireworker();
+    public void initFireworker() {
+        fireworkerViewModel.getFireworkerById(fireworkerDetailId.getId()).observe(getViewLifecycleOwner(), new Observer<FireworkerDetail>() {
+            @Override
+            public void onChanged(FireworkerDetail fireworker) {
+                fireworkerDetail = fireworker;
+                initDateInfoFireworker();
+            }
+        });
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        initDateInfoFireworker();
+        initFireworker();
     }
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
@@ -204,9 +205,22 @@ public class MapFragment extends Fragment implements MapActionInterface {
 
 
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadFireworks();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        loadFireworks();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
         loadFireworks();
     }
 

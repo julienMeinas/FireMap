@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -171,8 +172,20 @@ public class ListFragment extends Fragment implements FireworkActionInterface {
 
 
     @Override
+    public void onStart() {
+        super.onStart();
+        loadFireworks();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        loadFireworks();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
         loadFireworks();
     }
 }
