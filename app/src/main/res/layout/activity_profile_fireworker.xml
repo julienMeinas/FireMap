@@ -30,25 +30,22 @@
             android:textSize="25dp"
             android:text="Name"/>
 
-
-        <FrameLayout
-            android:id="@+id/fragment_containter"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/name"
-            android:layout_above="@id/nav_profile_fireworker">
-        </FrameLayout>
-
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_profile_fireworker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/bottom_navigation_profile"
-            android:layout_alignParentBottom="true"
-            android:background="@color/background"
-            android:layout_marginTop="20dp">
+            android:layout_below="@id/name"
+            android:background="@color/background">
         </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+        <FrameLayout
+            android:id="@+id/fragment_containter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/nav_profile_fireworker">
+        </FrameLayout>
 
 
     </RelativeLayout>
