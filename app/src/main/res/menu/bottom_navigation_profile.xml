@@ -10,4 +10,9 @@
         android:icon="@drawable/drawable_nav_avis_fireworker"
         android:title="Avis"/>
 
+    <item
+        android:id="@+id/nav_ownFirework"
+        android:icon="@drawable/drawable_fire"
+        android:title="Feux d'artifice"/>
+
 </menu>

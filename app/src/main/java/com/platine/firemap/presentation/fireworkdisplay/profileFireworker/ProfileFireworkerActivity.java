@@ -31,6 +31,7 @@ import com.platine.firemap.presentation.fireworkdisplay.home.map.fragment.MapFra
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.adapter.FireworkerAvisAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.fragment.AvisFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.mapper.AvisToViewItemMapper;
+import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.fireworks.fragment.FireworkFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.profile.fragment.ProfileFragment;
 import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 
@@ -50,9 +51,11 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
     public static final List<Fragment> m_listFragment = new ArrayList<Fragment>() {{
         add(ProfileFragment.newInstance());
         add(AvisFragment.newInstance());
+        add(FireworkFragment.newInstance());
     }};
     private static final int positionProfileFragment = 0;
     private static final int positionAvisFragment = 1;
+    private static final int positionFireworkFragment = 2;
     public int m_currentFragment = positionProfileFragment;
 
 
@@ -115,6 +118,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
                             break;
                         case R.id.nav_avis:
                             m_currentFragment = positionAvisFragment;
+                            break;
+                        case R.id.nav_ownFirework:
+                            m_currentFragment = positionFireworkFragment;
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containter, m_listFragment.get(m_currentFragment)).commit();
