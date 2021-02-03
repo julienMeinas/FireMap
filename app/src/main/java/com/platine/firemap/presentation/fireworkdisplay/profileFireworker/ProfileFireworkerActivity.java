@@ -133,7 +133,8 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
         Bundle bundle = new Bundle();
         bundle.putSerializable("fireworker", (Serializable)fireworkerDetail);
         for(Fragment f : m_listFragment) {
-            f.setArguments(bundle);
+            if(f.getArguments() == null)
+                f.setArguments(bundle);
         }
     }
 

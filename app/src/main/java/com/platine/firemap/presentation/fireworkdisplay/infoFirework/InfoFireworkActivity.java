@@ -63,6 +63,10 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
     private TextView textViewCity;
     private TextView textViewPlace;
     private TextView textViewDate;
+
+    private boolean canOpenProfile = true;
+
+
     
     private BottomNavigationView nav_info;
     public static final List<Fragment> m_listFragment = new ArrayList<Fragment>() {{
@@ -94,6 +98,9 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         buttonBack();
         buttonFav();
         buttonItinéraire();
+        Intent intent = getIntent();
+        if(intent != null)
+            canOpenProfile = intent.getBooleanExtra("CanOpenProfile", true);
         if(savedInstanceState != null) {
             m_currentFragment = savedInstanceState.getInt("currentPositionFragment");
         }
@@ -115,9 +122,6 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         textViewDate.setText(Utils.convertJsonToStringDate(firework.getDate()));
     }
 
-    public void initFragment() {
-
-    }
 
 
     public void initFirework() {
@@ -201,7 +205,10 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
                             m_currentFragment = positionInfoFragment;
                             break;
                         case R.id.nav_fireworker:
-                            m_currentFragment = positionFireworkerFragment;
+                            if(canOpenProfile)
+                                m_currentFragment = positionFireworkerFragment;
+                            else
+                                finish();
                             break;
                         case R.id.nav_avis:
                             m_currentFragment = positionAvisFragment;
@@ -221,7 +228,8 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
         bundle.putSerializable("firework", (Serializable)firework);
         bundle.putSerializable("fireworker", (Serializable)fireworker);
         for(Fragment f : m_listFragment) {
-            f.setArguments(bundle);
+            if(f.getArguments() == null)
+                f.setArguments(bundle);
         }
     }
 

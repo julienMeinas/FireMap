@@ -1,5 +1,6 @@
 package com.platine.firemap.presentation.fireworkdisplay.profileFireworker.fireworks.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkListAdapter;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
+import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 import java.util.List;
@@ -85,6 +87,9 @@ public class FireworkFragment extends Fragment implements FireworkActionInterfac
 
     @Override
     public void onInfoClicked(FireworkModel fireworkModel) {
-
+        Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
+        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, fireworkModel.getId());
+        intent.putExtra("CanOpenProfile", false);
+        view.getContext().startActivity(intent);
     }
 }
