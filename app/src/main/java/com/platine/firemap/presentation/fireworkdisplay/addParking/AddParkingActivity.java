@@ -78,7 +78,7 @@ public class AddParkingActivity extends AppCompatActivity implements AddParkingA
             errorPrice.setVisibility(View.VISIBLE);
             return false;
         }
-        if(! Validation.validText(name.getText().toString())){
+        if(! Validation.validAddress(name.getText().toString())){
             errorName.setVisibility(View.VISIBLE);
             return false;
         }

@@ -140,8 +140,9 @@ public class MapFragment extends Fragment implements MapActionInterface {
                 fireworks = fireworkViewItems;
                 map.clear();
                 for(FireworkViewItem fireworkViewItem : fireworks) {
-                    MarkerOptions marker = new MarkerOptions().position(new LatLng(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude())).title(String.valueOf(fireworkViewItem.getId()));
-                    markerMap.put(String.valueOf(fireworkViewItem.getId()), fireworkViewItem);
+                    String key = fireworkViewItem.getAddress() + " ," + fireworkViewItem.getCity();
+                    MarkerOptions marker = new MarkerOptions().position(new LatLng(fireworkViewItem.getLatitude(), fireworkViewItem.getLongitude())).title(key);
+                    markerMap.put(key, fireworkViewItem);
                     map.addMarker(marker);
                 }
             }

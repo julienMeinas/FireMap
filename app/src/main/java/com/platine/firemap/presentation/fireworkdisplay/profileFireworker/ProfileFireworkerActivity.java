@@ -135,6 +135,9 @@ public class ProfileFireworkerActivity extends AppCompatActivity implements Prof
         for(Fragment f : m_listFragment) {
             if(f.getArguments() == null)
                 f.setArguments(bundle);
+            else {
+                f.setArguments(bundle);
+            }
         }
     }
 

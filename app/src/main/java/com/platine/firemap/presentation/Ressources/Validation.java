@@ -44,7 +44,7 @@ public class Validation {
     public static boolean validAddress(String address) {
         if(address == null)
             return false;
-        if(address.trim() == "")
+        if(address.trim().equals(""))
             return false;
         return true;
     }

@@ -143,9 +143,8 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
 
 
     public boolean validation() {
-        if(!Validation.validText(comment.getText().toString())) {
-            this.errorComment.setVisibility(View.VISIBLE);
-            return false;
+        if(comment.getText().toString().equals("")) {
+            comment.setText("Pas de commentaire");
         }
         return true;
     }

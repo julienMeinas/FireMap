@@ -7,14 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.avis.fragment.AvisFragment;
+import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 
 public class ProfileFragment extends Fragment {
     private static ProfileFragment instance = null;
     private View view;
+
+    private FireworkerDetail fireworkerDetailId;
 
     private FireworkerDetail fireworkerDetail;
 
@@ -23,6 +29,8 @@ public class ProfileFragment extends Fragment {
     private TextView phone;
     private TextView address;
     private TextView url;
+
+    private FireworkerViewModel fireworkerViewModel;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -45,9 +53,10 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.profile_fragment_profile, container, false);
-        fireworkerDetail = (FireworkerDetail) getArguments().getSerializable("fireworker");
+        fireworkerDetailId = (FireworkerDetail) getArguments().getSerializable("fireworker");
+        fireworkerViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFireworkerFactory()).get(FireworkerViewModel.class);
         initElementsLayout();
-        initDateInfoFireworker();
+        initFireworker();
         return view;
     }
 
@@ -69,5 +78,23 @@ public class ProfileFragment extends Fragment {
         mail.setText(fireworkerDetail.getMail());
         phone.setText(fireworkerDetail.getTel());
         url.setText(fireworkerDetail.getUrlPage());
+    }
+
+
+    public void initFireworker() {
+        fireworkerViewModel.getFireworkerById(fireworkerDetailId.getId()).observe(getViewLifecycleOwner(), new Observer<FireworkerDetail>() {
+            @Override
+            public void onChanged(FireworkerDetail fireworker) {
+                fireworkerDetail = fireworker;
+                initDateInfoFireworker();
+            }
+        });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initFireworker();
     }
 }

@@ -7,21 +7,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.Ressources.Utils;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.info.fragment.InfoFragment;
+import com.platine.firemap.presentation.viewmodel.ListViewModel;
 
 public class DescriptionFragment extends Fragment {
     private static DescriptionFragment instance = null;
     private View view;
 
+    private  FireworkModel fireworkId;
     // le feu d'artifice
     private FireworkModel firework;
 
     // data
     private TextView textViewDescription;
+    // firework view model
+    private ListViewModel fireworkViewModel;
 
 
 
@@ -46,9 +53,9 @@ public class DescriptionFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_description, container, false);
-        firework = (FireworkModel)getArguments().getSerializable("firework");
+        fireworkId = (FireworkModel)getArguments().getSerializable("firework");
         initElementsLayout();
-        initDateInfoFirework();
+        initFirework();
         return view;
     }
 
@@ -62,6 +69,18 @@ public class DescriptionFragment extends Fragment {
 
     public void initDateInfoFirework() {
         textViewDescription.setText(firework.getDescription());
+    }
+
+
+    public void initFirework() {
+        fireworkViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
+        fireworkViewModel.getFireworkById(fireworkId.getId()).observe(getViewLifecycleOwner(), new Observer<FireworkModel>() {
+            @Override
+            public void onChanged(FireworkModel fireworkModel) {
+                firework = fireworkModel;
+                initDateInfoFirework();
+            }
+        });
     }
 
 

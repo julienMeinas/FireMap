@@ -9,24 +9,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.fireworker.FireworkerDetail;
+import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.description.fragment.DescriptionFragment;
 import com.platine.firemap.presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity;
+import com.platine.firemap.presentation.viewmodel.FireworkerViewModel;
 
 public class FireworkerFragment extends Fragment {
     private static FireworkerFragment instance = null;
     private View view;
 
-    // le feu d'artifice
+    private FireworkerDetail fireworkerDetailId;
+
     private FireworkerDetail fireworker;
     // data
     // star
     private ImageView[] rateStarsFireworker = new ImageView[5];
     // name
     private TextView nameFireworker;
+
+    private FireworkerViewModel fireworkerViewModel;
 
 
 
@@ -52,11 +59,12 @@ public class FireworkerFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_fireworker, container, false);
-        fireworker = (FireworkerDetail) getArguments().getSerializable("fireworker");
+        fireworkerDetailId = (FireworkerDetail) getArguments().getSerializable("fireworker");
+        fireworkerViewModel = new ViewModelProvider(this, FakeDependencyInjection.getViewModelFireworkerFactory()).get(FireworkerViewModel.class);
         // initialise les elements du layout
         initElementsLayout();
         // remplace avec les données de l'artificier
-        initDateDescriptionFireworker();
+        initFireworker();
         // bouton pour aller au profil de l'artificier
         buttonProfilFireworker();
         return view;
@@ -96,6 +104,17 @@ public class FireworkerFragment extends Fragment {
                 Intent intent = new Intent(getContext(), ProfileFireworkerActivity.class);
                 intent.putExtra(ProfileFireworkerActivity.FIREWORKER_MESSAGE, fireworker.getId());
                 startActivity(intent);
+            }
+        });
+    }
+
+
+    public void initFireworker() {
+        fireworkerViewModel.getFireworkerById(fireworkerDetailId.getId()).observe(getViewLifecycleOwner(), new Observer<FireworkerDetail>() {
+            @Override
+            public void onChanged(FireworkerDetail fireworkerDetail) {
+                fireworker = fireworkerDetail;
+                initDateDescriptionFireworker();
             }
         });
     }

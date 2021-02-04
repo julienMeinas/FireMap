@@ -154,6 +154,9 @@ public class AddAvis extends AppCompatActivity implements AddAvisActionInterface
             this.errorComment.setVisibility(View.VISIBLE);
             return false;
         }
+        if(comment.getText().toString().equals("")) {
+            comment.setText("Pas de commentaire");
+        }
         return true;
     }
 

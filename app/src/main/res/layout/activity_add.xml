@@ -135,15 +135,29 @@
             </EditText>
 
             <TextView
-                android:id="@+id/errorCity"
+                android:id="@+id/errorCityEmpty"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/redMiddle"
                 android:layout_below="@id/city"
-                android:layout_alignParentRight="true"
-                android:text="Ville non valide"
-                android:textSize="9sp">
+                android:layout_alignParentLeft="true"
+                android:text="Veuillez indiquer une ville"
+                android:textSize="9sp"
+                android:layout_marginLeft="30dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/errorCityInvalid"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/redMiddle"
+                android:layout_below="@id/city"
+                android:layout_alignParentLeft="true"
+                android:text="Veuillez indiquer une ville valide"
+                android:textSize="9sp"
+                android:layout_marginLeft="30dp">
             </TextView>
 
             <TextView
@@ -155,7 +169,7 @@
                 android:textSize="20sp"
                 android:text="Adresse : "
                 android:layout_marginLeft="30dp"
-                android:layout_below="@id/errorCity">
+                android:layout_below="@id/errorCityEmpty">
             </TextView>
 
             <EditText
@@ -169,7 +183,7 @@
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
                 android:hint="Lac du héron"
-                android:layout_below="@id/errorCity">
+                android:layout_below="@id/errorCityEmpty">
             </EditText>
 
 

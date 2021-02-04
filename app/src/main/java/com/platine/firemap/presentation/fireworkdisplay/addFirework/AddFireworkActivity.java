@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.platine.firemap.R;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
 import com.platine.firemap.data.api.model.firework.Fireworker;
+import com.platine.firemap.data.api.model.fireworker.Avis;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.Ressources.Button;
 import com.platine.firemap.presentation.Ressources.Utils;
@@ -52,7 +53,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     private RecyclerViewAdapter recyclerViewAdapter;
 
     // icons
-    private TextView errorCity;
+    private TextView errorCityEmpty;
+    private TextView errorCityInvalid;
     private TextView errorPlace;
     private TextView errorDate;
     private TextView errorHour;
@@ -158,17 +160,20 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         firework.setDuration("");
         firework.setCrowded("");
         firework.setIdFireworker(-1);
+        List<Avis> emptyAvis = new ArrayList<>();
+        firework.setAvis(emptyAvis);
+        firework.setNote(-1);
     }
 
 
 
     public void initComponent() {
-        this.errorCity = findViewById(R.id.errorCity);
+        this.errorCityEmpty = findViewById(R.id.errorCityEmpty);
+        this.errorCityInvalid = findViewById(R.id.errorCityInvalid);
         this.errorPlace = findViewById(R.id.errorPlace);
         this.errorDate = findViewById(R.id.errorDate);
         this.errorHour = findViewById(R.id.errorHour);
         this.errorFireworker = findViewById(R.id.errorFireworker);
-        this.errorCity = findViewById(R.id.errorCity);
         this.city = findViewById(R.id.city);
         this.place = findViewById(R.id.place);
         this.date = findViewById(R.id.datePicker);
@@ -245,6 +250,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     public String pickerToDate() {
         String day;
         String month;
+        String h = "";
+        String m = "";
         if(date.getDayOfMonth() < 10) {
             day = "0"+String.valueOf(date.getDayOfMonth());
         }else{
@@ -256,14 +263,23 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             month = String.valueOf(date.getMonth());
         }
         String year = String.valueOf(date.getYear());
-        String h = String.valueOf(hour.getHour());
-        String m = String.valueOf(hour.getMinute());
+        if(hour.getHour() < 10) {
+            h = "0" + String.valueOf(hour.getHour());
+        }else {
+            h = String.valueOf(hour.getHour());
+        }
+        if(hour.getMinute() < 10) {
+            m = "0" + String.valueOf(hour.getMinute());
+        }else {
+            m = String.valueOf(hour.getMinute());
+        }
         return year+"-"+month+"-"+day+"T"+h+":"+m+".000+00:00";
     }
 
 
     public void reinitializeError(){
-        errorCity.setVisibility(View.GONE);
+        errorCityInvalid.setVisibility(View.GONE);
+        errorCityEmpty.setVisibility(View.GONE);
         errorPlace.setVisibility(View.GONE);
         errorDate.setVisibility(View.GONE);
         errorHour.setVisibility(View.GONE);
@@ -271,8 +287,12 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
     }
 
 
-    public void DisplayErrorCity() {
-        errorCity.setVisibility(View.VISIBLE);
+    public void DisplayErrorCityEmpty() {
+        errorCityEmpty.setVisibility(View.VISIBLE);
+    }
+
+    public void DisplayErrorCityInvalid() {
+        errorCityInvalid.setVisibility(View.VISIBLE);
     }
 
     public void DisplayErrorPlace() {
@@ -298,6 +318,8 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             @Override
             public void onClick(View v) {
                 canBack = false;
+                if(description.getText().toString().equals(""))
+                    description.setText("Pas de description");
                 firework.setDescription(description.getText().toString());
                 layoutDescription.setVisibility(View.GONE);
                 layoutAddress.setVisibility(View.VISIBLE);
@@ -404,11 +426,11 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
         boolean res = true;
         getLocationFromAddress(this, place.getText().toString()+" ,"+city.getText().toString());
         if(!Validation.validAddress(city.getText().toString())) {
-            DisplayErrorCity();
+            DisplayErrorCityEmpty();
             res = false;
         }
-        if(!Validation.validAddress(place.getText().toString())) {
-            DisplayErrorPlace();
+        if(!Validation.validMarker(firework.getLongitude(), firework.getLatitude())){
+            DisplayErrorCityInvalid();
             res = false;
         }
         return res;

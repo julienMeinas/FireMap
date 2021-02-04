@@ -59,7 +59,7 @@
         android:layout_below="@id/editName"
         android:textColor="@color/redMiddle"
         android:textSize="7sp"
-        android:text="Nom non valide"
+        android:text="Veuillez entrer un nom de parking"
         android:layout_marginLeft="30dp">
     </TextView>
 

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/custom_item">
+    android:background="@drawable/custom_avis"
+    android:layout_margin="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
