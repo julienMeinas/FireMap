@@ -301,6 +301,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                 firework.setDescription(description.getText().toString());
                 layoutDescription.setVisibility(View.GONE);
                 layoutAddress.setVisibility(View.VISIBLE);
+                currentButtonBack = backAddress;
             }
         });
     }
@@ -317,7 +318,6 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
                     layoutAddress.setVisibility(View.GONE);
                     layoutDate.setVisibility(View.VISIBLE);
                     canBack = false;
-                    currentButtonBack = backDate;
                 }
 
             }
@@ -352,6 +352,7 @@ public class AddFireworkActivity extends AppCompatActivity  implements AddAction
             public void onClick(View v) {
                 layoutDate.setVisibility(View.GONE);
                 layoutAddress.setVisibility(View.VISIBLE);
+                currentButtonBack = backAddress;
                 canBack = false;
             }
         });
