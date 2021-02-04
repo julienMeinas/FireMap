@@ -39,43 +39,44 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${mapsApiKey}" />
 
-        <activity android:name=".presentation.fireworkdisplay.home.HomeActivity">
+        <activity android:name=".presentation.fireworkdisplay.home.HomeActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.infoFirework.InfoFireworkActivity">
+        <activity android:name=".presentation.fireworkdisplay.infoFirework.InfoFireworkActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.editFirework.EditFireworkActivity">
+        <activity android:name=".presentation.fireworkdisplay.editFirework.EditFireworkActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.addFirework.AddFireworkActivity">
+        <activity android:name=".presentation.fireworkdisplay.addFirework.AddFireworkActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity">
+        <activity android:name=".presentation.fireworkdisplay.profileFireworker.ProfileFireworkerActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.addParking.AddParkingActivity">
+        <activity android:name=".presentation.fireworkdisplay.addParking.AddParkingActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.addAvis.AddAvis">
+        <activity android:name=".presentation.fireworkdisplay.addAvis.AddAvis" android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.fireworkdisplay.addAvisFirework.AddAvis">
+        <activity android:name=".presentation.fireworkdisplay.addAvisFirework.AddAvis" android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
