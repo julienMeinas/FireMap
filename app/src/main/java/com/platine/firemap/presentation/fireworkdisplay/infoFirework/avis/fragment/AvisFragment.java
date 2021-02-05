@@ -73,7 +73,8 @@ public class AvisFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_avis, container, false);
-        fireworkid = (FireworkModel) getArguments().getSerializable("firework");
+            fireworkid = (FireworkModel) getArguments().getSerializable("firework");
+
         // initialise les elements du layout
         initElementsLayout();
         initFirework();

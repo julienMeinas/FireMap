@@ -227,7 +227,7 @@ public class InfoFireworkActivity extends AppCompatActivity implements InfoFirew
 
 
     public void sendData() {
-        for(Fragment f : m_listFragment) {
+        for (Fragment f : m_listFragment) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("firework", (Serializable) firework);
             bundle.putSerializable("fireworker", (Serializable) fireworker);

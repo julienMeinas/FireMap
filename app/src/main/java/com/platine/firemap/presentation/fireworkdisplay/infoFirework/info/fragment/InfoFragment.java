@@ -76,12 +76,14 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_info, container, false);
-        fireworkid = (FireworkModel) getArguments().getSerializable("firework");
+            fireworkid = (FireworkModel) getArguments().getSerializable("firework");
         initElementsLayout();
         initFirework();
         buttonAddParking();
         return view;
     }
+
+
 
     /**
      * initialise les objets avec les élements du layout

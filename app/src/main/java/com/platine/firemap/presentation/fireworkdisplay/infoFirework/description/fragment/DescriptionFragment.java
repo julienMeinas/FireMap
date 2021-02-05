@@ -53,7 +53,7 @@ public class DescriptionFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.info_fragment_description, container, false);
-        fireworkId = (FireworkModel)getArguments().getSerializable("firework");
+            fireworkId = (FireworkModel) getArguments().getSerializable("firework");
         initElementsLayout();
         initFirework();
         return view;
