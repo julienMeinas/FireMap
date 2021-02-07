@@ -1,5 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.map.fragment;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -45,6 +47,11 @@ import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFirewor
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.content.Context;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,12 +70,13 @@ public class MapFragment extends Fragment implements MapActionInterface {
     private List<FireworkViewItem> fireworks;
     private HashMap<String, FireworkViewItem> markerMap;
 
+
     public MapFragment() {
         // Required empty public constructor
     }
 
     public static MapFragment newInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new MapFragment();
         }
         return instance;
@@ -78,6 +86,16 @@ public class MapFragment extends Fragment implements MapActionInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         markerMap = new HashMap<>();
+        LocationManager locManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, locationListener);
+        Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        double latitude=0;
+        double longitude=0;
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
     }
 
     @Override
@@ -232,11 +250,6 @@ public class MapFragment extends Fragment implements MapActionInterface {
         Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, fireworkModel.getId());
         view.getContext().startActivity(intent);
-    }
-
-
-    public void removeAllMarker() {
-        map.clear();
     }
 
 
