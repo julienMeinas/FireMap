@@ -87,15 +87,6 @@ public class MapFragment extends Fragment implements MapActionInterface {
         super.onCreate(savedInstanceState);
         markerMap = new HashMap<>();
         LocationManager locManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, locationListener);
-        Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        double latitude=0;
-        double longitude=0;
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
     }
 
     @Override
