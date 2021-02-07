@@ -1,9 +1,7 @@
 package com.platine.firemap.presentation.fireworkdisplay.home.map.fragment;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,22 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Marker;
 import com.platine.firemap.R;
@@ -38,22 +36,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.platine.firemap.data.api.model.firework.FireworkModel;
-import com.platine.firemap.data.api.model.firework.Fireworker;
 import com.platine.firemap.data.di.FakeDependencyInjection;
 import com.platine.firemap.presentation.fireworkdisplay.addFirework.AddFireworkActivity;
 import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 import com.platine.firemap.presentation.fireworkdisplay.home.map.adapter.MapActionInterface;
 import com.platine.firemap.presentation.fireworkdisplay.infoFirework.InfoFireworkActivity;
 import com.platine.firemap.presentation.viewmodel.ListViewModel;
-import com.platine.firemap.presentation.fireworkdisplay.home.list.adapter.FireworkViewItem;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.content.Context;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,7 +59,6 @@ public class MapFragment extends Fragment implements MapActionInterface {
     private List<FireworkViewItem> fireworks;
     private HashMap<String, FireworkViewItem> markerMap;
 
-
     public MapFragment() {
         // Required empty public constructor
     }
@@ -86,7 +74,7 @@ public class MapFragment extends Fragment implements MapActionInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         markerMap = new HashMap<>();
-        LocationManager locManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+
     }
 
     @Override
@@ -242,6 +230,5 @@ public class MapFragment extends Fragment implements MapActionInterface {
         intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, fireworkModel.getId());
         view.getContext().startActivity(intent);
     }
-
 
 }

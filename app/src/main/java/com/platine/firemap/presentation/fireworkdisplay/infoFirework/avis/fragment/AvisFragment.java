@@ -92,7 +92,7 @@ public class AvisFragment extends Fragment {
         addAvisFirework = this.view.findViewById(R.id.addAvis);
         avisEmpty = this.view.findViewById(R.id.avisEmpty);
 
-         }
+    }
 
 
 

@@ -35,32 +35,30 @@ public class Utils {
 
     public static String jsonMonthtoMonth(String month) {
         String res = "";
-        switch (month) {
-            case "01":
-                res = "Janvier";
-            case "02":
-                res = "Février";
-            case "03":
-                res = "Mars";
-            case "04":
-                res = "Avril";
-            case "05":
-                res = "Mai";
-            case "06":
-                res = "Juin";
-            case "07":
-                res = "Juillet";
-            case "08":
-                res = "Août";
-            case "09":
-                res = "Septembre";
-            case "10":
-                res = "Octobre";
-            case "11":
-                res = "Novembre";
-            case "12":
-                res = "Decembre";
-        }
+        if(month.equals("01"))
+            res = "Janvier";
+        if(month.equals("02"))
+            res = "Février";
+        if(month.equals("03"))
+            res = "Mars";
+        if(month.equals("04"))
+            res = "Avril";
+        if(month.equals("05"))
+            res = "Mai";
+        if(month.equals("06"))
+            res = "Juin";
+        if(month.equals("07"))
+            res = "Juillet";
+        if(month.equals("08"))
+            res = "Août";
+        if(month.equals("09"))
+            res = "Septembre";
+        if(month.equals("10"))
+            res = "Octobre";
+        if(month.equals("11"))
+            res = "Novembre";
+        if(month.equals("12"))
+            res = "Decembre";
         return res;
     }
 

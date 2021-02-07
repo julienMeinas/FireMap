@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,13 +33,12 @@ public class AvisFragment extends Fragment {
     private FireworkerDetail fireworkerDetailId;
 
     private FireworkerDetail fireworkerDetail;
-
+    private TextView avisEmpty;
     private ImageView[] rateStars = new ImageView[5];
-
     private RecyclerView recyclerView;
     private FireworkerAvisAdapter fireworkerAvisAdapter;
-
     private FireworkerViewModel fireworkerViewModel;
+
 
     public AvisFragment() {
         // Required empty public constructor
@@ -78,6 +78,8 @@ public class AvisFragment extends Fragment {
         rateStars[2] = this.view.findViewById(R.id.rate_star_three);
         rateStars[3] = this.view.findViewById(R.id.rate_star_four);
         rateStars[4] = this.view.findViewById(R.id.rate_star_five);
+
+        avisEmpty = this.view.findViewById(R.id.avisEmpty);
     }
 
 
@@ -105,6 +107,11 @@ public class AvisFragment extends Fragment {
     private void registerViewModels(){
         AvisToViewItemMapper avisToViewItemMapper = new AvisToViewItemMapper();
         fireworkerAvisAdapter.bindViewModels(avisToViewItemMapper.map(fireworkerDetail.getAvis()));
+        if(fireworkerDetail.getAvis().isEmpty()){
+            avisEmpty.setVisibility(View.VISIBLE);
+        }else {
+            avisEmpty.setVisibility(View.GONE);
+        }
     }
 
     public void buttonAddAvis() {
