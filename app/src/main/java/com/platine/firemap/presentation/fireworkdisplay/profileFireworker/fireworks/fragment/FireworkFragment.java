@@ -87,9 +87,6 @@ public class FireworkFragment extends Fragment implements FireworkActionInterfac
 
     @Override
     public void onInfoClicked(FireworkModel fireworkModel) {
-        Intent intent = new Intent(view.getContext(), InfoFireworkActivity.class);
-        intent.putExtra(InfoFireworkActivity.FIREWORK_MESSAGE, fireworkModel.getId());
-        intent.putExtra("CanOpenProfile", false);
-        view.getContext().startActivity(intent);
     }
+    
 }
