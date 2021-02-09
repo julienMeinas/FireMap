@@ -73,9 +73,9 @@ public class Utils {
         if(price == 0) {
             imagePrice.setImageResource(R.drawable.drawable_price_free);
             textPrice.setText(msg_price_free);
-        } else if(price < 50000) {
+        } else if(price > 0 || price < 50000) {
             imagePrice.setImageResource(R.drawable.drawable_price_no_free);
-            textPrice.setText(msg_price_not_free);
+            textPrice.setText(msg_price_not_free + " (" + price + "€)");
         }
         else{
             imagePrice.setImageResource(R.drawable.drawable_empty_price);
