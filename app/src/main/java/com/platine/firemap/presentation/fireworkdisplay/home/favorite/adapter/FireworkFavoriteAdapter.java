@@ -57,10 +57,8 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
         private TextView city;
         private TextView address;
         private TextView date;
-        private ImageView price;
-        private ImageView parking;
-        private ImageView accessHandicap;
-        private ImageView people;
+        private TextView price;
+        private ImageView[] rateStars = new ImageView[5];
         private FireworkActionInterface fireworkActionInterface;
         private View v;
         private FireworkViewItem fireworkViewItem;
@@ -72,11 +70,13 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             city = v.findViewById(R.id.city);
             address = v.findViewById((R.id.address));
             date = v.findViewById(R.id.date);
-            parentLayout = v.findViewById(R.id.parent_layout);
             price = v.findViewById(R.id.price);
-            parking = v.findViewById(R.id.parking);
-            accessHandicap = v.findViewById(R.id.accessHandicap);
-            people = v.findViewById(R.id.people);
+            rateStars[0] = this.v.findViewById(R.id.rate_star_one);
+            rateStars[1] = this.v.findViewById(R.id.rate_star_two);
+            rateStars[2] = this.v.findViewById(R.id.rate_star_three);
+            rateStars[3] = this.v.findViewById(R.id.rate_star_four);
+            rateStars[4] = this.v.findViewById(R.id.rate_star_five);
+            parentLayout = v.findViewById(R.id.parent_layout);
             this.fireworkActionInterface = fireworkActionInterface;
         }
 
@@ -91,6 +91,22 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             //Date
             String stringDate = fireworkViewItem.getDate();
             date.setText(stringDate);
+
+            //price
+            if(fireworkViewItem.getPrice() == 0)
+                price.setText("Gratuit");
+            else
+                price.setText(fireworkViewItem.getPrice() + " €");
+
+            for(int i =0; i<5 ;i++){
+                if(fireworkViewItem.getNote()<i+0.25){
+                    rateStars[i].setImageResource(R.drawable.rate_star_big_off_holo_dark);
+                }else if(fireworkViewItem.getNote()>i+0.75){
+                    rateStars[i].setImageResource(R.drawable.rate_star_big_on_holo_dark);
+                }else {
+                    rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
+                }
+            }
 
 
 

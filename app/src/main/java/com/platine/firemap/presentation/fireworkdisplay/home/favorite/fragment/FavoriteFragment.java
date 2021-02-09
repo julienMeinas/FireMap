@@ -36,7 +36,6 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     public static final String TAB_NAME = "Favorites";
     private static FavoriteFragment instance;
     private View view;
-    private ArrayList<FireworkViewItem> m_articles = new ArrayList<>();
     private FavoriteViewModel m_favoriteViewModel;
     private FireworkFavoriteAdapter m_recyclerViewAdapter;
     private ProgressBar progressBar;
@@ -107,6 +106,7 @@ public class FavoriteFragment extends Fragment implements FireworkActionInterfac
     @Override
     public void removeFavorite(int id) {
         m_favoriteViewModel.removeFireworkFromFavorites(id);
+        initRecyclerView();
         ConstraintLayout relativeLayout = this.view.findViewById(R.id.fragment_favorite);
         Snackbar.make(relativeLayout, "Feux d'artifice supprimé des favoris !", Snackbar.LENGTH_LONG).show();
     }

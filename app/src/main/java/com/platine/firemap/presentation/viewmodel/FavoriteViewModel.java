@@ -121,6 +121,8 @@ public class FavoriteViewModel extends ViewModel {
                 }));
     }
 
+
+
     public void removeFireworkFromFavorites(final int id) {
         compositeDisposable.add(fireworkDisplayDataRepository.removeFireworkFromFavorites(id)
                 .subscribeOn(Schedulers.io())
