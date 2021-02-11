@@ -3,30 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/headerSignaler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/colorText"
-        android:text="Signaler"
-        android:layout_marginLeft="30dp"
-        android:textStyle="bold">
-    </TextView>
 
     <TextView
-        android:autoLink="web"
-        android:id="@+id/signaler"
-        android:layout_width="match_parent"
+        android:id="@+id/textMotif"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:layout_below="@id/headerSignaler"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:clickable="true"
-        android:linksClickable="true"
-        android:text="@string/txtContact">
+        android:text="Motif : "
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp">
     </TextView>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_toRightOf="@id/textMotif"
+        android:layout_marginLeft="10dp"/>
+
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/spinner"
+        android:hint="Description du problème"
+        android:layout_margin="15dp"
+        android:gravity="top">
+    </EditText>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText"
+        android:textColor="@color/white"
+        android:text="Envoyer"
+        android:layout_alignParentRight="true">
+    </Button>
 
 </RelativeLayout>
