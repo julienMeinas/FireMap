@@ -5,67 +5,63 @@
     android:id="@+id/fragment_map"
     android:background="@color/background">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="3dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search"
-                android:layout_width="200dp"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             </androidx.appcompat.widget.SearchView>
 
             <Switch
                 android:id="@+id/nextFireworks"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/search"
-                android:text="Tout voir:"
+                android:layout_marginLeft="5dp"
+                android:text="voir également les feux passés:"
                 android:textSize="9sp">
             </Switch>
 
-            <Button
-                android:id="@+id/filter"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/white"
-                android:textSize="7sp"
-                android:text="Filter">
-            </Button>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:id="@+id/mapwhere" />
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+                    android:id="@+id/button_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/drawable_add"/>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
         </RelativeLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_marginTop="40dp"
-            android:id="@+id/mapwhere" />
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-
-                android:id="@+id/button_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="16dp"
-                android:src="@drawable/drawable_add"/>
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

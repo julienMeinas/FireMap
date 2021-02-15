@@ -65,6 +65,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
         private TextView city;
         private TextView price;
         private ImageView[] rateStars = new ImageView[5];
+        private TextView nbAvis;
         private FireworkActionInterface fireworkActionInterface;
         private View v;
         private FireworkViewItem fireworkViewModel;
@@ -82,6 +83,7 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
             rateStars[2] = this.v.findViewById(R.id.rate_star_three);
             rateStars[3] = this.v.findViewById(R.id.rate_star_four);
             rateStars[4] = this.v.findViewById(R.id.rate_star_five);
+            nbAvis = this.v.findViewById(R.id.numberAvis);
             parentLayout = v.findViewById(R.id.parent_layout);
             this.fireworkActionInterface = fireworkActionInterface;
         }
@@ -113,6 +115,8 @@ public class FireworkListAdapter extends RecyclerView.Adapter<FireworkListAdapte
                     rateStars[i].setImageResource(R.drawable.rate_star_big_half_holo_dark);
                 }
             }
+
+            nbAvis.setText("(" + fireworkViewModel.getAvis().size() + ")");
 
 
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {

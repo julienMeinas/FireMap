@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -52,7 +53,6 @@ public class MapFragment extends Fragment implements MapActionInterface {
     private View view;
     private SearchView search;
     private Switch aSwitch;
-    private Button filter;
     private SupportMapFragment mSupportMapFragment;
     private ListViewModel listViewModel;
     private GoogleMap map;
@@ -84,12 +84,34 @@ public class MapFragment extends Fragment implements MapActionInterface {
         view = inflater.inflate(R.layout.fragment_map, container, false);
         this.search = this.view.findViewById(R.id.search);
         this.aSwitch = this.view.findViewById(R.id.nextFireworks);
-        this.filter = this.view.findViewById(R.id.filter);
         listViewModel = new ViewModelProvider(requireActivity(), FakeDependencyInjection.getViewModelFactory()).get(ListViewModel.class);
         setupMap();
-        buttonFilter();
+        setupListener();
         buttonAddFirework();
         return view;
+    }
+
+
+    private void setupListener() {
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                loadFireworks();
+                return false;
+            }
+        });
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                loadFireworks();
+            }
+        });
     }
 
 
@@ -178,17 +200,6 @@ public class MapFragment extends Fragment implements MapActionInterface {
             }
         });
     }
-
-    public void buttonFilter() {
-        this.filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFireworks();
-            }
-        });
-    }
-
-
 
     public void loadFireworks() {
         if(!aSwitch.isChecked()) {

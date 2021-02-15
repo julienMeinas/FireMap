@@ -59,6 +59,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
         private TextView date;
         private TextView price;
         private ImageView[] rateStars = new ImageView[5];
+        private TextView nbAvis;
         private FireworkActionInterface fireworkActionInterface;
         private View v;
         private FireworkViewItem fireworkViewItem;
@@ -76,6 +77,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
             rateStars[2] = this.v.findViewById(R.id.rate_star_three);
             rateStars[3] = this.v.findViewById(R.id.rate_star_four);
             rateStars[4] = this.v.findViewById(R.id.rate_star_five);
+            nbAvis = this.v.findViewById(R.id.numberAvis);
             parentLayout = v.findViewById(R.id.parent_layout);
             this.fireworkActionInterface = fireworkActionInterface;
         }
@@ -108,6 +110,7 @@ public class FireworkFavoriteAdapter extends RecyclerView.Adapter<FireworkFavori
                 }
             }
 
+            nbAvis.setText("(" + fireworkViewItem.getAvis().size() + ")");
 
 
             this.v.findViewById(R.id.parent_layout).setOnClickListener(new View.OnClickListener() {

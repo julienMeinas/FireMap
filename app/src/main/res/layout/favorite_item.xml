@@ -96,6 +96,15 @@
             android:layout_marginBottom="20dp"
             android:gravity="right">
 
+            <TextView
+                android:id="@+id/numberAvis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:textSize="15sp"
+                android:text="(50)">
+            </TextView>
+
             <ImageView
                 android:id="@+id/rate_star_one"
                 android:layout_width="20dp"
